@@ -5,3 +5,4 @@ Project: Starbucks Assist
 Group Members:
 See, Sophia
 Lopez, Frances
+Go, Ainsley
