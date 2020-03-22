@@ -1,0 +1,248 @@
+<div class="content">
+    <div class="content-box">
+        <div class ="profile"> 
+            <div class="left">
+                <img id="dp" class ="content-displaypicture" src="../images/ces dp.jpg" alt="Avatar">
+            </div>
+            <div class="right">
+                <label>Name: <span class="user full-name">Sophia See</span></label>
+                <label>Nickname: <span class="user full-name">Sophia</span></label>
+            </div>  
+
+        </div>
+    </div>
+    <div class="my-favorites">
+        <label id="favorites-header">My Favorites:</label>
+        <div class="content-box drinks">
+            <div class="drink-container">
+                <div class="drink-pic pt-2 pb-2">
+                    <div role="button" class="minus" data-toggle="modal" data-target="#deleteModal">x</div>
+                    <a data-toggle="modal" data-target="#editFaveModal" width="0px">
+                        <img class="image" src="../images/drinks/espresso/caffelattereal.png" alt="drink-pic">
+                        <div class="middle">
+                            <label>EDIT</label>
+                        </div>
+                    </a>   
+                </div>
+                <div class="drink-name-container">
+                    <label class="drink-name">Caffe Latte</label>
+                </div>
+                
+            </div>
+            <div class="drink-container">
+                <div class="drink-pic py-2">
+                    <div role="button" class="minus" data-toggle="modal" data-target="#deleteModal">x</div>
+                    <a data-toggle="modal" data-target="#editFaveModal">
+                        <img class="image"src="../images/drinks/chocolate/whitehotchocoreal.png" alt="drink-pic">
+                        <div class="middle">
+                            <label>EDIT</label>
+                        </div>
+                    </a>
+                </div>
+                <div class="drink-name-container">
+                    <label class="drink-name">White Hot Chocolate</label>
+                </div>
+                
+            </div>
+            <div class="drink-container">
+                <div class="drink-pic pt-2 pb-2">
+                    <div role="button" class="minus" data-toggle="modal" data-target="#deleteModal">x</div>
+                    <a data-toggle="modal" data-target="#editFaveModal">
+                        <img class="image" src="../images/drinks/frappucino/coffeejellyreal.png" alt="drink-pic">
+                        <div class="middle">
+                            <label>EDIT</label>
+                        </div>
+                    </a>
+                </div>
+                <label class="drink-name">Coffee Jelly Frappuccino</label>
+            </div>
+            <div class="drink-container">
+                <div class="drink-pic pt-2 pb-2">
+                    <div role="button" class="minus" data-toggle="modal" data-target="#deleteModal">x</div>
+                    <a data-toggle="modal" data-target="#editFaveModal">
+                        <img class="image" src="../images/drinks/espresso/caramelmacchiatoreal.png" alt="drink-pic">
+                        <div class="middle">
+                            <label>EDIT</label>
+                        </div>
+                    </a>
+                </div>
+                <div class="drink-name-container">
+                    <label class="drink-name">Caramel Macchiato</label>
+                </div>
+                
+            </div>
+            <div class="drink-container">
+                <div class="drink-pic pt-2 pb-2">
+                    <div role="button" class="minus" data-toggle="modal" data-target="#deleteModal">x</div>
+                    <a data-toggle="modal" data-target="#editFaveModal">
+                        <img class="image" src="../images/drinks/Teavana Teas/matchaespressofusionreal.png" alt="drink-pic">
+                        <div class="middle">
+                            <label>EDIT</label>
+                        </div>
+                    </a>
+                </div>
+                <div class="drink-name-container">
+                    <label class="drink-name">Iced Shaken Hibiscus with Pomegranate Pearl</label>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+
+    <!--MODAL FOR EDIT-->
+    <div >
+        <div class="modal fade" id="editFaveModal" tabindex="-1" role="dialog" aria-labelledby="editFaveModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" >
+                <div class="modal-header"style = "background-color: #0b421a">
+                <h3 class="modal-title text-center" id="editFaveModalTitle" style="color:white"><b>My Favorites</b></h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body"style = "background-color: #0b421a">
+                    <form>
+                        <div class="input pb-2">
+                            <div>
+                                <p class="mainCategory"><b>Espresso</b><hr class="new1"></p> 
+                                <div class="drinks"> 
+                                    <label>
+                                        <input type="radio" name="drinks" value="CaffeLatte">
+                                        Caffe Latte
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="drinks" value="CaffeMocha">
+                                        Caffe Mocha
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="drinks" value="Cappucino">
+                                        Cappucino
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="drinks" value="CaramelMacchiato">
+                                        Caramael Macchiato
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="drinks" value="WhiteChocolate">
+                                        White Chocolate
+                                    </label>
+                                </div>
+                                <p class="mainCategory"><br><b>Chocolate</b><hr class="new1"></p> 
+                                <div class="drinks">    
+                                    <label>
+                                        <input type="radio" name="drinks" value="SingatureHotChocolate">
+                                        Signature Hot Chocolate
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="drinks" value="White Hot Chocolate">
+                                        White Hot Chocolate
+                                    </label>
+                                </div>
+                                <p class="mainCategory"><br><b>Teavana Teas</b><hr class="new1"></p> 
+                                <div class="drinks"> 
+                                    <label>
+                                        <input type="radio" name="drinks" value="ChaiTeaLatte">
+                                        Chai Tea Latte
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="drinks" value="GreenTeaLatte">
+                                        Green Tea Latte
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="drinks" value="IcedShakenBlackTea">
+                                        Iced Shaken Black Tea
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="drinks" value="IcedShakenHibiscusWithPomegranatePearl">
+                                        Iced Shaken Hibiscus With Pomegranate Pearl
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="drinks" value="MatchaEspressoFusion">
+                                        Matcha Espresso Fusion
+                                    </label>
+                                </div>
+                                <p class="mainCategory"><br><b>Frappuccino</b><hr class="new1"></p> 
+                                <div class="drinks"> 
+                                    <label>
+                                        <input type="radio" name="drinks" value="CoffeeJellyFrappucino">
+                                        Coffee Jelly
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="drinks" value="DarkCaramelCoffeeFrappuccino">
+                                        Dark Caramel Coffee
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="drinks" value="DarkMochaFrappuccino">
+                                        Dark Mocha
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="drinks" value="StrawberriesAndCreamFrappuccino">
+                                        Strawberries And Cream 
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="drinks" value="MochaFrappuccino">
+                                        Mocha
+                                    </label>
+                                </div>
+                                <p class="mainCategory"><br><b>Coffee Craft</b><hr class="new1"></p> 
+                                <div class="drinks"> 
+                                    <label>
+                                        <input type="radio" name="drinks" value="BrewedCoffee">
+                                        Brewed Coffee
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="drinks" value="ColdBrew">
+                                        Cold Brew
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="drinks" value="ColdFoamIcedEspresso">
+                                        Cold Foam Iced Espresso
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="drinks" value="VanillaSweetCreamColdBrew">
+                                        Vanilla Sweet Cream Cold Brew
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer"style = "background-color: #0b421a">
+                <a type="button" id="order-btn" class="btn btn-secondary" data-dismiss="modal" style = "background-color:white; color: green">
+                    <b>Edit</b>
+                </a>     
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content" style = "background-color: #0b421a;">
+                    <div class="modal-header" style="border-bottom: none;">
+                        <h3 class="modal-title" id="deleteModalTitle" style="color: white;"><b>Are you sure you want to remove <span id="drink-name">Iced Shaken Hibiscus with Pomegranate Pearl</span> from 
+                        your favorites?</b></h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body p-5" style="color: white; border-top:none;">
+                        
+                        <button id="yesDelete" class="decisionDelete" data-dismiss="modal">Yes</button>
+                        <button id="noDelete" class="decisionDelete" data-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{{> footer}}
+
+<script>
+    $(".minus").on("click", function(){
+        console.log("test delete");
+    })
+</script>

@@ -1,0 +1,49 @@
+.content {
+    height: 100vh;
+}
+
+.container {
+    height: 100%;
+    max-width: 80%;
+}
+
+.card {
+    height: 90%;
+}
+
+.card-body {
+    max-width: unset;
+    width: 400px;
+}
+
+.form-group {
+    padding: 8px 0px;
+}
+
+
+.form-group > input, .btn-submit {
+    font-size: 14pt;
+    border-radius: 10px;
+    
+}
+
+.btn-submit {
+    padding: 10px;
+    color: white;
+}
+
+.divider-text span {
+    padding: 7px;
+    font-size: 12px;
+    position: relative;   
+    z-index: 2;
+}
+.divider-text:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    border-bottom: 1px solid white;
+    top: 55%;
+    left: 0;
+    z-index: 1;
+}

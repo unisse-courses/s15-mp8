@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+    <!-- Custom -->
+    <link rel="stylesheet" type="text/css" media="all" href="../css/header-footer.css">
+    <link rel="stylesheet" type="text/css" media="all" href="../css/update-orders.css">
+    <title>{{title}}</title>
+</head>
+<body>
+    {{> admin-header}}
+
+    {{{body}}}
+
+    <div>
+        <div class="modal" id="orderDetailsModal" tabindex="-1" role="dialog" aria-labelledby="editFaveModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content" >
+                    <div class="modal-header"style = "background-color: #0b421a">
+                    <h3 class="modal-title text-center" id="editFaveModalTitle" style="color:white"><b>Order Details</b></h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body"style = "background-color: #0b421a">
+                        <div class="labeltxt">
+                            <h5>Customer Name: <span class="customer-name">Sophia See</span></h5>
+                            <h5>Order #: <span class="order-num">000009</span></h5>
+                            <hr class="new1">
+                            <div class="row font-weight-bolder">
+                                <div class="col-sm drink-name">Drinks</div>
+                                <div class="col-sm drink-size">Size</div>
+                                <div class="col-sm drink-quant">Quantity</div>
+                                <div class="col-sm drink-price">Price</div>
+                            </div>
+                            <hr class="new1">
+                            <div class="row">
+                                <div class="col-sm drink-name">Java Chip Frappucino</div>
+                                <div class="col-sm drink-size">Venti</div>
+                                <div class="col-sm drink-quant">3</div>
+                                <div class="col-sm drink-price">200</div>
+                            </div>
+                            <hr class="new1">
+                            <div class="row">
+                                <div class="col-sm drink-name">Iced Shaken Hibiscus Tea with Pomegranate Pearls</div>
+                                <div class="col-sm drink-size">Grande</div>
+                                <div class="col-sm drink-quant">1</div>
+                                <div class="col-sm drink-price">155</div>
+                            </div>
+                            <hr class="new1">
+                            <div class="row">
+                                <div class="col-sm drink-name">Caramel Macchiato</div>
+                                <div class="col-sm drink-size">Grande</div>
+                                <div class="col-sm drink-quant">1</div>
+                                <div class="col-sm drink-price">155</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer"style = "background-color: #0b421a">
+                        <div class="amount">
+                            <p>Total amount: ₱<span class="total-amt">755.00</span></p>
+                        </div>
+                </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{> footer}}
+
+    <script>
+        $(function() {
+
+            $('.details-modal').hover(function() {
+                    $('#orderDetailsModal').modal('show');
+            });
+
+        });
+
+        {{!-- $(function() {
+
+            $('.details-modal')
+                .on( "mouseenter", function() {
+                    $('#orderDetailsModal').modal('show');
+                })
+                .on( "mouseleave", function() {
+                    console.log("mouse left");
+                    $('#orderDetailsModal').modal('hide');
+            });
+
+        }); --}}
+    </script>
+</body>
+</html>

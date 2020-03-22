@@ -1,0 +1,27 @@
+<div class="content">
+    <div class="container-tabs">
+            <a href="#">
+                <div class="tabs {{#if_equal title "Pending - Update Orders"}} active {{/if_equal}}">
+                    <label>Pending Orders</label>
+                </div>
+            </a>
+        
+            <a href="orders-received">
+                <div class="tabs {{#if_equal title "Received - Update Orders"}} active {{/if_equal}}">
+                    <label>Received Orders</label>
+                </div>
+            </a>
+
+            <a href="orders-preparing">
+                <div class="tabs {{#if_equal title "Preparing - Update Orders"}} active {{/if_equal}}">
+                    <label>Preparing Orders</label>
+                </div>
+            </a>
+    </div>
+
+    <div class="container-box">
+        {{#each orders}}
+            {{> order-container}}
+        {{/each}}
+    </div>
+</div>

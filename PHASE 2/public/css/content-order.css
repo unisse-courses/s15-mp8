@@ -1,0 +1,170 @@
+/*ORDER*/
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=DM+Sans&display=swap');
+
+.content {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.side-nav {
+    flex-direction: row;
+    flex-grow: 1;
+    width: 18%;
+    height: inherit;
+    text-align: left;
+    background-color: beige;
+}
+
+#side-menu {
+    height: auto;
+    font-family: "DM Sans";
+    letter-spacing: 1px;
+    font-size: 20px;
+    line-height: 100px;
+    width: 100%;
+}
+
+#side-menu td a {
+    text-decoration: none;
+    color: black;
+}
+
+#side-menu td a:hover:not(.active) {
+    /* font-size: 1.5rem; */
+    background-position: left center;
+    color: #1bbb46;
+    transition: background-position 2000ms ease-out;
+}
+
+#side-menu td a.active {
+    text-decoration: none;
+    color: #168835;
+    font-weight: 900;
+}
+
+
+#side-menu tbody {
+    margin-top:20px;
+    width: 100%;
+}
+
+#side-menu tr {
+    width: 100%;
+}
+
+#side-menu td {
+    text-align: center;
+    font-size: 16pt;
+}
+
+.menu {
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-around;
+    width: 82%;
+    min-height: 800px;
+}
+
+.menu hr {
+    height: 1.5px;
+    background-color: #ccc;
+    border: none;
+    margin: 0;
+}
+
+.drink-box {
+    display: block;
+    position: relative;
+    justify-content: center;
+    width: 400px;
+    max-height: 500px;
+    text-align: -webkit-center;
+}
+
+.drink-name {
+    margin-top: 20px;;
+    font-size: 16pt;
+    font-family: "Open Sans";
+    height: 65px;
+    display: table;
+    padding: 5px;
+}
+
+.drink-name label {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.drink-price {
+    font-size: 14pt;
+    font-family: "Open Sans";   
+}
+
+.drink-pic{
+    /* display: inline; */
+    /* width: 180px; 
+    height: 180px;  */
+    position: relative;
+    border-radius: 100px;
+    background-color: #0b421a;
+    /* overflow: hidden; */
+    text-align: center;
+}
+
+.drink-pic:hover img {
+    /* background-position: left center; */
+    background-color: #02270cd3;
+    transition: background-position 2000ms ease-out;
+}
+
+.drink-pic img{
+    /* margin: -10px 0px 0px -180px; */
+    text-align: center;
+    object-fit: cover;
+    object-position: 20% 0px; 
+}
+
+.drink-box > .drink-pic {   
+    vertical-align: bottom;
+    display: table-cell;                      
+}
+
+.image {
+    opacity: 1;
+    display: block;
+    width: 150px;
+    height: 130px;
+    text-align: center;
+    border-radius: inherit;
+    transition: .5s ease;
+    backface-visibility: hidden;
+    border-radius: 100px;
+}
+
+.prices {
+    font-weight: 700;
+    font-size: 14pt;
+}
+
+select, input, textarea {
+    padding-left: 10px;
+}
+
+#checkout {
+    border-radius: 50px;
+    text-decoration: none;
+    text-align: center;
+    background-color:#0b421a;
+    color: white;
+    padding: 15px;
+    border: 0;
+    margin: 50px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    font-size: 14pt;
+}

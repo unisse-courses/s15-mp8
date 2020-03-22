@@ -1,0 +1,242 @@
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=DM+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|PT+Sans&display=swap');
+
+h1{
+    font-family: "Open Sans";
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 80px;
+    min-height: 70vh;
+    width: 100%;
+}
+
+.content-box{
+    display: block;
+    width: 100%;
+    color: #0b421a;
+}
+
+.profile {
+    display: flex;
+    padding-left: 30px;
+}
+
+.left {
+    width: 20%;
+}
+
+.right {
+    width: 80%;
+    padding: 50px;
+    font-size: 26pt;
+}
+
+.right label {
+    display: block;
+}
+
+.user {
+    font-weight: 600;
+}
+
+.my-favorites {
+    display: block;
+}
+
+#favorites-header {
+    padding: 30px 50px;
+    padding-bottom: 20px;
+    font-size: 26pt;
+    font-weight: 500;
+    color: #0b421a;
+}
+
+.content-box.drinks {
+    text-align: center;
+    justify-content: space-evenly;
+    flex-grow: 1;
+}
+
+.content-displaypicture {
+    float:left;
+}
+
+.drink-container
+{
+    display:inline-block;
+    position: relative;
+    justify-content: space-around;
+    width: 280px;
+    vertical-align: top;
+    height: 300px;
+    text-align: -webkit-center;
+    flex-direction: row;
+    margin: 20px 10px;
+    /* padding-left: 16px;
+    padding-right: 16px; */
+    /* margin-left: 15px;
+    margin-right: 15px; */
+}
+
+#dp{
+    margin: 0;
+    border: 0;
+    width: 280px;   
+    border-radius: 50%;
+}
+.drink-pic{
+    /* display: inline; */
+    /* width: 180px; 
+    height: 180px;  */
+    /* width: 200px; */
+    width: 180px;
+    height: 180px;
+    position: relative;
+    border-radius: 200px;
+    background-color: #0b421a;
+    /* overflow: hidden; */
+    text-align: center;
+}
+
+.drink-pic img{
+    /* margin: -10px 0px 0px -180px; */
+    text-align: center;
+    object-fit: cover;
+    object-position: 20% 0px; 
+}
+
+.drink-box > .drink-pic {   
+    vertical-align: bottom;
+    display: table-cell;                      
+}
+
+.image {
+    opacity: 1;
+    display: block;
+    width: 180px;
+    height: 160px;
+    text-align: center;
+    border-radius: inherit;
+    transition: .5s ease;
+    backface-visibility: hidden;
+    border-radius: 100px;
+}
+.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.drink-pic:hover .image {
+    opacity: 0.2;
+  }
+  
+.drink-pic:hover .middle {
+    opacity: 1;
+}
+
+.middle label {
+    color: white;
+    font-size: 16pt;
+    padding: 16px 32px;
+    cursor: pointer;
+}
+
+.drink-name {
+    padding: 20px 10px;
+    font-family: "Open Sans";
+    color: #0b421a;
+    font-size: 16pt;
+    height: 100px;
+}
+
+.drink-name-container {
+    height: 100px;
+}
+
+.drinks{
+    text-align: justify;
+    color:white;
+}
+
+.drinks label {
+    margin-right: 10px;
+}
+
+.mainCategory{
+    font-size: 15px;
+    font-weight: 200px;
+    color: white;
+    margin-bottom: 5px;
+}
+
+hr.new1{
+    border: 1px solid white;
+    margin-top: 5px;
+    margin-bottom:5px;
+}
+
+.minus {
+    position: absolute;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    vertical-align: middle;
+    background-color: rgb(193, 1, 1);
+    color: white;
+    cursor: pointer;
+}
+
+.minus:active {
+    box-shadow: 0 5px rgb(173, 13, 13);
+    transform: translateY(2px);
+}
+
+.modal-content {
+    border-radius: 10px;
+    padding-bottom: 10px;
+}
+
+#deleteModal > .modal-dialog {
+    max-width: 70vh;
+}
+
+#deleteModal > .modal-header {
+    border: 0;
+}
+
+#deleteModalTitle {
+    padding: 20px;
+    padding-right: 10px;
+}
+
+.decisionDelete {
+    width: 100px;
+    background-color: #ddd;
+    color: #0b421a;
+    font-weight: 600;
+    font-size: 14pt;
+    border-radius: 15px;
+}
+
+#yesDelete{
+    position: absolute;
+    left: 30%;
+}
+
+#noDelete{
+    position: absolute;
+    right: 30%;
+}

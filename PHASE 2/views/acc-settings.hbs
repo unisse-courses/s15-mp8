@@ -1,0 +1,54 @@
+<div class="content">
+        <div id="image"> 
+            <img id="dp" src="../images/sample-dp/sample dp.jpg">   
+            <button id="edit"> <b>Change Photo</b></button>
+            <input id="fileUpload" type="file" style="display: none;"></input>
+        </div>
+        <div class = "editform">
+        <form>
+            <div class ="input">
+                <label class="label">Name:</label>
+                <input class = "inputbox" name = "name" type="text" id="name"></input> 
+            </div>
+            <div class ="input">
+                <label class="label">Nickname:</label>
+                <input class = "inputbox" name = "nickname" type="text"id="nickname"></input> 
+            </div>
+            <div class ="input">
+                <label class="label">Email Address:</label>
+                <input class = "inputbox" name = "email" type="email" id="email"></input> 
+            </div>
+            <div class ="input">
+                <label class="label">Phone Number:</label>
+                <input class = "inputbox" name = "phone" type="tel" id="phone"></input> 
+            </div>
+            <div class ="input">
+                <label class="label">Change Password:</label>
+                <input class = "inputbox" name = "pass1" type="password" id="pass1"></input> 
+            </div>
+            <div class ="input">
+                <label class="label">Re-type Password:</label>
+                <input class = "inputbox" name = "pass2" type="password" id="pass2"></input> 
+            </div>
+        </form>
+
+        <div id="save">
+            <button type='submit' id="savebtn"> <b>SAVE</b></button>
+        </div>
+    </div> 
+
+    </div>
+
+    {{> footer}}
+
+    <script>
+        $("#edit").click(function() {
+            $("#fileUpload").click();
+        })
+        $("#name").val("Sophia See");
+        $("#nickname").val("Sophie");
+        $("#email").val("sophia_see@dlsu.edu.ph");
+        $("#phone").val("0945 805 2888");
+        $("#pass1").val("********");
+        $("#pass2").val("********");
+    </script>
