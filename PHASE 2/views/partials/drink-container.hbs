@@ -2,9 +2,9 @@
     <div class="drink-pic pt-2 pb-2">
         <a style="cursor: pointer;" data-toggle="modal" data-target= {{#unless admin}} "#orderModal" {{else}} "#edit-item-modal" {{/unless}}>
             <img class="image" src="{{drinkPic}}"> 
-            {{#if_equal type 'Admin'}}
+            {{#if admin}}
                 <div class="middle"><label>EDIT</label></div>
-            {{/if_equal}}
+            {{/if}}
         </a>
     </div>
     <div class="drink-name">

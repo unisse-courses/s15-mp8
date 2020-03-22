@@ -365,9 +365,9 @@ app.get('/order-teavana-teas', (req, res) => {
 
 //ADMIN
 //ORDER STATUS
-app.get('/orders-pending', (req, res) => {
+app.get('/orders-ready', (req, res) => {
     res.render('order-status-admin',  { 
-        title: 'Pending - Update Orders', 
+        title: 'Ready - Update Orders', 
         loc: 'Update Orders',
         isAdmin: true,
         loggedIn: true,
@@ -377,19 +377,19 @@ app.get('/orders-pending', (req, res) => {
             customerNickname: "Ainsley",
             orderNum: '000001',
             numOfOrders: '2',
-            buttonLbl: 'Receive'
+            buttonLbl: 'Served'
         },
         {
             customerNickname: "Ainsley",
             orderNum: '000001',
             numOfOrders: '2',
-            buttonLbl: 'Receive'
+            buttonLbl: 'Served'
         },
         {
             customerNickname: "Ainsley",
             orderNum: '000001',
             numOfOrders: '2',
-            buttonLbl: 'Receive'
+            buttonLbl: 'Served'
         }]
     });
 });

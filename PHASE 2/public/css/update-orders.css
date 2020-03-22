@@ -101,9 +101,7 @@ a > .tabs.active  {
     font-weight: 600;
 }
 
-.details-modal {
-    margin-left: 50px;
-}
+
 
 a.details-modal{
     text-decoration: underline;
@@ -116,9 +114,9 @@ a.details-modal{
     background-color: #0b421a;
     color: white;
     border: 0;
-    width: 100px;
-    height: 40px;
-    border-radius: 5px;
+    width: 110px;
+    height: 50px;
+    border-radius: 10px;
     box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
     padding: 5px;
     cursor: pointer;
@@ -154,24 +152,24 @@ a.details-modal{
 
 .update-btn:active {
     box-shadow: 0 5px rgb(153, 152, 152);
-    transform: translateY(2px);
+    transform: translateY(10px);
 }
 
 .labeltxt{
-    padding: 10px;
-    color: white;
+    /* padding: 10px; */
+    color: black;
     font-weight: 200px;
 }
 
 .amount{
     font-family: "Open Sans";
     text-align: left;
-    color: white;
+    color: black;
     font-weight: 200px;
 }
 
 hr.new1{
-    border: 1px solid white;
+    border: 1px solid black;
     margin-top: 5px;
     margin-bottom:5px;
 }

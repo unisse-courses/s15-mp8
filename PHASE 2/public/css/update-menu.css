@@ -124,6 +124,10 @@
     display: table-cell;  
 }
 
+.drink-plus:hover{
+    background-color: #198d38;
+}
+
 #plus {
     text-align: center;
     object-fit: inherit;
