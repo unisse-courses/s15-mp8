@@ -9,7 +9,7 @@ var userSchema = new Schema({
     phone: {type: Number, required: true},
     password: {type: String, required: true},
     favorites: [{type: Schema.Types.ObjectId, ref: 'Favorite'}],
-    displayphoto: {type: Buffer},
+    displayphoto: {type: String},
     isAdmin: {type: Boolean, required: true}
 });
 
