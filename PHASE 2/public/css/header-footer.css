@@ -76,6 +76,36 @@
     /* padding: 2px; */
 }
 
+.dropdown-toggle.admin {
+    height: 100%;
+    text-align:center;
+    vertical-align:middle; 
+    display:table-cell;
+    width: 160px;
+    text-align: right;
+    padding: 0px 1.5rem;
+}
+
+.dropdown.admin {
+    text-align:center;
+    vertical-align:middle; 
+    display:table-cell;
+    height: 100%;
+    cursor: pointer;
+    
+    /* padding: 2px; */
+}
+
+.dropdown.admin > div.dropdown-menu.show {
+    margin: 0;
+}
+
+.admin-cont {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0px 0.5rem;
+}
+
 .nav-profile {
     line-height: 40px;
     display: table;
@@ -162,7 +192,9 @@ a#profileDropDown.btn.btn-secondary.dropdown-toggle {
     text-align: right;
     background-color: #0b421a;
     color: white;
-    border-color: #0e5021;
+    border-color: #0b421a;
+    border-bottom-color: #0e5021;
+    
     border-radius: 0px 0px 10px 10px;
 }
 

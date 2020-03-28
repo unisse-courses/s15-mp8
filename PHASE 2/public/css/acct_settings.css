@@ -18,11 +18,11 @@
 }
 
 #image{
-    margin:10px;
+    margin:10px 80px;
     padding :20px;
     display: flex;
     width: auto;
-    margin-right:20px;
+    /* margin-right:20px; */
     flex-direction: column;
     vertical-align: top;
 }
@@ -30,7 +30,7 @@
 #edit{
     height: auto;
     width: auto;
-    padding: 3px 0px;
+    padding: 5px 0px;
     text-align: center;
     margin-top: 25px;
     border-radius: 20px;
@@ -39,12 +39,15 @@
 }
 
 #savebtn{
-    height: 30px;
+    height: auto;
     width: 100px;
     margin: 40px;
+    padding: 5px;
     margin-bottom: 50px;
+    font-weight: 600;
+    letter-spacing: 1px;
     margin-left: 200px;
-    border-radius: 20px;
+    border-radius: 15px;
     background-color: #0b421a;
     color: white;
 }

@@ -166,6 +166,7 @@ h1{
 }
 
 .drinks{
+    font-size: 16px;
     text-align: justify;
     color:white;
 }
@@ -175,7 +176,7 @@ h1{
 }
 
 .mainCategory{
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 200px;
     color: white;
     margin-bottom: 5px;
@@ -186,6 +187,7 @@ hr.new1{
     margin-top: 5px;
     margin-bottom:5px;
 }
+
 
 .minus {
     position: absolute;
@@ -207,6 +209,7 @@ hr.new1{
 .modal-content {
     border-radius: 10px;
     padding-bottom: 10px;
+    background-color: #0b421a;
 }
 
 #deleteModal > .modal-dialog {

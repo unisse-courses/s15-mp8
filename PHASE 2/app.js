@@ -129,48 +129,6 @@ app.get('/order-espresso', (req, res) => {
                 ventiPrice: 195
             },
             {
-                drinkName: "Caffe Latte",
-                drinkPic: "../images/drinks/espresso/caffelattereal.png",
-                tallPrice: 175,
-                grandePrice: 185,
-                ventiPrice: 195
-            },
-            {
-                drinkName: "Caffe Latte",
-                drinkPic: "../images/drinks/espresso/caffelattereal.png",
-                tallPrice: 175,
-                grandePrice: 185,
-                ventiPrice: 195
-            },
-            {
-                drinkName: "Caffe Latte",
-                drinkPic: "../images/drinks/espresso/caffelattereal.png",
-                tallPrice: 175,
-                grandePrice: 185,
-                ventiPrice: 195
-            },
-            {
-                drinkName: "Caffe Latte",
-                drinkPic: "../images/drinks/espresso/caffelattereal.png",
-                tallPrice: 175,
-                grandePrice: 185,
-                ventiPrice: 195
-            },
-            {
-                drinkName: "Caffe Latte",
-                drinkPic: "../images/drinks/espresso/caffelattereal.png",
-                tallPrice: 175,
-                grandePrice: 185,
-                ventiPrice: 195
-            },
-            {
-                drinkName: "Caffe Latte",
-                drinkPic: "../images/drinks/espresso/caffelattereal.png",
-                tallPrice: 175,
-                grandePrice: 185,
-                ventiPrice: 195
-            },
-            {
                 drinkName: "Caffe Mocha",
                 drinkPic: "../images/drinks/espresso/caffemochareal.png",
                 tallPrice: 175,
@@ -377,19 +335,19 @@ app.get('/orders-ready', (req, res) => {
             customerNickname: "Ainsley",
             orderNum: '000001',
             numOfOrders: '2',
-            buttonLbl: 'Served'
+            buttonLbl: 'Done'
         },
         {
             customerNickname: "Ainsley",
             orderNum: '000001',
             numOfOrders: '2',
-            buttonLbl: 'Served'
+            buttonLbl: 'Done'
         },
         {
             customerNickname: "Ainsley",
             orderNum: '000001',
             numOfOrders: '2',
-            buttonLbl: 'Served'
+            buttonLbl: 'Done'
         }]
     });
 });
