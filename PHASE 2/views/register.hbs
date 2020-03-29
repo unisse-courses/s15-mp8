@@ -4,13 +4,13 @@
         <div class="card bg-light">
         <article class="card-body mx-auto">
             <h1 class="card-title p-3 text-center">Create Account</h1>
-            <form id="register-form" method="POST" action="/register">
+            <form>
                 <!-- Full name -->
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                     </div>
-                    <input id="fullName" name="fullName" class="form-control" placeholder="Full name" type="text">
+                    <input id="fullname" name="fullname" class="form-control" placeholder="Full name" type="text">
                 </div> 
 
                 <!-- Nickname -->
@@ -26,7 +26,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                     </div>
-                    <input id="emailAddress" name="emailAddress" class="form-control" placeholder="Email address" type="email">
+                    <input id="emailAdd" name="emailAdd" class="form-control" placeholder="Email address" type="email">
                 </div> 
 
                 <!-- Phone Number -->
@@ -34,7 +34,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
                     </div>
-                    <input id="phoneNumer" name="phoneNumber" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" class="form-control" placeholder="Phone number">     
+                    <input id="phone" name="phone" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" class="form-control" placeholder="Phone number">     
                 </div>
                 
                 <!-- Input Password -->
@@ -42,7 +42,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                     </div>
-                    <input id="password" name="password" class="form-control" placeholder="Create password" type="password">
+                    <input id="pass" name="pass" class="form-control" placeholder="Create password" type="password">
                 </div> 
 
                 <!-- Confirm Password -->
@@ -50,12 +50,16 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                     </div>
-                    <input id="confirmPassword" name="confirmPassword" class="form-control" placeholder="Repeat password" type="password">
+                    <input id="confirmPass" name="confirmPass" class="form-control" placeholder="Repeat password" type="password">
                 </div> 
 
+                <div class="form-group">
+                    <p id="message"></p>
+                </div>
+
                 <div class="form-group pt-3">
-                    {{!-- <input type="submit" href="/home-customer" value="Create Account" class="btn btn-primary btn-block btn-submit" style="color: white; background-color:#0b421a"></input> --}}
-                    <a href="/home-customer" type="submit" class="btn btn-primary btn-block btn-submit" style="background-color:#0b421a"> Create Account  </a>
+                    <button id="btnsubmit" type="button" class="btn btn-primary btn-block btn-submit" style="color: white; background-color:#0b421a">Submit</button>
+                    {{!-- <a href="/home-customer" type="submit" class="btn btn-primary btn-block btn-submit" style="background-color:#0b421a"> Create Account  </a> --}}
                 </div> <!-- form-group// -->                                                                   
             </form>
         </article>

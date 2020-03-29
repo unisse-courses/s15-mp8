@@ -1,7 +1,12 @@
+require('./models/db');
 const express = require('express');
 const exphbs = require('express-handlebars');
+const hbs = require('handlebars');
+const bodyparser = require('body-parser');
 const app = express();
 const port = 3000;
+
+const userRoute = require("./routes/userRoute");
 
 app.set('view engine', 'hbs');
 
@@ -19,38 +24,47 @@ app.engine('hbs', exphbs({
         }
 }));
 
+app.use(bodyparser.urlencoded({
+    extended: true
+}));
+
+app.use(bodyparser.json());
+
 app.listen(port, () => {
     console.log('App listening at port ' + port);
 });
 
 app.use(express.static(__dirname + '/public'));
 
-app.get('/', (req, res) => {
-    res.render('homepage',  { 
-        title: 'Home - Starbucks Assist', 
-        layout: 'home', 
-        loggedIn: false,
-        css: ['header-footer.css', 'content-home.css'] });
-});
+// app.get('/', (req, res) => {
+//     res.render('homepage',  { 
+//         title: 'Home - Starbucks Assist', 
+//         layout: 'home', 
+//         loggedIn: false,
+//         css: ['header-footer.css', 'content-home.css'] });
+// });
+
+app.use('/', userRoute);
+// app.use('/home-customer', userRoute);
 
 app.get('/register', (req, res) => {
     res.render('register',  { 
         title: 'Register - Starbucks Assist', 
         layout: 'home', 
         isRegister: true,
+        js: 'register.js',
         css: ['header-footer.css', 'content-register.css'] });
 });
 
-//MERGE NATIN NEXT TIME
-app.get('/home-customer', (req, res) => {
-    res.render('homepage',  {
-        title: 'Home - Starbucks Assist', 
-        layout: 'home', 
-        loc: 'Home',
-        loggedIn: true,
-        css: ['header-footer.css', 'content-home.css'],
-        isAdmin: false });
-});
+// app.get('/home-customer', (req, res) => {
+//     res.render('homepage',  {
+//         title: 'Home - Starbucks Assist', 
+//         layout: 'home', 
+//         loc: 'Home',
+//         loggedIn: true,
+//         css: ['header-footer.css', 'content-home.css'],
+//         isAdmin: false });
+// });
 
 app.get('/home-admin', (req, res) => {
     res.render('homepage',  {

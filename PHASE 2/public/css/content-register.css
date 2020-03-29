@@ -47,3 +47,11 @@
     left: 0;
     z-index: 1;
 }
+
+.success {
+    color: #0B6623;
+}
+
+.fail {
+    color: #5E1914;
+}
