@@ -27,6 +27,7 @@ router.get('/', (req, res) => {
         title: 'Home - Starbucks Assist', 
         layout: 'home', 
         loggedIn: false,
+        js: 'register.js',
         css: ['header-footer.css', 'content-home.css'] });
 });
 
@@ -46,28 +47,12 @@ router.get('/home-customer', (req, res) => {
             console.log('Error in user: ' + err);
         }
     });
-    
-    // User.find((err, docs) => {
-    //     if(!err) {
-    //         res.render('homepage', {
-    //             user: docs,
-    //             nickname: docs.nickname,
-    //             title: 'Home - Starbucks Assist', 
-    //             layout: 'home', 
-    //             loc: 'Home',
-    //             loggedIn: true,
-    //             css: ['header-footer.css', 'content-home.css']
-    //         })
-    //     } else {
-    //         console.log('Error in user: ' + err);
-    //     }
-    // });
 });
 
 //NO ERROR CHECKING YET (i.e. pass1 == pass2, email(unique & right syntax), phonenum)
 router.post('/addUser', (req, res) => {
     var result;
-    User.find({ email: req.body.email })
+    User.find({ emailAddress: req.body.emailAddress })
     .exec()
     .then(user => {
         if (user.length >= 1) {
@@ -89,26 +74,22 @@ router.post('/addUser', (req, res) => {
     });
 });
 
-router.get('/login', (req,res) => {
-    
-})
-
 function insertUser(req, res, success, message) {
     var user = new User();
     user._id = new mongoose.Types.ObjectId(),
     user.fullname = req.body.fullname;
     user.nickname = req.body.nickname;
-    user.email = req.body.email;
+    user.emailAddress = req.body.emailAddress;
     user.phone = req.body.phone;
-    user.pass = req.body.pass;
+    user.password = req.body.password;
     user.displayphoto = "default.png";
     user.isAdmin = false;
 
     console.log ("before saving: " + user);
 
     if(success) {
-        console.log(req.body.pass + " " + req.body.confirmPass)
-        if (req.body.pass == req.body.confirmPass) {
+        console.log("1: " + req.body.password + " 2: " + req.body.confirmPass)
+        if (req.body.password == req.body.confirmPass) {
             user.save((err, doc) => {
                 if (!err) {
                     console.log('user: ' + user);
@@ -130,5 +111,32 @@ function insertUser(req, res, success, message) {
         res.send(result);
     }
 }
+
+router.post('/login', (req,res) => {
+    console.log("email: " + req.body.emailAddress + " password: " + req.body.password)
+    User.findOne({emailAddress: req.body.emailAddress, password: req.body.password})
+    .exec()
+    .then(user => {
+      if (user == null) {
+            console.log( "user not found");
+            result = { success: false, message: "Email or password does not match." }
+            res.send(result);
+        }
+        else{   
+            console.log( "user found:", user);
+            result = {success: true}
+            res.send(result);
+            // console.log("user is: " + user[0]);
+            // insertUser(req, res, result.success, result.message);
+        }
+        
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({
+            error: err
+        });
+    });
+})
 
 module.exports = router;
