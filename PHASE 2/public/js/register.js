@@ -5,13 +5,15 @@ $(document).ready(function() {
       var email = $('#emailAdd').val();
       var phone = $("#phone").val();
       var pass = $("#pass").val();
+      var confirmPass = $("#confirmPass").val();
 
       var newUser = {
         fullname: fullname,
         nickname: nickname,
         email: email,
         phone: phone,
-        pass: pass
+        pass: pass,
+        confirmPass: confirmPass
       };
 
       console.log("newUSer: " + newUser)

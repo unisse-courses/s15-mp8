@@ -50,8 +50,10 @@
 
 .success {
     color: #0B6623;
+    font-weight: 600;
 }
 
 .fail {
     color: #5E1914;
+    font-weight: 600;
 }

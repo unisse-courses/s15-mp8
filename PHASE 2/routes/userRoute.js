@@ -107,16 +107,23 @@ function insertUser(req, res, success, message) {
     console.log ("before saving: " + user);
 
     if(success) {
-        user.save((err, doc) => {
-            if (!err) {
-                console.log('user: ' + user);
-                result = { success: success, message: message }
-                res.send(result);
-            } 
-            else {
-                 console.log('Error insertUser: ' + err);
-            }
-        });
+        console.log(req.body.pass + " " + req.body.confirmPass)
+        if (req.body.pass == req.body.confirmPass) {
+            user.save((err, doc) => {
+                if (!err) {
+                    console.log('user: ' + user);
+                    result = { success: success, message: message }
+                    res.send(result);
+                } 
+                else {
+                    console.log('Error insertUser: ' + err);
+                }
+            });
+        }
+        else {
+            result = { success: false, message: "Password do not match" }
+            res.send(result);
+        }
     }
     else {
         result = { success: success, message: message}
