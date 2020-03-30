@@ -2,9 +2,9 @@ $(document).ready(function() {
   $('#btnsubmit').click(function() {
     var fullname = $('#fullname').val();
     var nickname = $('#nickname').val();
-    var emailAddress = $('#emailAddress').val();
+    var emailAddress = $('#emailAdd').val();
     var phone = $("#phone").val();
-    var password = $("#password").val();
+    var password = $("#pword").val();
     var confirmPass = $("#confirmPass").val();
 
     console.log("password: " + password);
@@ -35,7 +35,7 @@ $(document).ready(function() {
         $('#nickname').val('');
         $('#emailAddress').val("");
         $('#phone').val('');
-        $('#password').val('');
+        $('#pword').val('');
         $('#confirmPass').val('');
 
       } else {
@@ -63,7 +63,8 @@ $(document).ready(function() {
           $('#message').addClass('fail');
         }
         else {
-          res.send({redirect: '/home-customer'});
+          // res.send({redirect: 'customer/home'});
+          window.location.href = "google.com";
         }
       });
     });

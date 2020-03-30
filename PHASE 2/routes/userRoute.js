@@ -2,57 +2,28 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+// const Drink = mongoose.model('Drink');
+// const Prices = mongoose.model('Prices');
+
+const customerRouter = require("./customerRoute");
+const adminRouter = require("./adminRoute");
 
 var router = express.Router();
 mongoose.set('useFindAndModify', false);
 
-router.get('/', (req, res) => {
-    
-    //delete documents
-    // User.deleteMany({}, function (err) {
-    //     if(err) console.log(err);
-    //     console.log("Successful deletion");
-    //   });
-
-    //count documents
-    User.countDocuments({}, function( err, count){
-        console.log( "Number of users:", count );
-    })
-
-    User.find({}, function( err, user){
-        console.log( "user:", user );
-    })
-
-    res.render('homepage',  { 
-        title: 'Home - Starbucks Assist', 
+router.get('/register', (req, res) => {
+    // insertDrink(req, res);
+    res.render('register',  { 
+        title: 'Register - Starbucks Assist', 
         layout: 'home', 
-        loggedIn: false,
+        isRegister: true,
         js: 'register.js',
-        css: ['header-footer.css', 'content-home.css'] });
+        css: ['header-footer.css', 'content-register.css'] });
 });
 
-router.get('/home-customer', (req, res) => {
-    User.findOne().sort({$natural: -1}).limit(1).exec((err, docs) => {
-        if(!err) {
-            res.render('homepage', {
-                user: docs,
-                title: 'Home - Starbucks Assist', 
-                layout: 'home', 
-                loc: 'Home',
-                loggedIn: true,
-                css: ['header-footer.css', 'content-home.css']
-            })
-
-        } else {
-            console.log('Error in user: ' + err);
-        }
-    });
-});
-
-//NO ERROR CHECKING YET (i.e. pass1 == pass2, email(unique & right syntax), phonenum)
 router.post('/addUser', (req, res) => {
     var result;
-    User.find({ emailAddress: req.body.emailAddress })
+    User.find({ emailAddress: req.body.emailAdd })
     .exec()
     .then(user => {
         if (user.length >= 1) {
@@ -73,6 +44,33 @@ router.post('/addUser', (req, res) => {
         });
     });
 });
+
+router.post('/login', (req,res) => {
+    console.log("email: " + req.body.emailAdd + " password: " + req.body.pword)
+    User.findOne({emailAddress: req.body.emailAdd, password: req.body.pword})
+    .exec()
+    .then(user => {
+      if (user == null) {
+            console.log( "user not found");
+            result = { success: false, message: "Email or password does not match." }
+            res.send(result);
+        }
+        else{   
+            console.log( "user found:", user);
+            result = {success: true}
+            res.send(result);
+            // console.log("user is: " + user[0]);
+            // insertUser(req, res, result.success, result.message);
+        }
+        // res.redirect('/customer/home');
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({
+            error: err
+        });
+    });
+})
 
 function insertUser(req, res, success, message) {
     var user = new User();
@@ -112,31 +110,41 @@ function insertUser(req, res, success, message) {
     }
 }
 
-router.post('/login', (req,res) => {
-    console.log("email: " + req.body.emailAddress + " password: " + req.body.password)
-    User.findOne({emailAddress: req.body.emailAddress, password: req.body.password})
-    .exec()
-    .then(user => {
-      if (user == null) {
-            console.log( "user not found");
-            result = { success: false, message: "Email or password does not match." }
-            res.send(result);
-        }
-        else{   
-            console.log( "user found:", user);
-            result = {success: true}
-            res.send(result);
-            // console.log("user is: " + user[0]);
-            // insertUser(req, res, result.success, result.message);
-        }
-        
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err
-        });
-    });
-})
+// function insertDrink (req, res) {
+//     var drink = new Drink();
+//     drink._id = new mongoose.Types.ObjectId(),
+//     drink.name = "Caffe Latte";
+//     drink.picture = "/images/drinks/espresso/caffe-latte.png";
+//     drink.category = "Espresso";
+//     var prices = new Prices({
+//         tall: 170,
+//         grande: 180,
+//         venti: 200
+//     });
+//     drink.pricelist = prices;
+
+//         drink.save((err, doc) => {
+//             if (!err) {
+//                 // console.log('user: ' + user);
+//                 prices.save((err, doc) => {
+//                     if (!err) {
+//                         console.log("pricelist created!");
+//                     }
+//                     else {
+//                         console.log('Error pricelist: ' + err);
+//                     }
+//                 })
+//                 console.log("drink inserted! " + drink);
+//                 // result = { success: success, message: message }
+//                 // res.send(result);
+//             } 
+//             else {
+//                 console.log('Error insertDrink: ' + err);
+//             }
+//         });
+// }
+
+router.use('/customer', customerRouter);
+router.use('/admin', adminRouter);
 
 module.exports = router;

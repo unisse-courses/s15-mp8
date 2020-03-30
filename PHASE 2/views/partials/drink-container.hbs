@@ -1,18 +1,18 @@
 <div class="drink-box py-3">
     <div class="drink-pic pt-2 pb-2">
         <a style="cursor: pointer;" data-toggle="modal" data-target= {{#unless admin}} "#orderModal" {{else}} "#edit-item-modal" {{/unless}}>
-            <img class="image" src="{{drinkPic}}"> 
+            <img class="image" src="{{picture}}"> 
             {{#if admin}}
                 <div class="middle"><label>EDIT</label></div>
             {{/if}}
         </a>
     </div>
     <div class="drink-name">
-        <label class="drink-name">{{drinkName}}</label>
+        <label class="drink-name">{{name}}</label>
     </div>
     <div class="prices">
-        <label for="caffe-latte" class="price-label">{{tallPrice}} 	•</label> 
-        <label for="caffe-latte" class="price-label">{{grandePrice}} 	•</label> 
-        <label for="caffe-latte" class="price-label">{{ventiPrice}}</label> 
+        <label for="caffe-latte" class="price-label">{{pricelist.tall}} 	•</label> 
+        <label for="caffe-latte" class="price-label">{{pricelist.grande}} 	•</label> 
+        <label for="caffe-latte" class="price-label">{{pricelist.venti}}</label> 
     </div>
 </div>

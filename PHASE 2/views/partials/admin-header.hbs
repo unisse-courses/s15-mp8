@@ -1,15 +1,15 @@
 <div class="header py-2">
     <div class="nav-logo">
-        <a href="home-admin">
-                <img class="nav-pic" id="logo" src="../images/logos/logo.png">
+        <a href="user/admin/home">
+                <img class="nav-pic" id="logo" src="/images/logos/logo.png">
         </a>
     </div>
 
     <div class="nav-actions px-4 py-2">
-        <a href="/home-admin" {{#if_equal loc 'Home'}} class="active" {{/if_equal}}>Home</a>
+        <a href="user/admin/home" {{#if_equal loc 'Home'}} class="active" {{/if_equal}}>Home</a>
         <!-- <a>View Menu</a> -->
-        <a href="update-espresso" {{#if_equal loc 'Update Menu'}} class="active" {{/if_equal}}>Update Menu</a>
-        <a href="orders-received" {{#if_equal loc 'Update Orders'}} class="active" {{/if_equal}}>Update Orders</a>
+        <a href="user/admin/menu/espresso" {{#if_equal loc 'Update Menu'}} class="active" {{/if_equal}}>Update Menu</a>
+        <a href="user/admin/orders/received" {{#if_equal loc 'Update Orders'}} class="active" {{/if_equal}}>Update Orders</a>
     </div>   
 
     <div class="nav-profile">

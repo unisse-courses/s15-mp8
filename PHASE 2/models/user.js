@@ -21,4 +21,4 @@ var userSchema = new Schema({
 
 userSchema.plugin(mongooseUniqueValidator);
 
-mongoose.model(`User`, userSchema);
+const UserModel = mongoose.model(`User`, userSchema);

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017', {useNewUrlParser:true, useUnifiedTopology: true}, (err) => {
+mongoose.connect('mongodb+srv://Sophia:123@cluster0-il1k9.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser:true, useUnifiedTopology: true}, (err) => {
     if (!err) {
         console.log(`MongoDB connected`);
     }
@@ -11,3 +11,7 @@ mongoose.connect('mongodb://localhost:27017', {useNewUrlParser:true, useUnifiedT
 
 require('./user');
 require('./favorite');
+require('./order');
+require('./drinkorder');
+require('./drink');
+require('./pricelist');

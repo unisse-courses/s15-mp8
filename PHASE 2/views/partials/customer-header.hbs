@@ -1,22 +1,22 @@
 <div class="header py-2">
         <div class="nav-logo">
-            <a href="home-customer">
-                <img class="nav-pic" id="logo" src="../images/logos/logo.png">
+            <a href="user/customer/home">
+                <img class="nav-pic" id="logo" src="/images/logos/logo.png">
             </a>
         </div>
 
         <div class="nav-actions px-4 py-2">
-            <a href="home-customer" {{#if_equal loc 'Home'}} class="active" {{/if_equal}}>Home</a>
-            <a href="order-espresso" {{#if_equal loc 'Order'}} class="active" {{/if_equal}}>Order</a>
-            <a href="cart-customer" {{#if_equal loc 'View Cart'}} class="active" {{/if_equal}}>View Cart</a>
-            <a href="order-status-customer" {{#if_equal loc 'Order Status'}} class="active" {{/if_equal}}>Order Status</a>
+            <a href="user/customer/home" {{#if_equal loc 'Home'}} class="active" {{/if_equal}}>Home</a>
+            <a href="user/customer/menu/espresso" {{#if_equal loc 'Order'}} class="active" {{/if_equal}}>Order</a>
+            <a href="user/customer/cart" {{#if_equal loc 'View Cart'}} class="active" {{/if_equal}}>View Cart</a>
+            <a href="user/customer/order-status" {{#if_equal loc 'Order Status'}} class="active" {{/if_equal}}>Order Status</a>
         </div>   
 
         <div class="nav-profile">
             <div class="dropdown">
                 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="profileDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="nav-profpic mr-3">
-                    <img class="nav-pic" id="nav-prof-pic" src="../images/sample-dp/sample dp.jpg">   
+                    <img class="nav-pic" id="nav-prof-pic" src="/images/sample-dp/sample dp.jpg">   
                 </div>
                 <div class="name-type">
                     <label class="name">Sophia</label>
@@ -26,9 +26,9 @@
                 
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="my-favorites">My Favorites</a>
-                    <a class="dropdown-item" href="transaction-history">Transaction History</a>
-                    <a class="dropdown-item" href="acc-settings">Account Settings</a>
+                    <a class="dropdown-item" href="user/customer/favorites">My Favorites</a>
+                    <a class="dropdown-item" href="user/customer/transaction-history">Transaction History</a>
+                    <a class="dropdown-item" href="user/customer/account-settings">Account Settings</a>
                     <a class="dropdown-item" href="/">Log Out</a>
                 </div>
             </div>  
