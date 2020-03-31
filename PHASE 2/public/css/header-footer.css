@@ -177,6 +177,7 @@ a#profileDropDown.btn.btn-secondary.dropdown-toggle {
 
 .modal-content {
     color: black;
+    width: 600px;
 }
 
 .modal-content input {
@@ -219,7 +220,7 @@ a.dropdown-item {
     color: white;
 }
 
-#login-btn {
+#loginBtn {
     background-color: #0b421a;
     color: white;
 }

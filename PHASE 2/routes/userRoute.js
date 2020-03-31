@@ -58,13 +58,11 @@ router.post('/login', (req,res) => {
             res.send(result);
         }
         else{   
+            
             console.log( "user found:", user);
-            result = {success: true}
+            result = {success: true, isAdmin: user.isAdmin};
             res.send(result);
-            // console.log("user is: " + user[0]);
-            // insertUser(req, res, result.success, result.message);
         }
-        // res.redirect('/customer/home');
     })
     .catch(err => {
         console.log(err);

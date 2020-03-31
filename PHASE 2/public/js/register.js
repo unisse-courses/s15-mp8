@@ -49,7 +49,7 @@ $(document).ready(function() {
     });
   });
 
-    $('#loginCustomer').click(function() { 
+    $('#loginBtn').click(function() { 
       
       var emailAddress = $('#email').val();
       var password = $('#pass').val();
@@ -70,6 +70,9 @@ $(document).ready(function() {
         else {
           // res.send({redirect: 'customer/home'});
           console.log("user found!");
+          if (data.isAdmin)
+            window.location = "/user/admin/home";
+          else
           window.location = "/user/customer/home";
         }
       });
