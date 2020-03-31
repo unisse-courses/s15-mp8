@@ -1,5 +1,6 @@
 .content {
-    height: 100vh;
+    min-height: 100vh;
+    height: fit-content;
 }
 
 .container {
@@ -8,7 +9,7 @@
 }
 
 .card {
-    height: 90%;
+    height: fit-content;
 }
 
 .card-body {
