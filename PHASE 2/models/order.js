@@ -3,18 +3,12 @@ var Schema = mongoose.Schema;
 
 var orderSchema = new Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    customerid: {type:Schema.Types.ObjectId, ref:'User'},
+    customer: {type:Schema.Types.ObjectId, ref:'User'},
     drink: [{type: Schema.Types.ObjectId, ref: 'DrinkOrder'}],
-    status: {type: String, enum: ['received', 'preparing', 'ready'], default: 'received',required: true},
+    status: {type: String, enum: ['Received', 'Preparing', 'Ready'], default: 'Received',required: true},
     orderdate: {type: Date, default: Date.now, required: true},
     totalprice: {type: Number, required: true}
 
 });
 
 mongoose.model(`Order`, orderSchema);
-//ordenum {PK} int
-//customerid {FK} int
-// drinkorder DrinkOrder
-//status (received, preparing, ready)
-// orderdate date
-//totalprice double

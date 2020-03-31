@@ -11,8 +11,3 @@ var drinkOrderSchema = new Schema({
 
 mongoose.model(`DrinkOrder`, drinkOrderSchema);
 
-//drinkorderid int
-//drinkid {FK} from drinks
-// size String
-// quantity int
-// requests String
