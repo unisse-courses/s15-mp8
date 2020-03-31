@@ -2,7 +2,9 @@ const router = require('express').Router();
 
 //for checking of users only; not important
 const mongoose = require('mongoose');
-const User = mongoose.model('User');
+
+const menuRouter = require("./menuRoute");
+const ordersRouter = require("./ordersRoute");
 
 router.get('/home', (req, res) => {
     res.render('homepage',  {
@@ -14,6 +16,7 @@ router.get('/home', (req, res) => {
         isAdmin: true});
 });
 
-
+router.use('/orders', ordersRouter);
+router.use('/menu', menuRouter);
 
 module.exports = router;

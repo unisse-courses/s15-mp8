@@ -6,17 +6,17 @@
         </div>
 
         <div class="nav-actions px-4 py-2">
-            <a href="user/customer/home" {{#if_equal loc 'Home'}} class="active" {{/if_equal}}>Home</a>
-            <a href="user/customer/menu/espresso" {{#if_equal loc 'Order'}} class="active" {{/if_equal}}>Order</a>
-            <a href="user/customer/cart" {{#if_equal loc 'View Cart'}} class="active" {{/if_equal}}>View Cart</a>
-            <a href="user/customer/order-status" {{#if_equal loc 'Order Status'}} class="active" {{/if_equal}}>Order Status</a>
+            <a {{#if_equal loc 'Home'}} class="active" href="#" {{else}} href="user/customer/home" {{/if_equal}}>Home</a>
+            <a {{#if_equal loc 'Order'}} class="active" href="#" {{else}} href="user/customer/menu/order/espresso" {{/if_equal}}>Order</a>
+            <a {{#if_equal loc 'View Cart'}} class="active" href="#" {{else}} href="user/customer/cart" {{/if_equal}}>View Cart</a>
+            <a {{#if_equal loc 'Order Status'}} class="active" href="#" {{else}} href="user/customer/order-status" {{/if_equal}}>Order Status</a>
         </div>   
 
         <div class="nav-profile">
             <div class="dropdown">
                 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="profileDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="nav-profpic mr-3">
-                    <img class="nav-pic" id="nav-prof-pic" src="/images/sample-dp/sample dp.jpg">   
+                    <img class="nav-pic" id="nav-prof-pic" src="/images/uploads/default.png">   
                 </div>
                 <div class="name-type">
                     <label class="name">Sophia</label>

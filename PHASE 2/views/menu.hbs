@@ -2,19 +2,19 @@
     <div class="side-nav pt-4">
         <table id="side-menu">
             <tr>
-                <td> <a href="user/{{#if isAdmin}} admin {{else}} customer {{/if}}/menu/espresso" {{#if_equal category 'Espresso'}} class="active" {{/if_equal}}>Espresso</a></td>
+                <td> <a href="{{#if isAdmin}}/espresso{{else}}espresso{{/if}}" {{#if_equal category 'Espresso'}} class="active" {{/if_equal}}>Espresso</a></td>
             </tr>
             <tr>
-                <td><a href="user/{{#if isAdmin}} admin {{else}} customer {{/if}}/menu/chocolate" {{#if_equal category 'Chocolate'}} class="active" {{/if_equal}}>Chocolate</a></td>
+                <td><a href="{{#if isAdmin}}/chocolate{{else}}chocolate{{/if}}" {{#if_equal category 'Chocolate'}} class="active" {{/if_equal}}>Chocolate</a></td>
             </tr>
             <tr>
-                <td><a href="user/{{#if isAdmin}} admin {{else}} customer {{/if}}/menu/teavana-teas" {{#if_equal category 'Teavana Teas'}} class="active" {{/if_equal}}>Teavana Teas</a></td>
+                <td><a href="{{#if isAdmin}}/teavana-teas{{else}}teavana-teas{{/if}}" {{#if_equal category 'Teavana Teas'}} class="active" {{/if_equal}}>Teavana Teas</a></td>
             </tr>
             <tr>
-                <td><a href="user/{{#if isAdmin}} admin {{else}} customer {{/if}}/menu/frappuccino" {{#if_equal category 'Frappuccino'}} class="active" {{/if_equal}}>Frappuccino</a></td>
+                <td><a href="{{#if isAdmin}}/frappuccino{{else}}frappuccino{{/if}}" {{#if_equal category 'Frappuccino'}} class="active" {{/if_equal}}>Frappuccino</a></td>
             </tr>
             <tr>
-                <td><a href="user/{{#if isAdmin}} admin {{else}} customer {{/if}}/menu/coffee-craft" {{#if_equal category 'Coffee Craft'}} class="active" {{/if_equal}}>Coffee Craft</a></td>
+                <td><a href="{{#if isAdmin}}/coffee-craft{{else}}coffee-craft{{/if}}" {{#if_equal category 'Coffee Craft'}} class="active" {{/if_equal}}>Coffee Craft</a></td>
             </tr>
         </table>
     </div>
@@ -29,14 +29,13 @@
             <div class="drink-box py-3">
                 <div class="drink-plus pt-2 pb-2">
                     <a style="cursor: pointer;" data-toggle="modal" data-target="#add-item-modal">
-                        <img id="plus" src="/images/logos/white-plus-png-5.png">
+                        <img id="plus" src="/images/icons/white-plus-png-5.png">
                     </a>
                 </div>
                 <div class="drink-name">
                     <label>Add a Drink</label>
                 </div>
             </div>
-
         {{else}}
             <a id="checkout" href="user/customer/cart">PROCEED TO CHECKOUT</a>
         {{/if}}

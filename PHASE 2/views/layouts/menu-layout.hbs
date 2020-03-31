@@ -17,6 +17,8 @@
         <link rel="stylesheet" type="text/css" media="all" href="/css/update-menu.css">
     {{/unless}}
     <title>{{title}}</title>
+
+    <base href="/">
 </head>
 <body>
     {{#unless isAdmin}}
@@ -99,7 +101,7 @@
                 </div>
                 <div class="modal-body">
                     <div class = "leftie">
-                        <img class="currpic" id="newavatar" src="/images/logos/pic.png" width="136px"    height="136px"/>
+                        <img class="currpic" id="newavatar" src="/images/icons/pic.png" width="136px"    height="136px"/>
                         <input id="inputfile" class="uploadimage" onchange="changeImage()" type="file"    name="avatar" accept="image/*">
                     <div class="rightie">
                     <form>
