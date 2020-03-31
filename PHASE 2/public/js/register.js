@@ -33,7 +33,7 @@ $(document).ready(function() {
   
         $('#fullname').val('');
         $('#nickname').val('');
-        $('#emailAddress').val("");
+        $('#emailAdd').val("");
         $('#phone').val('');
         $('#pword').val('');
         $('#confirmPass').val('');
