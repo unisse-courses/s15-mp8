@@ -8,13 +8,13 @@ var userSchema = new Schema({
     nickname: {type: String, required: true},
     emailAddress:  {
                 type: String, 
-                required: true, 
+                required: true
                 // unique: true,
                 // match: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
             },
     phone: {type: Number, required: true},
     password: {type: String, required: true},
-    // favorites: [{type: Schema.Types.ObjectId, ref: 'Favorite'}],
+    favorites: [{type: Schema.Types.ObjectId, ref: 'Favorite'}],
     displayphoto: {type: String},
     isAdmin: {type: Boolean, required: true}
 });

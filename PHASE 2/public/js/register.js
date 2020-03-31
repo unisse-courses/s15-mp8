@@ -38,6 +38,8 @@ $(document).ready(function() {
         $('#pword').val('');
         $('#confirmPass').val('');
 
+        // window.location = "/user/customer/home";
+
       } else {
         $('#message').text(data.message);
         $('#message').removeClass('success');
@@ -49,22 +51,28 @@ $(document).ready(function() {
 
     $('#loginCustomer').click(function() { 
       
-      var emailAddress = $('#emailAddress').val();
-      var password = $('#password').val();
+      var emailAddress = $('#emailAdd').val();
+      var password = $('#pword').val();
+
+      
 
       var user = {
         emailAddress: emailAddress,
         password: password
       }
+      console.log("before routing email: " + user.emailAddress + " password: " + user.password);
+
       console.log("login btn clicked");
-      $.post('login', user, function(data, status) {
+      $.post('/user/login', user, function(data, status) {
         if (!data.success) {
           $('#loginMsg').text(data.message);
           $('#message').addClass('fail');
+          console.log("invalid user");
         }
         else {
           // res.send({redirect: 'customer/home'});
-          window.location.href = "google.com";
+          console.log("user found!");
+          window.location = "/user/customer/home";
         }
       });
     });

@@ -26,6 +26,7 @@ router.get('/', (req, res) => {
         title: 'Home - Starbucks Assist', 
         layout: 'home', 
         loggedIn: false,
+        js: 'register.js',
         css: ['header-footer.css', 'content-home.css'] });
 });
 

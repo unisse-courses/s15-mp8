@@ -47,13 +47,14 @@ router.post('/addUser', (req, res) => {
 });
 
 router.post('/login', (req,res) => {
-    console.log("email: " + req.body.emailAdd + " password: " + req.body.pword)
-    User.findOne({emailAddress: req.body.emailAdd, password: req.body.pword})
+    console.log("email: " + req.body.emailAddress + " password: " + req.body.password);
+
+    User.findOne({emailAddress: req.body.emailAddress, password: req.body.password})
     .exec()
     .then(user => {
       if (user == null) {
             console.log( "user not found");
-            result = { success: false, message: "Email or password does not match." }
+            result = {success: false, message: "Email or password does not match." }
             res.send(result);
         }
         else{   
