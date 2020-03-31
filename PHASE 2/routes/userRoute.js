@@ -22,6 +22,7 @@ router.get('/register', (req, res) => {
 });
 
 router.post('/addUser', (req, res) => {
+    console.log("pasok post route");
     var result;
     User.find({ emailAddress: req.body.emailAdd })
     .exec()

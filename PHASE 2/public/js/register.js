@@ -22,7 +22,7 @@ $(document).ready(function() {
     console.log("newUSer: " + newUser)
     console.log("btn clicked");
 
-    $.post('addUser', newUser, function(data, status) {
+    $.post('/user/addUser', newUser, function(data, status) {
       console.log("post here");
       console.log(data);
       if (data.success) {
