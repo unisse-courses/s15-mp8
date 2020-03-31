@@ -51,10 +51,8 @@ $(document).ready(function() {
 
     $('#loginCustomer').click(function() { 
       
-      var emailAddress = $('#emailAdd').val();
-      var password = $('#pword').val();
-
-      
+      var emailAddress = $('#email').val();
+      var password = $('#pass').val();
 
       var user = {
         emailAddress: emailAddress,
