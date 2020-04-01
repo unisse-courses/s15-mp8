@@ -2,15 +2,17 @@ const router = require('express').Router();
 
 //for checking of users only; not important
 const mongoose = require('mongoose');
-const User = mongoose.model('User');
 
-const customerController = require('../controllers/userController');
+const customerController = require('../controllers/customerController');
+const cartController = require('../controllers/cartController');
 
 const menuRouter = require("./menuRoute");
 
 router.get('/home', customerController.getUser);
 
 router.get('/cart', customerController.getCart);
+
+router.post('/addToCart', cartController.addDrinkOrder);
 
 router.get('/order-status', (req, res) => {
     res.render('order-status-customer',  {
@@ -68,6 +70,7 @@ router.get('/account-settings', (req, res) => {
         loggedIn: true,
         css: ['header-footer.css', 'acct_settings.css'] });
 });
+
 
 router.use('/menu', menuRouter);
 

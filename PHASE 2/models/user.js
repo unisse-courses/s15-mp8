@@ -23,11 +23,39 @@ userSchema.plugin(mongooseUniqueValidator);
 
 const UserModel = mongoose.model(`User`, userSchema);
 
-exports.getUser = function (sort, next) {
-    UserModel.findOne().sort(sort)
+exports.getAllUsers = function (sort, next) {
+    UserModel.find({}).sort(sort)
     .exec(function(err, result) {
         if (err) throw err
         
-        next(result.toObject());
+        var userObjects = [];
+
+        result.forEach(function(doc) {
+            userObjects.push(doc.toObject());
+        });
+  
+        next(userObjects);
     });
 }
+
+exports.checkUser = function (filter, next) {
+    UserModel.find(filter)
+    .exec(function(err, result) {
+        next(result);
+    })
+}
+
+exports.getUser = function (filter, next) {
+    UserModel.findOne(filter)
+    .exec(function(err, result) {
+        next(result);
+    })
+}
+
+exports.create = function (obj, next) {
+    const user = new UserModel(obj);
+    
+    user.save(function(err, user) {
+        next(err, user);
+    });
+  }

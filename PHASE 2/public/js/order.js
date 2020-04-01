@@ -43,12 +43,27 @@ $(document).ready(function() {
     
             $("#total-price").text(total);
         });
-
-        
-
-        console.log("orderbtn clicked");
-
     });
     
-    
+    $("#order-btn").click(function() {
+        var drinkname = $("#chosen-drink-name").text();
+        var size = $("#sizes").val();
+        var quantity = $("#quantity").val();
+        var requests = $("#request").val();
+        var totalprice = parseInt($("#total-price").text());
+
+        // console.log(drinkname, size, quantity, requests, totalprice);
+
+        var drinkorder = {
+            drinkname: drinkname,
+            size: size,
+            quantity: quantity,
+            requests: requests,
+            totalprice: totalprice
+        }
+
+        $.post('/user/customer/addToCart', drinkorder, function(data, status) {
+            
+        });
+    });
 });

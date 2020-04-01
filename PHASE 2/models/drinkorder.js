@@ -6,7 +6,8 @@ var drinkOrderSchema = new Schema({
     drink: {type: Schema.Types.ObjectId, ref:'Drink'},
     size: {type: String, enum:["Tall", "Grande", "Venti"], required: true},
     quantity: {type: Number, required:true},
-    requests: {type: String}
+    requests: {type: String}, 
+    price: {type: Number, required: true}
 });
 
 mongoose.model(`DrinkOrder`, drinkOrderSchema);
