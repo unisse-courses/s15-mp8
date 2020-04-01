@@ -24,7 +24,8 @@ exports.getDrinksForOrder = function (req, res) {
             loggedIn: true,
             loc: 'Order',
             category: category,
-            drinks: drinks
+            drinks: drinks,
+            js: 'order.js',
         });
         // console.log("drinks are: " + drinks);
     })

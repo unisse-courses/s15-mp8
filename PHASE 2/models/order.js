@@ -9,5 +9,5 @@ var orderSchema = new Schema({
     orderdate: {type: Date, default: Date.now, required: true},
     totalprice: {type: Number, required: true}
 });
-
+ 
 mongoose.model(`Order`, orderSchema);

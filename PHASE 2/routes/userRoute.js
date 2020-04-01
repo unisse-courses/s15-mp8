@@ -15,7 +15,7 @@ mongoose.set('useFindAndModify', false);
 
 router.get('/register', (req, res) => {
     // insertDrink(req, res);
-    insertCart(req, res);
+    // insertCart(req, res);
     res.render('register',  { 
         title: 'Register - Starbucks Assist', 
         layout: 'home', 
@@ -233,6 +233,52 @@ function insertUser(req, res, success, message) {
 //     });
 // }
 
+// function insertOrder (req, res){
+//     var order = new Order();
+//     var customerId, cartId;
+
+//     Cart.findOne({_id:"5e840fa71c9d440000e1b6ba"})
+//     .exec()
+//     .then(function(cart){
+//         cartId = cart._id;
+//         console.log("cartId: " +cartId);
+        
+//         User.findOne({fullname: "Frances Lopez"})
+//         .exec()
+//         .then(function(user){
+//             customerId = user._id;
+//             console.log("customerId: " +customerId);
+
+//             order._id = new mongoose.Types.ObjectId(),
+//             order.customer = customerId;
+//             order.cart = cartId;
+//             order.status = "Received";
+//             order.date;
+//             order.totalprice = cart.totalprice;
+
+//             order.save((err, doc) => {
+//                 if (!err) {
+//                     console.log("order inserted! " +order);
+//                 }
+//                 else {
+//                     console.log("error inserting order: " +err);
+//                 }
+//             });
+//         })
+//         .catch(err => {
+//             console.log(err);
+//             res.status(500).json({
+//                 error: err
+//             });
+//         });
+//     })
+//     .catch(err => {
+//         console.log(err);
+//         res.status(500).json({
+//             error: err
+//         });
+//     });   
+// }
 
 router.use('/customer', customerRouter);
 router.use('/admin', adminRouter);
