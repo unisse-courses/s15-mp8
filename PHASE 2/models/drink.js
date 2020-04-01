@@ -19,7 +19,6 @@ exports.getDrinksByCategory = (category, sort, next) => {
     drinkModel.find(category).sort(sort).populate('pricelist').exec(function(err, result) {
         if (err) throw err
         var drinkObjects = [];
-        var priceObjects = [];
 
         result.forEach(function(doc) {
             drinkObjects.push(doc.toObject());

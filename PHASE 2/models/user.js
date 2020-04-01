@@ -22,3 +22,12 @@ var userSchema = new Schema({
 userSchema.plugin(mongooseUniqueValidator);
 
 const UserModel = mongoose.model(`User`, userSchema);
+
+exports.getUser = function (sort, next) {
+    UserModel.findOne().sort(sort)
+    .exec(function(err, result) {
+        if (err) throw err
+        
+        next(result.toObject());
+    });
+}

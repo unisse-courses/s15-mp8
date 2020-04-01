@@ -15,3 +15,4 @@ require('./order');
 require('./drinkorder');
 require('./drink');
 require('./pricelist');
+require('./cart');

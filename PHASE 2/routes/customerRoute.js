@@ -4,34 +4,13 @@ const router = require('express').Router();
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 
+const customerController = require('../controllers/userController');
+
 const menuRouter = require("./menuRoute");
 
-router.get('/home', (req, res) => {
-    User.findOne().sort({$natural: -1}).limit(1).exec((err, docs) => {
-        if(!err) {
-            res.render('homepage', {
-                user: docs,
-                title: 'Home - Starbucks Assist', 
-                layout: 'home', 
-                loc: 'Home',
-                loggedIn: true,
-                css: ['header-footer.css', 'content-home.css']
-            })
-        } else {
-            console.log('Error in user: ' + err);
-        }
-    });
-});
+router.get('/home', customerController.getUser);
 
-router.get('/cart', (req, res) => {
-    res.render('cart-customer',  {
-        title: 'My Cart - Starbucks Assist', 
-        layout: 'home', 
-        loc: 'View Cart',
-        isAdmin: false,
-        loggedIn: true,
-        css: ['header-footer.css', 'content-cart.css'] });
-});
+router.get('/cart', customerController.getCart);
 
 router.get('/order-status', (req, res) => {
     res.render('order-status-customer',  {
@@ -49,7 +28,27 @@ router.get('/favorites', (req, res) => {
         layout: 'home', 
         isAdmin: false,
         loggedIn: true,
-        css: ['header-footer.css', 'content-my-favorites.css'] });
+        css: ['header-footer.css', 'content-my-favorites.css'],
+        favorites: [
+            {
+                name: "Cafee Latte",
+                picture: "images/drinks/espresso/caffe-latte.png"
+            },
+            {
+                name: "Cafee Latte",
+                picture: "images/drinks/espresso/caffe-latte.png"
+            },
+            {
+                name: "Cafee Latte",
+                picture: "images/drinks/espresso/caffe-latte.png"
+            },
+            {
+                name: "Cafee Latte",
+                picture: "images/drinks/espresso/caffe-latte.png"
+            }
+        ]
+            
+        });
 });
 
 router.get('/transaction-history', (req, res) => {

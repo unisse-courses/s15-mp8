@@ -2,8 +2,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
-// const Drink = mongoose.model('Drink');
+const Drink = mongoose.model('Drink');
 // const Prices = mongoose.model('Prices');
+const Cart = mongoose.model('Cart');
+const DrinkOrder = mongoose.model('DrinkOrder');
 
 const customerRouter = require("./customerRoute");
 const adminRouter = require("./adminRoute");
@@ -13,6 +15,7 @@ mongoose.set('useFindAndModify', false);
 
 router.get('/register', (req, res) => {
     // insertDrink(req, res);
+    insertCart(req, res);
     res.render('register',  { 
         title: 'Register - Starbucks Assist', 
         layout: 'home', 
@@ -143,6 +146,93 @@ function insertUser(req, res, success, message) {
 //             }
 //         });
 // }
+
+// function insertDrinkOrder (req, res) {
+//     var drinkorder = new DrinkOrder();
+//     var id;
+
+//     Drink.findOne({name: "Cappuccino"})
+//     .exec()
+//     .then(function(drink) {
+//         id = drink._id;
+//         console.log("drink found for drink order: " + drink);
+//         console.log("get id: " + id);
+
+//         drinkorder._id = new mongoose.Types.ObjectId(),
+//         drinkorder.drink = id;
+//         drinkorder.size = "Grande";
+//         drinkorder.quantity = 3;
+//         drinkorder.requests = "n/a";
+
+//         drinkorder.save((err, doc) => {
+//             if (!err) {
+//                 console.log("drinkorder inserted! " + drink);
+//                 // result = { success: success, message: message }
+//                 // res.send(result);
+//             } 
+//             else {
+//                 console.log('Error insertDrinkOrder: ' + err);
+//             }
+//         });
+//     })
+//     .catch(err => {
+//         console.log(err);
+//         res.status(500).json({
+//             error: err
+//         });
+//     });
+// }
+
+// function insertCart (req, res) {
+//     var cart = new Cart();
+//     var drinkOrderId, customerId;
+
+//     DrinkOrder.findOne({_id: "5e838a2ffaebc04684997887"})
+//     .exec()
+//     .then(function(drinkorder) {
+//         drinkOrderId = drinkorder._id;
+//         console.log("drink found for drink order: " + drinkorder);
+//         console.log("get id: " + drinkOrderId);
+        
+//         User.findOne({fullname: "Ainsley Go"})
+//         .exec()
+//         .then(function(user) {
+
+//             customerId = user._id;
+//             console.log("drink found for drink order: " + user);
+//             console.log("get id: " + customerId);
+
+//             cart._id = new mongoose.Types.ObjectId(),
+//             cart.customer = customerId;
+//             cart.drink = drinkOrderId;
+//             cart.totalprice = 510;
+
+//             cart.save((err, doc) => {
+//                 if (!err) {
+//                     console.log("cart inserted! " + cart);
+//                     // result = { success: success, message: message }
+//                     // res.send(result);
+//                 } 
+//                 else {
+//                     console.log('Error insertcart: ' + err);
+//                 }
+//             });
+//         })
+//         .catch(err => {
+//             console.log(err);
+//             res.status(500).json({
+//                 error: err
+//             });
+//         });   
+//     })
+//     .catch(err => {
+//         console.log(err);
+//         res.status(500).json({
+//             error: err
+//         });
+//     });
+// }
+
 
 router.use('/customer', customerRouter);
 router.use('/admin', adminRouter);

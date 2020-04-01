@@ -14,78 +14,36 @@
     <div class="my-favorites">
         <label id="favorites-header">My Favorites:</label>
         <div class="content-box drinks">
-            <div class="drink-container">
-                <div class="drink-pic pt-2 pb-2">
-                    <div role="button" class="minus" data-toggle="modal" data-target="#deleteModal">x</div>
-                    <a data-toggle="modal" data-target="#editFaveModal" width="0px">
-                        <img class="image" src="/images/drinks/espresso/caffe-latte.png" alt="drink-pic">
-                        <div class="middle">
-                            <label>EDIT</label>
+            {{#each favorites}}  
+                <div class="drink-container">
+                    <div class="drink-pic pt-2 pb-2">
+                        <div role="button" class="minus" data-toggle="modal" data-target="#deleteModal">x</div>
+                        <a data-toggle="modal" data-target="#editFaveModal" width="0px">
+                            <img class="image" src="{{picture}}" alt="drink-pic">
+                            <div class="middle">
+                                <label>EDIT</label>
+                            </div>
+                        </a>   
+                    </div>
+                    <div class="drink-name-container">
+                        <label class="drink-name">{{name}}</label>
+                    </div>
+                </div>
+                {{#if_equal_index (counter @index) ../favorites.length }}
+                    {{#if_less ../favorites.length "5" }}
+                        <div class="drink-container">
+                            <div class="plus-cont pt-2 pb-2">
+                                <a data-toggle="modal" data-target="#editFaveModal" width="0px">
+                                    <img class="plus" src="images/icons/white-plus-png-5.png" alt="drink-pic">
+                                </a>   
+                            </div>
+                            <div class="drink-name-container">
+                                <label class="drink-name">Add a drink</label>
+                            </div>
                         </div>
-                    </a>   
-                </div>
-                <div class="drink-name-container">
-                    <label class="drink-name">Caffe Latte</label>
-                </div>
-                
-            </div>
-            <div class="drink-container">
-                <div class="drink-pic py-2">
-                    <div role="button" class="minus" data-toggle="modal" data-target="#deleteModal">x</div>
-                    <a data-toggle="modal" data-target="#editFaveModal">
-                        <img class="image"src="/images/drinks/chocolate/white-hot-chocolate.png" alt="drink-pic">
-                        <div class="middle">
-                            <label>EDIT</label>
-                        </div>
-                    </a>
-                </div>
-                <div class="drink-name-container">
-                    <label class="drink-name">White Hot Chocolate</label>
-                </div>
-                
-            </div>
-            <div class="drink-container">
-                <div class="drink-pic pt-2 pb-2">
-                    <div role="button" class="minus" data-toggle="modal" data-target="#deleteModal">x</div>
-                    <a data-toggle="modal" data-target="#editFaveModal">
-                        <img class="image" src="/images/drinks/frappucino/coffee-jelly.png" alt="drink-pic">
-                        <div class="middle">
-                            <label>EDIT</label>
-                        </div>
-                    </a>
-                </div>
-                <label class="drink-name">Coffee Jelly Frappuccino</label>
-            </div>
-            <div class="drink-container">
-                <div class="drink-pic pt-2 pb-2">
-                    <div role="button" class="minus" data-toggle="modal" data-target="#deleteModal">x</div>
-                    <a data-toggle="modal" data-target="#editFaveModal">
-                        <img class="image" src="/images/drinks/espresso/caramel-macchiato.png" alt="drink-pic">
-                        <div class="middle">
-                            <label>EDIT</label>
-                        </div>
-                    </a>
-                </div>
-                <div class="drink-name-container">
-                    <label class="drink-name">Caramel Macchiato</label>
-                </div>
-                
-            </div>
-            <div class="drink-container">
-                <div class="drink-pic pt-2 pb-2">
-                    <div role="button" class="minus" data-toggle="modal" data-target="#deleteModal">x</div>
-                    <a data-toggle="modal" data-target="#editFaveModal">
-                        <img class="image" src="/images/drinks/Teavana Teas/iced-shaken-hibiscus-with-pomegranate.png" alt="drink-pic">
-                        <div class="middle">
-                            <label>EDIT</label>
-                        </div>
-                    </a>
-                </div>
-                <div class="drink-name-container">
-                    <label class="drink-name">Iced Shaken Hibiscus with Pomegranate Pearl</label>
-                </div>
-                
-            </div>
+                    {{/if_less}}
+                {{/if_equal_index}}
+            {{/each}}
         </div>
     </div>
 </div>

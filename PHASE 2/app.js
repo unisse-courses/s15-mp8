@@ -23,6 +23,26 @@ app.engine('hbs', exphbs({
                 } else {
                     return opts.inverse(this)
                 }
+            },
+
+            if_less : function(a, b, opts) {
+                if (a < b) {
+                    return opts.fn(this)
+                } else {
+                    return opts.inverse(this)
+                }
+            },
+
+            counter : function (index) {
+                return index + 1;
+            },
+
+            if_equal_index : function (index, length, opts) {
+                if (index == length) {
+                    return opts.fn(this)
+                } else {
+                    return opts.inverse(this)
+                }
             }
         }
 }));
