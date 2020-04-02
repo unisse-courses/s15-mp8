@@ -19,14 +19,14 @@
                     <div class="drink-pic pt-2 pb-2">
                         <div role="button" class="minus" data-toggle="modal" data-target="#deleteModal">x</div>
                         <a data-toggle="modal" data-target="#editFaveModal" width="0px">
-                            <img class="image" src="{{picture}}" alt="drink-pic">
+                            <img class="image" src="{{drink.picture}}" alt="drink-pic">
                             <div class="middle">
                                 <label>EDIT</label>
                             </div>
                         </a>   
                     </div>
                     <div class="drink-name-container">
-                        <label class="drink-name">{{name}}</label>
+                        <label class="drink-name">{{drink.name}}</label>
                     </div>
                 </div>
                 {{#if_equal_index (counter @index) ../favorites.length }}

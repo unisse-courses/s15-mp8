@@ -1,5 +1,4 @@
 const mongoose = require(`mongoose`);
-var mongooseUniqueValidator = require('mongoose-unique-validator');
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
@@ -18,9 +17,6 @@ var userSchema = new Schema({
     displayphoto: {type: String},
     isAdmin: {type: Boolean, required: true}
 });
-
-userSchema.plugin(mongooseUniqueValidator);
-
 const UserModel = mongoose.model(`User`, userSchema);
 
 exports.getAllUsers = function (sort, next) {
@@ -48,7 +44,7 @@ exports.checkUser = function (filter, next) {
 exports.getUser = function (filter, next) {
     UserModel.findOne(filter)
     .exec(function(err, result) {
-        next(result);
+        next(result.toObject());
     })
 }
 
