@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const UserModel = require('../models/user');
 const CartModel = require('../models/cart');
 const FavoriteModel = require('../models/favorite');
+const OrderModel = require('../models/order')
 
 const Favorite = mongoose.model('Favorite');
 const User = mongoose.model('User');
@@ -57,6 +58,7 @@ exports.getUserDetails = (req, res) => {
 
 exports.getOrderStatus = (req, res) => {
     UserModel.getUser({fullname: "Charlene Ang"}, function(user) {
+        
         res.render('order-status-customer',  {
             title: 'Order Status - Starbucks Assist', 
             layout: 'home', 
@@ -86,15 +88,18 @@ exports.getFavorites = (req, res) => {
 }
 
 exports.getTransactionHistory = (req, res) => {
-    UserModel.getUser({fullname:"Charlene Ang"}, function(user) {
-        res.render('transaction-history',  {
-            title: 'Transaction History - Starbucks Assist', 
-            layout: 'home', 
-            isAdmin: false,
-            loggedIn: true,
-            css: ['header-footer.css', 'transaction-history.css'],
-            user: user
-        });
+    UserModel.getUser({fullname: "Frances Lopez"}, function(user) {
+        OrderModel.getOrderHistory({customer: user._id}, function(orders) {
+            res.render('transaction-history',  {
+                title: 'Transaction History - Starbucks Assist', 
+                layout: 'home', 
+                isAdmin: false,
+                loggedIn: true,
+                css: ['header-footer.css', 'transaction-history.css'],
+                user: user,
+                orders: orders
+            });
+        })
     }) 
 }
 

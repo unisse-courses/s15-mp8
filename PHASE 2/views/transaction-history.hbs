@@ -9,102 +9,21 @@
                 <th> Quantity </th> 
                 <th> Price </th> 
             </tr> 
-            <tr> 
-                <td class="date"> 02.26.2020 </td>  
-                <td class="order-num"> 000010 </td>  
-                <td class="drink-name"> Caramel Macchiato </td>
-                <td class="drink-size"> Venti </td> 
-                <td class="drink-quant"> 2 </td> 
-                <td class="drink-price"> PHP 380 </td>
-            </tr> 
-            <tr> 
-                <td class="date"> 02.26.2020 </td>  
-                <td class="order-num"> 000009 </td> 
-                <td class="drink-name"> Dark Mocha </td>
-                <td class="drink-size"> Grande </td> 
-                <td class="drink-quant"> 2 </td> 
-                <td class="drink-price"> PHP 360 </td>
-            </tr> 
-            <tr> 
-                <td class="date"> 02.10.2020 </td>  
-                <td class="order-num"> 000008 </td> 
-                <td class="drink-name"> Iced Mocha </td>
-                <td class="drink-size"> Tall </td> 
-                <td class="drink-quant"> 1 </td> 
-                <td class="drink-price"> PHP 160 </td>
-            </tr> 
-            <tr> 
-                <td class="date"> 01.06.2020 </td>  
-                <td class="order-num"> 000007 </td> 
-                <td class="drink-name"> Caramel Macchiato </td>
-                <td class="drink-size"> Venti </td> 
-                <td class="drink-quant"> 1 </td> 
-                <td class="drink-price"> PHP 180 </td>
-            </tr> 
-            <tr> 
-                <td class="date"> 01.04.2020 </td>  
-                <td class="order-num"> 000006 </td> 
-                <td class="drink-name"> Hibiscus Teavana </td>
-                <td class="drink-size"> Grande </td> 
-                <td class="drink-quant"> 1 </td> 
-                <td class="drink-price"> PHP 170 </td>
-            </tr> 
-            <tr> 
-                <td class="date"> 12.12.2019 </td>  
-                <td class="order-num"> 000005 </td> 
-                <td class="drink-name"> Peppermint Frappuccino </td>
-                <td class="drink-size"> Venti </td> 
-                <td class="drink-quant"> 2 </td> 
-                <td class="drink-price"> PHP 380 </td>
-            </tr> 
-            <tr> 
-                <td class="date"> 10.20.2019 </td>  
-                <td class="order-num"> 000004 </td> 
-                <td class="drink-name"> Cold Brew </td>
-                <td class="drink-size"> Tall </td> 
-                <td class="drink-quant"> 2 </td> 
-                <td class="drink-price"> PHP 290 </td>
-            </tr> 
-            <tr> 
-                <td class="date"> 08.24.2019 </td>  
-                <td class="order-num"> 000003 </td> 
-                <td class="drink-name"> Green Tea Frappuccino </td>
-                <td class="drink-size"> Grande </td> 
-                <td class="drink-quant"> 1 </td> 
-                <td class="drink-price"> PHP 180 </td>
-            </tr> 
-            <tr> 
-                <td class="date"> 08.24.2019 </td>  
-                <td class="order-num"> 000003 </td> 
-                <td class="drink-name"> Hibiscus Teavana </td>
-                <td class="drink-size"> Grande </td> 
-                <td class="drink-quant"> 1 </td> 
-                <td class="drink-price"> PHP 170 </td>
-            </tr> 
-            <tr> 
-                <td class="date"> 08.24.2019 </td>  
-                <td class="order-num"> 000003 </td> 
-                <td class="drink-name"> Peppermint Frappuccino </td>
-                <td class="drink-size"> Venti </td> 
-                <td class="drink-quant"> 2 </td> 
-                <td class="drink-price"> PHP 380 </td>
-            </tr> 
-            <tr> 
-                <td class="date"> 08.20.2019 </td>  
-                <td class="order-num"> 000002 </td> 
-                <td class="drink-name"> Cold Brew </td>
-                <td class="drink-size"> Tall </td> 
-                <td class="drink-quant"> 2 </td> 
-                <td class="drink-price"> PHP 290 </td>
-            </tr> 
-            <tr> 
-                <td class="date"> 07.18.2019 </td>  
-                <td class="order-num"> 000001 </td> 
-                <td class="drink-name"> Green Tea Frappuccino </td>
-                <td class="drink-size"> Grande </td> 
-                <td class="drink-quant"> 1 </td> 
-                <td class="drink-price"> PHP 180 </td>
-            </tr> 
+
+            {{#each orders}}
+                {{#each orders.cart}}
+                    {{#each orders.cart.drinks}}
+                        <tr> 
+                            <td class="date"> {{../../orders.orderdate}} </td>  
+                            <td class="order-num"> 000010 </td>  
+                            <td class="drink-name"> {{drinks.drink.name}} </td>
+                            <td class="drink-size"> {{drinks.size}} </td> 
+                            <td class="drink-quant"> {{drinks.quantity}} </td> 
+                            <td class="drink-price"> PHP {{cart.totalprice}} </td>
+                        </tr> 
+                    {{/each}}
+                {{/each}}
+            {{/each}}
         </table>
 </div>
 
