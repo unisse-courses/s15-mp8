@@ -89,7 +89,7 @@ exports.getFavorites = (req, res) => {
 
 exports.getTransactionHistory = (req, res) => {
     UserModel.getUser({fullname: "Frances Lopez"}, function(user) {
-        OrderModel.getOrderHistory({customer: user._id}, function(orders, drinkorders) {
+        OrderModel.getOrderHistory({customer: user._id}, function(orders) {
             res.render('transaction-history',  {
                 title: 'Transaction History - Starbucks Assist', 
                 layout: 'home', 
@@ -97,8 +97,7 @@ exports.getTransactionHistory = (req, res) => {
                 loggedIn: true,
                 css: ['header-footer.css', 'transaction-history.css'],
                 user: user,
-                orders: orders,
-                drinkorders: drinkorders
+                orders: orders
             });
         })
     }) 

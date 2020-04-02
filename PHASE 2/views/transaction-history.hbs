@@ -11,9 +11,9 @@
             </tr> 
 
             {{#each orders}}
-                {{#each ../drinkorders}}
+                {{#each drinkorders}}
                     <tr> 
-                        <td class="date"> {{../orderdate}} </td>  
+                        <td class="date"> {{../details.orderdate}} </td>  
                         <td class="order-num"> 000010 </td>  
                         <td class="drink-name"> {{drink.name}} </td>
                         <td class="drink-size"> {{size}} </td> 

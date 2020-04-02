@@ -19,14 +19,17 @@ exports.getOrderHistory = function (customer, next) {
     .exec(function(err, result) {
         if (err) throw err
         
-        var orderObjects = [];
-        var drinkOrderObjects = []
+        var orderObjects ;
+        var drinkOrderObjects;
         var counter = 0;
+
+        var ordersArray = [];
 
         result.forEach(function(doc) {
             console.log("order found" + doc);
             
-            
+            drinkOrderObjects = new Array();
+
             ((doc.toObject()).cart.drinks).forEach(function(drinks) {
                 drinkOrderObjects.push(drinks);
                 console.log("drinkorder found" + (drinkOrderObjects[counter].drink.name));
@@ -35,9 +38,14 @@ exports.getOrderHistory = function (customer, next) {
                 counter++;
             })
             
-            orderObjects.push(doc.toObject());
+            var orders = {
+                details: doc.toObject(),
+                drinkorders: drinkOrderObjects
+            }
+
+            ordersArray.push(orders);
         });
   
-        next(orderObjects, drinkOrderObjects);
+        next(ordersArray);
     })
 }
