@@ -15,27 +15,29 @@ const orderModel = mongoose.model(`Order`, orderSchema);
 exports.getOrderHistory = function (customer, next) {
     orderModel.find(customer).sort({orderdate: -1})
     // .populate({path: 'cart', populate:{path: 'drinks'}})
-    .populate({path: 'cart', populate:{path: 'drinks'}})
-    .exec(function(err, docs) {
+    .populate({path: 'cart', populate:[{path: 'drinks', populate: { path: 'drink' }}]})
+    .exec(function(err, result) {
         if (err) throw err
         
         var orderObjects = [];
-        // var drinkOrderObjects = []
+        var drinkOrderObjects = []
+        var counter = 0;
 
-        var options = {
-            path: 'drinks',
-            model: 'DrinkOrder'
-        };
-
-        orderModel.populate(docs, options, function (err, result) {
-            result.forEach(function(doc) {
-                console.log("order found" + doc);
-                // console.log("drinkorder found" + (doc.toObject()).cart.drinks);
-                orderObjects.push(doc.toObject());
-                // drinkOrderObjects.push((doc.toObject()).cart.drinks);
-            });
-      
-            next(orderObjects); 
+        result.forEach(function(doc) {
+            console.log("order found" + doc);
+            
+            
+            ((doc.toObject()).cart.drinks).forEach(function(drinks) {
+                drinkOrderObjects.push(drinks);
+                console.log("drinkorder found" + (drinkOrderObjects[counter].drink.name));
+                // console.log("drinkorder found" + (drinks.drink.name));
+                // console.log("drinkorder found" + (doc.toObject()).cart.drinks[counter].drink.name);
+                counter++;
+            })
+            
+            orderObjects.push(doc.toObject());
         });
+  
+        next(orderObjects, drinkOrderObjects);
     })
 }

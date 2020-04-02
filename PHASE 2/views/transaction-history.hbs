@@ -11,17 +11,15 @@
             </tr> 
 
             {{#each orders}}
-                {{#each orders.cart}}
-                    {{#each orders.cart.drinks}}
-                        <tr> 
-                            <td class="date"> {{../../orders.orderdate}} </td>  
-                            <td class="order-num"> 000010 </td>  
-                            <td class="drink-name"> {{drinks.drink.name}} </td>
-                            <td class="drink-size"> {{drinks.size}} </td> 
-                            <td class="drink-quant"> {{drinks.quantity}} </td> 
-                            <td class="drink-price"> PHP {{cart.totalprice}} </td>
-                        </tr> 
-                    {{/each}}
+                {{#each ../drinkorders}}
+                    <tr> 
+                        <td class="date"> {{../orderdate}} </td>  
+                        <td class="order-num"> 000010 </td>  
+                        <td class="drink-name"> {{drink.name}} </td>
+                        <td class="drink-size"> {{size}} </td> 
+                        <td class="drink-quant"> {{quantity}} </td> 
+                        <td class="drink-price"> PHP {{price}} </td> 
+                    </tr> 
                 {{/each}}
             {{/each}}
         </table>
