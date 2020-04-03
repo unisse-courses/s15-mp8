@@ -1,36 +1,78 @@
 <div class="content">
         <div class="status">
             <div class="status-container">
-                <div class="icon-container active">
+                <div class="icon-container 
+                        {{#each orders}}
+                            {{#if_equal details.status "Received"}}
+                                active
+                            {{/if_equal}}
+                        {{/each}}">
                     <img class="icon-status" src="/images/icons/cashier.png">
                 </div>
                 <div class="icon-desc p-3">
-                    <label class="status-lbl active">Order Received</label>
+                    <label class="status-lbl  
+                        {{#each orders}}
+                            {{#if_equal details.status "Received"}}
+                                active
+                            {{/if_equal}}
+                        {{/each}}">Order Received</label>
                     <div class="order-list">
-                        <label>Order #: <span class="order-num">000011</span></label>
-                        <label>Order #: <span class="order-num">000010</span></label>
+                        {{#each orders}}
+                            {{#if_equal details.status "Received"}}
+                                <label>Order #: <span class="order-num">{{#ordernum_format details.ordernum}}{{/ordernum_format}}</span></label>
+                            {{/if_equal}}
+                        {{/each}}
                     </div>
                     
                 </div>
             </div>
             <div class="status-container">
-                <div class="icon-container">
+                <div class="icon-container 
+                        {{#each orders}}
+                            {{#if_equal details.status "Preparing"}}
+                                active
+                            {{/if_equal}}
+                        {{/each}}">
                     <img class="icon-status" src="/images/icons/barista.png">
                 </div>
                 <div class="icon-desc p-3">
-                    <label class="status-lbl">Preparing Order</label>
+                    <label class="status-lbl
+                        {{#each orders}}
+                            {{#if_equal details.status "Preparing"}}
+                                active
+                            {{/if_equal}}
+                        {{/each}}">Preparing Order</label>
                     <div class="order-list">
+                        {{#each orders}}
+                            {{#if_equal details.status "Preparing"}}
+                                <label>Order #: <span class="order-num">{{#ordernum_format details.ordernum}}{{/ordernum_format}}</span></label>
+                            {{/if_equal}}
+                        {{/each}}
                     </div>
                 </div>
             </div>
             <div class="status-container">
-                <div class="icon-container active">
+                <div class="icon-container 
+                        {{#each orders}}
+                            {{#if_equal details.status "Ready"}}
+                                active
+                            {{/if_equal}}
+                        {{/each}}">
                     <img class="icon-status" src="/images/icons/coffee-cup.png">
                 </div>
                 <div class="icon-desc p-3">
-                    <label class="status-lbl active">Order Ready</label>
+                    <label class="status-lbl 
+                        {{#each orders}}
+                            {{#if_equal details.status "Ready"}}
+                                active
+                            {{/if_equal}}
+                        {{/each}}">Order Ready</label>
                     <div class="order-list">
-                        <label>Order #: <span class="order-num">000009</span></label>
+                        {{#each orders}}
+                            {{#if_equal details.status "Ready"}}
+                                <label>Order #: <span class="order-num">{{#ordernum_format details.ordernum}}{{/ordernum_format}}</span></label>
+                            {{/if_equal}}
+                        {{/each}}
                     </div>
                 </div>
             </div>

@@ -43,6 +43,21 @@ app.engine('hbs', exphbs({
                 } else {
                     return opts.inverse(this)
                 }
+            },
+
+            date_format: function (date) {
+                var words = (date.toString()).split(" ");
+                // words 
+
+                return `${words[1]} ${words[2]} ${words[3]}`
+            },
+
+            ordernum_format : function (ordernum) {
+               ordernum = ordernum.toString()
+                while (ordernum.length < 5) {
+                    ordernum = '0' + ordernum;
+                }
+                return ordernum;
             }
         }
 }));

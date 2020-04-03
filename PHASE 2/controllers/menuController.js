@@ -18,7 +18,7 @@ exports.getDrinksForOrder = function (req, res) {
     }  
     
     drinkModel.getDrinksByCategory({category: category}, {name: 1} , function(drinks) {
-        UserModel.getUser({fullname: "Ainsley Go"}, function(user) {
+        UserModel.getUser({fullname: "Frances Lopez"}, function(user) {
             res.render('menu',  { 
                 title: `${category} - Order Menu`, 
                 layout: 'menu-layout',

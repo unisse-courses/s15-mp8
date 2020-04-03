@@ -5,22 +5,23 @@
             {{#each drinkorder}}
                 <div class="order">
                     <div class="drink-pic py-2">
-                        <div role="button" class="minus" data-toggle="modal" data-target="#deleteModal">x</div>
+                        <div role="button" class="minus" id="delete-drink-{{@index}}" data-toggle="modal" data-target="#deleteModal">x</div>
                         <img class="image" src="{{drink.picture}}">
                     </div>
                     
                     <div class="name-size">
-                        <label class="drink-name">{{drink.name}}</label>
-                        <label class="drink-size">{{size}}</label>
+                        <label class="drink-name" id="drink-name-{{@index}}">{{drink.name}}</label>
+                        <label class="drink-size" id="drink-size-{{@index}}">{{size}}</label>
+                        <a class="request-btn" id="drink-size-{{@index}}" style="text-decoration: underline" type="button">View Request</a>
                     </div>
-                    
+            
                     <div class="drink-price">
                         <div class="quant-section">
                             <div class="value-button decrease" id="decrease-1" value="Decrease Value">-</div>
                                 <input type="number" class="number" id="number-1" value="{{quantity}}" readonly/>
                                <div class="value-button increase" id="increase-1" value="Increase Value">+</div>
                         </div>
-                        {{!-- <label class="price">{{this.drink.pricelist.{{this.size}}}}</label> --}}
+                        <label class="price">PHP {{price}}.00</label>
                     </div>
                 </div>
             {{/each}}
@@ -58,7 +59,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content" style = "background-color: #0b421a;">
                     <div class="modal-header" style="border-bottom: none;">
-                        <h3 class="modal-title" id="deleteModalTitle" style="color: white;"><b>Are you sure you want to remove <span id="drink-name">Iced Shaken Hibiscus with Pomegranate Pearl</span>?</b></h3>
+                        <h3 class="modal-title" id="deleteModalTitle" style="color: white;"><b>Are you sure you want to remove <label class="drink-delete"></label>?</b></h3>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -72,38 +73,3 @@
             </div>
         </div>
     </div>
-
-
-
-    <script>
-         $(".increase").on("click", function(){
-            var id = this.id;
-            var len = id.length;
-            id = id.substring(9, len);
-            id = "number-" + id;
-            var value = parseInt(document.getElementById(id).value, 10);
-            value = isNaN(value) ? 0 : value;
-            if(value<10){
-                value++;
-                    document.getElementById(id).value = value;
-            }
-            // console.log(value);
-        }),
-
-        $(".decrease").on("click", function(){
-            var id = this.id;
-            var len = id.length;
-            id = id.substring(9, len);
-            id = "number-" + id;
-            var value = parseInt(document.getElementById(id).value, 10);
-            value = isNaN(value) ? 0 : value;
-            if(value>1){
-                value--;
-                    document.getElementById(id).value = value;
-            }
-        });
-
-        $(".minus").on("click", function(){
-            console.log("test delete");
-        })
-    </script>

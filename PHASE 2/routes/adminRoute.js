@@ -6,15 +6,9 @@ const mongoose = require('mongoose');
 const menuRouter = require("./menuRoute");
 const ordersRouter = require("./ordersRoute");
 
-router.get('/home', (req, res) => {
-    res.render('homepage',  {
-        title: 'Home - Starbucks Assist', 
-        layout: 'home',
-        loc: 'Home',
-        loggedIn: true,
-        css: ['header-footer.css', 'content-home.css'],
-        isAdmin: true});
-});
+const adminController = require('../controllers/adminController')
+
+router.get('/home', adminController.getHomepage);
 
 router.use('/orders', ordersRouter);
 router.use('/menu', menuRouter);

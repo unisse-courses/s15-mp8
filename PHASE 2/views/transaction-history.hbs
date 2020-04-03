@@ -13,8 +13,8 @@
             {{#each orders}}
                 {{#each drinkorders}}
                     <tr> 
-                        <td class="date"> {{../details.orderdate}} </td>  
-                        <td class="order-num"> 000010 </td>  
+                        <td class="date"> {{#date_format ../details.orderdate}} {{/date_format}}</td>  
+                        <td class="order-num"> #{{#ordernum_format ../details.ordernum}} {{/ordernum_format}}</td>  
                         <td class="drink-name"> {{drink.name}} </td>
                         <td class="drink-size"> {{size}} </td> 
                         <td class="drink-quant"> {{quantity}} </td> 

@@ -12,7 +12,6 @@ var orderSchema = new Schema({
 });
  
 const orderModel = mongoose.model(`Order`, orderSchema);
-var numOrders;
 
 exports.getOrderHistory = function (customer, next) {
     orderModel.find(customer).sort({orderdate: -1})
@@ -21,23 +20,20 @@ exports.getOrderHistory = function (customer, next) {
     .exec(function(err, result) {
         if (err) throw err
         
-        var orderObjects ;
         var drinkOrderObjects;
-        var counter = 0;
 
         var ordersArray = [];
 
         result.forEach(function(doc) {
-            console.log("order found" + doc);
             
             drinkOrderObjects = new Array();
 
             ((doc.toObject()).cart.drinks).forEach(function(drinks) {
                 drinkOrderObjects.push(drinks);
-                console.log("drinkorder found" + (drinkOrderObjects[counter].drink.name));
+                // console.log("drinkorder found" + (drinkOrderObjects[counter].drink.name));
                 // console.log("drinkorder found" + (drinks.drink.name));
                 // console.log("drinkorder found" + (doc.toObject()).cart.drinks[counter].drink.name);
-                counter++;
+                // counter++;
             })
             
             var orders = {

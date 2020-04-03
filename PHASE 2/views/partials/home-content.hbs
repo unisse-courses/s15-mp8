@@ -29,25 +29,15 @@
             <table id="bestsellers-table">
                 <thead>
                     <tr class="table-head">
-                        <th>Bestsellers of the Month</th>
+                        <th>Barista's Recommendations</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1. <span id="best-1">Java Chip Frappuccino</span></td>
-                    </tr>
-                    <tr>
-                        <td>2. <span id="best-2">Dark Mocha Frappuccino</span></td>
-                    </tr>
-                    <tr>
-                        <td>3. <span id="best-3">Caramel Macchiato</span></td>
-                    </tr>
-                    <tr>
-                        <td>4. <span id="best-4">Java Chip Frappuccino</span></td>
-                    </tr>
-                    <tr>
-                        <td>5. <span id="best-5">Dark Mocha Frappuccino</span></td>
-                    </tr>
+                    {{#each drinks}}
+                        <tr>
+                            <td><span>{{name}}</span></td>
+                        </tr>
+                    {{/each}}
                 </tbody>  
             </table>
         </div>

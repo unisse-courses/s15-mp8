@@ -8,7 +8,7 @@ const cartController = require('../controllers/cartController');
 
 const menuRouter = require("./menuRoute");
 
-router.get('/home', customerController.getUser);
+router.get('/home', customerController.getHomepage);
 
 router.get('/cart', customerController.getCart);
 

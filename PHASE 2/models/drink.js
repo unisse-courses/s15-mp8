@@ -27,3 +27,16 @@ exports.getDrinksByCategory = (category, sort, next) => {
         next(drinkObjects);
     });
 }
+
+exports.getNewlyAdded = function (next) {
+    drinkModel.find().sort({$natural: -1}).limit(5).exec(function(err, result) {
+        if (err) throw err
+        var drinkObjects = [];
+
+        result.forEach(function(doc) {
+            drinkObjects.push(doc.toObject());
+        });
+        
+        next(drinkObjects);
+    });
+}

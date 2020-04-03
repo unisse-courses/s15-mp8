@@ -10,4 +10,4 @@ var drinkOrderSchema = new Schema({
     price: {type: Number, required: true}
 });
 
-mongoose.model(`DrinkOrder`, drinkOrderSchema);
+const DrinkOrderModel = mongoose.model(`DrinkOrder`, drinkOrderSchema);

@@ -75,6 +75,13 @@
     display: table-cell;                      
 }
 
+.request-btn {
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 14pt;
+    color: #0b421a;
+}
+
 .image {
     opacity: 1;
     display: block;
@@ -106,7 +113,7 @@
 
 .drink-size {
     display: block;
-    font-size: 14pt;
+    font-size: 15pt;
     text-align: -webkit-center;
     margin: 0;
 }
