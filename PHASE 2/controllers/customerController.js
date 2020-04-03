@@ -11,7 +11,7 @@ const Drink = mongoose.model('Drink');
 
 exports.getUser = (req, res) => {
     // insertFavorite(req, res);
-    UserModel.getUser({fullname: "Charlene Ang"}, function(user) {
+    UserModel.getUser({fullname: "Frances Lopez"}, function(user) {
         res.render('homepage', {
             user: user,
             title: 'Home - Starbucks Assist', 
@@ -26,7 +26,7 @@ exports.getUser = (req, res) => {
 
 exports.getCart = (req, res) => {
     CartModel.getCart({_id: "5e840fa71c9d440000e1b6ba"}, function(cart) {
-        UserModel.getUser({fullname: "Charlene Ang"}, function(user) {
+        UserModel.getUser({fullname: "Frances Lopez"}, function(user) {
             res.render('cart-customer',  {
                 title: 'My Cart - Starbucks Assist', 
                 layout: 'home', 
@@ -44,7 +44,7 @@ exports.getCart = (req, res) => {
 }
 
 exports.getUserDetails = (req, res) => {
-    UserModel.getUser({fullname: "Charlene Ang"}, function(user) {
+    UserModel.getUser({fullname: "Frances Lopez"}, function(user) {
         res.render('acc-settings',  {
             title: 'Account Settings - Starbucks Assist', 
             layout: 'home', 
@@ -57,7 +57,7 @@ exports.getUserDetails = (req, res) => {
 }
 
 exports.getOrderStatus = (req, res) => {
-    UserModel.getUser({fullname: "Charlene Ang"}, function(user) {
+    UserModel.getUser({fullname: "Frances Lopez"}, function(user) {
         
         res.render('order-status-customer',  {
             title: 'Order Status - Starbucks Assist', 
@@ -72,7 +72,7 @@ exports.getOrderStatus = (req, res) => {
 }
 
 exports.getFavorites = (req, res) => {
-    UserModel.getUser({fullname: "Charlene Ang"}, function(user) {
+    UserModel.getUser({fullname: "Frances Lopez"}, function(user) {
         FavoriteModel.getFavorites({customer: user._id}, function(favorites) {
             res.render('my-favorites',  {
                 title: 'My Favorites - Starbucks Assist', 
@@ -107,7 +107,7 @@ function insertFavorite(req, res, success, message) {
     var favorite = new Favorite();
     var customerId, drinkId;
 
-    User.findOne({fullname: "Charlene Ang"})
+    User.findOne({fullname: "Frances Lopez"})
     .exec()
     .then(function(user) {
         customerId = user._id;
