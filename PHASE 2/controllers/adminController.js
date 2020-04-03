@@ -1,16 +1,19 @@
 const DrinkModel = require('../models/drink')
-const OrderModel = require('../models/order')
+const UserModel = require('../models/user')
 
 exports.getHomepage = (req, res) => {
-    DrinkModel.getNewlyAdded(function(drinks) {
-        res.render('homepage',  {
-            title: 'Home - Starbucks Assist', 
-            layout: 'home',
-            loc: 'Home',
-            loggedIn: true,
-            css: ['header-footer.css', 'content-home.css'],
-            isAdmin: true,
-            drinks: drinks
-        });
-    })
+    UserModel.getUser({fullname: "Admin"}, function(user) {
+        DrinkModel.getNewlyAdded(function(drinks) {
+            res.render('homepage',  {
+                title: 'Home - Starbucks Assist', 
+                layout: 'home',
+                loc: 'Home',
+                loggedIn: true,
+                css: ['header-footer.css', 'content-home.css'],
+                isAdmin: true,
+                drinks: drinks,
+                user: user
+            });
+        })
+    });
 }

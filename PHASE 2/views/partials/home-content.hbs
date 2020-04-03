@@ -2,7 +2,9 @@
         <div class="content-left">
 
             {{#if loggedIn}}
-                <h1 id="welcome-back" class="py-3 text-left">Welcome back, <span id="nickname">Sophia</span>!</h1>
+                {{#unless user.isAdmin}}
+                    <h1 id="welcome-back" class="py-3 text-left">Welcome back, <span id="nickname">{{user.nickname}}</span>!</h1>
+                {{/unless}}
             {{/if}}
             
             <div class="slideshow-container">
