@@ -13,9 +13,9 @@ var orderSchema = new Schema({
  
 const orderModel = mongoose.model(`Order`, orderSchema);
 
+//for customers
 exports.getOrderHistory = function (customer, next) {
     orderModel.find(customer).sort({orderdate: -1})
-    // .populate({path: 'cart', populate:{path: 'drinks'}})
     .populate({path: 'cart', populate:[{path: 'drinks', populate: { path: 'drink' }}]})
     .exec(function(err, result) {
         if (err) throw err
@@ -40,6 +40,40 @@ exports.getOrderHistory = function (customer, next) {
                 details: doc.toObject(),
                 drinkorders: drinkOrderObjects
             }
+
+            ordersArray.push(orders);
+        });
+  
+        next(ordersArray);
+    })
+}
+
+//for admin
+exports.getOrderStatuses = function (next) {
+    orderModel.find().sort({orderdate: 1})
+    .populate({path: 'cart', populate:[{path: 'drinks', populate: { path: 'drink' }}]})
+    .exec(function(err, result) {
+        if (err) throw err
+        
+        var drinkOrderObjects;
+
+        var ordersArray = [];
+
+        result.forEach(function(doc) {
+            
+            drinkOrderObjects = new Array();
+
+            ((doc.toObject()).cart.drinks).forEach(function(drinks) {
+                drinkOrderObjects.push(drinks);
+            })
+            
+            var orders = {
+                customer: result.customer,
+                details: doc.toObject(),
+                drinkorders: drinkOrderObjects
+            }
+
+            console.log("order nye " + orders)
 
             ordersArray.push(orders);
         });
