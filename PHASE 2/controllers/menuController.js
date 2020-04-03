@@ -51,17 +51,22 @@ exports.getDrinksForUpdate = function (req, res) {
         category = "Teavana Teas"
     }  
     
-    drinkModel.getDrinksByCategory({category: category}, {name: 1} , function(drinks) {
-        res.render('menu',  { 
-            title: `${category} - Update Menu`, 
-            layout: 'menu-layout',
-            loc: 'Update Menu',
-            isAdmin: true,
-            loggedIn: true,
-            category: category,
-            js: 'menu.js',
-            drinks: drinks
-        });
-        // console.log("drinks are: " + drinks);
-    })
+    UserModel.getUser({fullname: "Admin"}, function(user) {
+        drinkModel.getDrinksByCategory({category: category}, {name: 1} , function(drinks) {
+        
+            res.render('menu',  { 
+                title: `${category} - Update Menu`, 
+                layout: 'menu-layout',
+                loc: 'Update Menu',
+                isAdmin: true,
+                loggedIn: true,
+                category: category,
+                js: 'menu.js',
+                drinks: drinks,
+                user: user
+            });
+            // console.log("drinks are: " + drinks);
+        })
+    });
+
 };
