@@ -43,7 +43,7 @@ $(document).ready(function() {
         var drinkNameId = "drink-name-" + index;
         var drinkRequestId = "request-" + index;
         var drinkname = $(`#${drinkNameId}`).text();
-        var request = $(`#${drinkRequestId}`).val();
+        var request = $(`#${drinkRequestId}`).text();
 
         console.log("request is " + request)
 

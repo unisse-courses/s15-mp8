@@ -22,7 +22,7 @@
     height: auto;
     font-family: "DM Sans";
     letter-spacing: 1px;
-    font-size: 20px;
+    /* font-size: 20px; */
     line-height: 100px;
     width: 100%;
 }
@@ -79,7 +79,7 @@
     display: block;
     position: relative;
     justify-content: center;
-    width: 400px;
+    width: 300px;
     max-height: 500px;
     text-align: -webkit-center;
 }

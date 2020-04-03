@@ -14,7 +14,7 @@
 
 .content-left {
     /* display: inline-block; */
-    width: 70%;
+    width: 65%;
     /* text-align: center; */
 }
 
@@ -23,7 +23,7 @@
     flex-direction: column;
     flex-grow: 1;
     padding: 50px;
-    width: 30%;
+    width: 35%;
     right: 0;
     text-align: center;
 }
@@ -35,7 +35,7 @@
 #bestsellers-table .table-head{
     background-color: #0f5321;
     color: white;
-    font-size: 20pt;
+    font-size: 18pt;
 }
 
 #bestsellers-table td {

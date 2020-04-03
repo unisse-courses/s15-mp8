@@ -28,6 +28,7 @@
                         <label class="drink-name">{{drink.name}}</label>
                     </div>
                 </div>
+                
                 {{#if_equal_index (counter @index) ../favorites.length }}
                     {{#if_less ../favorites.length "5" }}
                         <div class="drink-container">

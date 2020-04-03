@@ -225,6 +225,8 @@ input[type=number]::-webkit-outer-spin-button {
 
 .modal-body {
     text-align: center;
+    display: flex;
+    justify-content: space-around;
 }
 
 .order-num {
@@ -294,11 +296,17 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 #yesDelete{
-    position: absolute;
+    /* position: absolute; */
     left: 30%;
 }
 
 #noDelete{
-    position: absolute;
+    /* position: absolute; */
     right: 30%;
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
 }

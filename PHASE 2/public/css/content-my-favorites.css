@@ -11,7 +11,7 @@ h1{
     display: flex;
     flex-direction: column;
     background-color: white;
-    padding: 80px;
+    padding: 40px;
     min-height: 70vh;
     width: 100%;
 }
@@ -28,13 +28,15 @@ h1{
 }
 
 .left {
-    width: 20%;
+    width: fit-content;
+    display: inline-block;
 }
 
 .right {
-    width: 80%;
+    width: fit-content;
     padding: 50px;
     font-size: 26pt;
+    display: inline-block;
 }
 
 .right label {
@@ -72,9 +74,9 @@ h1{
     display:inline-block;
     position: relative;
     justify-content: space-around;
-    width: 280px;
+    width: 250px;
     vertical-align: top;
-    height: 300px;
+    height: 270px;
     text-align: -webkit-center;
     flex-direction: row;
     margin: 20px 10px;
@@ -95,8 +97,8 @@ h1{
     /* width: 180px; 
     height: 180px;  */
     /* width: 200px; */
-    width: 180px;
-    height: 180px;
+    width: 150px;
+    height: 150px;
     position: relative;
     border-radius: 200px;
     background-color: #0b421a;
@@ -119,8 +121,8 @@ h1{
 .image {
     opacity: 1;
     display: block;
-    width: 180px;
-    height: 160px;
+    width: 150px;
+    height: 130px;
     text-align: center;
     border-radius: inherit;
     transition: .5s ease;
@@ -133,8 +135,8 @@ h1{
     /* width: 180px; 
     height: 180px;  */
     /* width: 200px; */
-    width: 180px;
-    height: 180px;
+    width: 150px;
+    height: 150px;
     border-radius: 200px;
     background-color: #0b421a;
     vertical-align: middle;
@@ -148,8 +150,8 @@ h1{
 }
 
 .plus {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 80%;
+    max-height: 80%;
     display: block;
     margin: 0 auto;
 }
