@@ -59,6 +59,7 @@ exports.getDrinksForUpdate = function (req, res) {
             isAdmin: true,
             loggedIn: true,
             category: category,
+            js: 'menu.js',
             drinks: drinks
         });
         // console.log("drinks are: " + drinks);

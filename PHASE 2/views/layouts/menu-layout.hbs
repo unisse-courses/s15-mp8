@@ -40,7 +40,7 @@
                         <div class="modal-header"style = "background-color: #0b421a">
                             <form style="width: 500px">
                                 <div class="modal-header"style = "background-color: #0b421a">
-                                    <h3 class="modal-title text-center" id="exampleModalLongTitle" style="color:white"><b><span id="chosen-drink-name">Cold Brew</span></b></h3>
+                                    <h3 class="modal-title text-center" id="exampleModalLongTitle" style="color:white"><b><span id="chosen-drink-name"></span></b></h3>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -149,28 +149,30 @@
                             </div>
                             <div class="modal-body">
                                 <div class = "leftie">
-                                    <img class="currpic" id="newavatar" src="/images/drinks/espresso/caffe-latte.png" width="136px"    height="136px"/>
+                                    <img class="currpic" id="drink-pic" src="" width="136px"    height="136px"/>
                                     <input id="inputfile" class="uploadimage" onchange="changeImage()" type="file"    name="avatar" accept="image/*">
                                 </div>
                                 <div class="rightie">
                                     <form>
                                         <div class="input pb-2">
                                             <label class="input1" style="color:#0b421a"><b>Name of Drink:</b></label>
-                                            <input id="drink-name" name = "drinkname" type="text" placeholder="Caffe Latte"></input>
+                                            <input id="drink-name" name = "drinkname" type="text" placeholder=""></input>
                                         </div>
                                         <div class="box">
                                             <div class="input pb-2">
-                                                <label class="sizes" style="color:#0b421a"><b> Venti:</b></label>
-                                                <input name = "venti-price" type="text" class="small size" placeholder="175"></input>
+                                                <label class="sizes" style="color:#0b421a"><b> Tall:</b></label>
+                                                <input name = "tall-price" id = "tall-price" type="text" class="small size" placeholder=""></input>
                                             </div>
                                             <div class="input pb-2">
                                                 <label class="sizes" style="color:#0b421a"><b> Grande:</b></label>
-                                                <input name = "grande-price" type="text" class="small size" placeholder="185"></input>
+                                                <input name = "grande-price" id = "grande-price" type="text" class="small size" placeholder=""></input>
                                             </div>
                                             <div class="input pb-2">
-                                                <label class="sizes" style="color:#0b421a"><b> Tall:</b></label>
-                                                <input name = "tall-price" type="text" class="small size" placeholder="195"></input>
+                                                <label class="sizes" style="color:#0b421a"><b> Venti:</b></label>
+                                                <input name = "venti-price" id = "venti-price" type="text" class="small size" placeholder=""></input>
                                             </div>
+                                            
+                                            
                                         </div>
                                     </form>
                                 </div>
@@ -206,20 +208,6 @@
                 </div>
             </div>
         </div>
-
-        <script>  
-            function changeImage() {
-                var path = document.getElementById("inputfile").value;
-                var filename = path.replace(/^.*\\/, "");
-                document.getElementById("newavatar").src = filename;
-            }
-
-            
-            function openDeleteModal() {
-                $('#edit-item-modal').modal('hide');
-                $('#deleteModal').modal('show');
-            };
-        </script>
     {{/unless}}
 </body>
 </html>
