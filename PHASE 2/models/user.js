@@ -54,4 +54,4 @@ exports.create = function (obj, next) {
     user.save(function(err, user) {
         next(err, user);
     });
-  }
+}

@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 var orderSchema = new Schema({
     _id: mongoose.Schema.Types.ObjectId,
+    ordernum: {type: Number, required: true}
     customer: {type: Schema.Types.ObjectId, ref:'User'},
     cart: {type: Schema.Types.ObjectId, ref: 'Cart'},
     status: {type: String, enum: ['Received', 'Preparing', 'Ready'], default: 'Received', required: true},
@@ -11,6 +12,7 @@ var orderSchema = new Schema({
 });
  
 const orderModel = mongoose.model(`Order`, orderSchema);
+var numOrders;
 
 exports.getOrderHistory = function (customer, next) {
     orderModel.find(customer).sort({orderdate: -1})
@@ -48,4 +50,18 @@ exports.getOrderHistory = function (customer, next) {
   
         next(ordersArray);
     })
+}
+
+exports.create = function (obj, next) {
+    const order = new orderModel(obj);
+    
+    order.save(function(err, user) {
+        next(err, user);
+    });
+}
+
+exports.countOrders = function () {
+    orderModel.countDocuments({}, function( err, count){
+        return count;
+    });
 }

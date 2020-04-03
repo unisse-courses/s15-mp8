@@ -53,11 +53,11 @@ app.use(bodyparser.urlencoded({
 
 app.use(bodyparser.json());
 
-app.listen(port, () => {
-    console.log('App listening at port ' + port);
-});
-
 app.use(express.static('public'));
 
 app.use('/', indexRouter);
 app.use('/user', userRouter);
+
+app.listen(port, () => {
+    console.log('App listening at port ' + port);
+});
