@@ -36,4 +36,18 @@ $(document).ready(function() {
         $(".drink-delete").text(drinkname);
     });
     
+    $(`a[id^="drink-request-"]`).click(function() {
+        var id = this.id;
+        var index = id.substring(14, id.length);
+
+        var drinkNameId = "drink-name-" + index;
+        var drinkRequestId = "request-" + index;
+        var drinkname = $(`#${drinkNameId}`).text();
+        var request = $(`#${drinkRequestId}`).val();
+
+        console.log("request is " + request)
+
+        $("#drink-name").text(drinkname);
+        $("#request").val(request);
+    });
 });
