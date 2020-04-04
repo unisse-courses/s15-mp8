@@ -54,22 +54,22 @@ Password: 123
 
 # Deployment
 
-### This modal will be displayed once the user clicks on a specific drink. The user will be able to choose the size which are ranging from tall, grande, and venti. The user will be also asked to input the quantity of how many drinks he/she wants. Lastly, the user will be able to add some requests. By default, all the drinks in the menu are cold. If the user would like it to be hot, he/she can indicate it in the requests portion of the modal.
+This modal will be displayed once the user clicks on a specific drink. The user will be able to choose the size which are ranging from tall, grande, and venti. The user will be also asked to input the quantity of how many drinks he/she wants. Lastly, the user will be able to add some requests. By default, all the drinks in the menu are cold. If the user would like it to be hot, he/she can indicate it in the requests portion of the modal.
 ![alt text](screens/order-drink.png)
 
-### For the admin, he/she will be able to update the menu by editing or adding a drink. The admin will be able to choose a picture from his/her files. Also, the admin will be able to enter a name for the drink and each of their respective prices based on the sizes. Once the admin is done filling up the requirements, by clicking the update button, the drink will be updated. 
+For the admin, he/she will be able to update the menu by editing or adding a drink. The admin will be able to choose a picture from his/her files. Also, the admin will be able to enter a name for the drink and each of their respective prices based on the sizes. Once the admin is done filling up the requirements, by clicking the update button, the drink will be updated. 
 ![alt text](screens/edit-drink.png)
 
-### In view cart, if the customer has additional requests that he/she forgot to indicate during ordering, he/she can still update his/her request.
+In view cart, if the customer has additional requests that he/she forgot to indicate during ordering, he/she can still update his/her request.
 ![alt text](screens/drink-request.png)
 
-### The background of the icons will be color green when it is active which means that there’s an order being processed under the logged in customer. Also, active orders from the logged in customer will be listed down under the respective statuses. However, if there is no order being processed the background of the icons will be grey. 
+The background of the icons will be color green when it is active which means that there’s an order being processed under the logged in customer. Also, active orders from the logged in customer will be listed down under the respective statuses. However, if there is no order being processed the background of the icons will be grey. 
 ![alt text](screens/order-status.png)
 
-### For customers, they will be able to add their favourite drinks in their profile. If they click add drink, a modal will appear and customers can choose which drink they count as their favourite. Once done, it will appear on their profiles and there can be up to five favourite drinks.
+For customers, they will be able to add their favourite drinks in their profile. If they click add drink, a modal will appear and customers can choose which drink they count as their favourite. Once done, it will appear on their profiles and there can be up to five favourite drinks.
 ![alt text](screens/favorites.png)
 
-### In the settings, customers will be able to change their information such as their name, nickname, email address, phone number, password, and display photo. The customer will be able to choose from his/her files to be uploaded as their display photo. Once the customer is done, he/she can save it and the changes will occur. 
+In the settings, customers will be able to change their information such as their name, nickname, email address, phone number, password, and display photo. The customer will be able to choose from his/her files to be uploaded as their display photo. Once the customer is done, he/she can save it and the changes will occur. 
 ![alt text](screens/account-settings.png)
 
 
@@ -85,7 +85,7 @@ Password: 123
 * SEE, Sophia
 
 ## Acknowledgements
-* Ms. Unisse Chua for guiding us in our project. Also, for always replying fast when we have any questions. Thank you! XDFFF
+* Ms. Unisse Chua for guiding us in our project. Also, for always replying fast when we have any questions. Thank you!
 * Starbucks as it served as an inspiration for conducting this application.
 
 
