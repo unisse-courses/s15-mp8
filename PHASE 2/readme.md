@@ -74,10 +74,10 @@ In the settings, customers will be able to change their information such as thei
 
 
 ## Built with
-* [Bootstrap] (https://getbootstrap.com/) - CSS framework
-* [MongoDB] (https://www.mongodb.com/) - Database
-* [Handlebars] (https://handlebarsjs.com/) - Templating
-* [Nodejs] (https://nodejs.org/en/) - Javascript runtime
+* [Bootstrap](https://getbootstrap.com/) - CSS framework
+* [MongoDB](https://www.mongodb.com/) - Database
+* [Handlebars](https://handlebarsjs.com/) - Templating
+* [Nodejs](https://nodejs.org/en/) - Javascript runtime
 
 ## Authors
 * GO, Ainsley
