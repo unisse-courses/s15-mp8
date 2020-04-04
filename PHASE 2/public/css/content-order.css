@@ -168,3 +168,13 @@ select, input, textarea {
     width: 300px;
     font-size: 14pt;
 }
+
+.modal-dialog {
+    max-width: 600px;
+    justify-content: center;
+}
+
+.modal-content {
+    max-width: 600px;
+}
+

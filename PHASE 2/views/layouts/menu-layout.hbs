@@ -36,15 +36,19 @@
         <div id="orderbox">
             <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content" style="border:none; ">
-                        <div class="modal-header"style = "background-color: #0b421a">
-                            <form style="width: 500px">
-                                <div class="modal-header"style = "background-color: #0b421a">
-                                    <h3 class="modal-title text-center" id="exampleModalLongTitle" style="color:white"><b><span id="chosen-drink-name"></span></b></h3>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                    <div class="modal-content" style="border:none; background-color: #0b421a">
+                        <div class="modal-header" style = "background-color: #0b421a">
+                            <form style="width: 600px">
+                                <div style="display: flex; flex-direction: column" class="modal-header"style = "background-color: #0b421a">
+                                    <div style="display: inherit; width: 100%">
+                                        <h3 class="modal-title text-center" id="exampleModalLongTitle" style="color:white"><b><span id="chosen-drink-name"></span></b></h3>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <label class="pt-3" style="color: rgba(255, 255, 255, 0.781); font-style: italic">Please indicate in the request textbox if you want your drink to be hot.</label>
                                 </div>
+                                
                                 <div class="modal-body"style = "background-color: #0b421a">
                                     <div class="input pb-2">
                                         <label class="input-label" style="color:white"><b>Size:</b></label>
