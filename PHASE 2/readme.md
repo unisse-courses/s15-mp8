@@ -42,13 +42,13 @@ Software requirements that need to be downloaded:
 # Running the tests
 ## Login as an Admin
 ```
-Email : starbucks_assist@gmail.com
+Email Address: starbucks_assist@gmail.com
 Password: admin123
 ```
 
 ## Login as a Customer 
 ```
-Email: fmc@gmail.com
+Email Address: fmc@gmail.com
 Password: 123
 ```
 
