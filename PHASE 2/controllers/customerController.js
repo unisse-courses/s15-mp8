@@ -87,6 +87,7 @@ exports.getFavorites = (req, res) => {
                 isAdmin: false,
                 loggedIn: true,
                 css: ['header-footer.css', 'content-my-favorites.css'],
+                js: 'favorites.js',
                 favorites: favorites,
                 user: user       
             });

@@ -16,7 +16,7 @@
             {{#each favorites}}  
                 <div class="drink-container">
                     <div class="drink-pic pt-2 pb-2">
-                        <div role="button" class="minus" data-toggle="modal" data-target="#deleteModal">x</div>
+                        <div role="button" class="minus" id="delete-drink-{{@index}}" data-toggle="modal" data-target="#deleteModal">x</div>
                         <a data-toggle="modal" data-target="#editFaveModal" width="0px">
                             <img class="image" src="{{drink.picture}}" alt="drink-pic">
                             <div class="middle">
@@ -25,7 +25,7 @@
                         </a>   
                     </div>
                     <div class="drink-name-container">
-                        <label class="drink-name">{{drink.name}}</label>
+                        <label class="drink-name" id="drink-name-{{@index}}">{{drink.name}}</label>
                     </div>
                 </div>
                 
@@ -180,7 +180,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content" style = "background-color: #0b421a;">
                     <div class="modal-header" style="border-bottom: none;">
-                        <h3 class="modal-title" id="deleteModalTitle" style="color: white;"><b>Are you sure you want to remove <span id="drink-name">Iced Shaken Hibiscus with Pomegranate Pearl</span> from 
+                        <h3 class="modal-title" id="deleteModalTitle" style="color: white;"><b>Are you sure you want to remove <span id="drink-delete"></span> from 
                         your favorites?</b></h3>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
                             <span aria-hidden="true">&times;</span>
