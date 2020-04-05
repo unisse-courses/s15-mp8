@@ -54,6 +54,9 @@ Password: 123
 
 # Deployment
 
+For register, this will only be applicable to the customer. The customer will be able to enter his/her name, nickname, email address, phone number and password. The email address and password will be used in order for the customer to log in. After entering the submit button, the customers will need to log in as this does not automatically log in for them. For admins, they do not need to create an account as they will already be given an account. For now, there is only 1 admin. 
+![alt text](screens/register.png)
+
 This modal will be displayed once the user clicks on a specific drink. The user will be able to choose the size which are ranging from tall, grande, and venti. The user will be also asked to input the quantity of how many drinks he/she wants. Lastly, the user will be able to add some requests. By default, all the drinks in the menu are cold. If the user would like it to be hot, he/she can indicate it in the requests portion of the modal.
 ![alt text](screens/order-drink.png)
 
