@@ -73,8 +73,8 @@ exports.getOrderStatuses = function (next) {
                 customer: (doc.toObject()).customer,
                 drinkorders: drinkOrderObjects
             }
-            console.log("doc nye " + doc)
-            console.log("order nye " + orders)
+            // console.log("doc nye " + doc)
+            // console.log("order nye " + orders)
 
             ordersArray.push(orders);
         });
