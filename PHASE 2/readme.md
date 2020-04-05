@@ -72,6 +72,11 @@ For customers, they will be able to add their favourite drinks in their profile.
 In the settings, customers will be able to change their information such as their name, nickname, email address, phone number, password, and display photo. The customer will be able to choose from his/her files to be uploaded as their display photo. Once the customer is done, he/she can save it and the changes will occur. 
 ![alt text](screens/account-settings.png)
 
+For view cart, the customer will be able to add or subtract the quantity of the drinks he/she decides to purchase. However, the prices will not be changed as the developers have not implemented the updating portion of the application.
+![alt text](screens/view-cart.png)
+
+The customer can also enter the checkout button. This will give them the order number of their purchase and it will be updated in the order status. However, the developers have not completed the update portion of this application so for now it will just show the order number. Entering ‘proceed’ will not make the order available in the order status.
+![alt text](screens/order-num.png)
 
 ## Built with
 * [Bootstrap](https://getbootstrap.com/) - CSS framework
