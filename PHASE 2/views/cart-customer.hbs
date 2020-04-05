@@ -19,9 +19,9 @@
             
                     <div class="drink-price">
                         <div class="quant-section">
-                            <div class="value-button decrease" id="decrease-1" value="Decrease Value">-</div>
-                                <input type="number" class="number" id="number-1" value="{{quantity}}" readonly/>
-                               <div class="value-button increase" id="increase-1" value="Increase Value">+</div>
+                            <div class="value-button decrease" id="decrease-{{@index}}" value="Decrease Value">-</div>
+                                <input type="number" class="number" id="number-{{@index}}" value="{{quantity}}" readonly/>
+                               <div class="value-button increase" id="increase-{{@index}}" value="Increase Value">+</div>
                               
                                <label style="display: none" id="request-{{@index}}">{{requests}}</label>
                         </div>
