@@ -256,19 +256,33 @@ hr.new1{
 
 .decisionDelete {
     width: 100px;
-    background-color: #ddd;
+    background-color: white;
     color: #0b421a;
     font-weight: 600;
     font-size: 14pt;
     border-radius: 15px;
 }
 
+.modal-body {
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+}
+
+
 #yesDelete{
-    position: absolute;
+    /* position: absolute; */
     left: 30%;
 }
 
 #noDelete{
-    position: absolute;
+    /* position: absolute; */
     right: 30%;
+}
+
+
+.buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
 }
