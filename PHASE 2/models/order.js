@@ -51,6 +51,7 @@ exports.getOrderHistory = function (customer, next) {
 //for admin
 exports.getOrderStatuses = function (next) {
     orderModel.find().sort({orderdate: 1})
+    .populate('customer')
     .populate({path: 'cart', populate:[{path: 'drinks', populate: { path: 'drink' }}]})
     .exec(function(err, result) {
         if (err) throw err
@@ -68,11 +69,11 @@ exports.getOrderStatuses = function (next) {
             })
             
             var orders = {
-                customer: result.customer,
                 details: doc.toObject(),
+                customer: (doc.toObject()).customer,
                 drinkorders: drinkOrderObjects
             }
-
+            console.log("doc nye " + doc)
             console.log("order nye " + orders)
 
             ordersArray.push(orders);
