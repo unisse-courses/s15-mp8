@@ -64,7 +64,7 @@ $(document).ready(function() {
         }
 
         $.post('/customer/addToCart', drinkorder, function(data, status) {
-            
+            console.log("posted")
         });
     });
 });

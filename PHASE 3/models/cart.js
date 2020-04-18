@@ -16,9 +16,10 @@ exports.getCart = function (cartid, next) {
     CartModel.findOne({_id: cartid})
     .populate({path: 'drinks', populate: { path: 'drink' }})
     .exec(function(err, result) {
-            if (err) throw err
-            console.log("cart found: " + result);
-            next(result);
+        if (err) throw err
+            
+        console.log("cart found: " + result);
+        next(err, result.toObject());
     });
 }
 
@@ -26,7 +27,7 @@ exports.getCart = function (cartid, next) {
 exports.create = function (obj, next) {
     const cart = new CartModel(obj);
     
-    cart.save(function(err, user) {
+    cart.save(function(err, cart) {
         next(err, cart);
     });
 }

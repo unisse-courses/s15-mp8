@@ -4,7 +4,6 @@ const router = require('express').Router();
 const mongoose = require('mongoose');
 
 const customerController = require('../controllers/customerController');
-const cartController = require('../controllers/cartController');
 
 const menuRouter = require("./menuRoute");
 
@@ -14,7 +13,7 @@ router.get('/home', isPrivate, customerController.getHomepage);
 
 router.get('/cart', isPrivate, customerController.getCart);
 
-router.post('/addToCart', cartController.addDrinkOrder);
+router.post('/addToCart', customerController.addToCart);
 
 router.get('/account-settings', isPrivate, customerController.getUserDetails);
 

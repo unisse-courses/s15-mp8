@@ -27,7 +27,7 @@ exports.getOrderStatus = (req, res) => {
                 layout: 'update-status',
                 orders: orders, 
                 btn: btn,
-                user: user.toObject()
+                user: user
             });
         })
     });

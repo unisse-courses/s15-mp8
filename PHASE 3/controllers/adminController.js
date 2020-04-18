@@ -12,7 +12,7 @@ exports.getHomepage = (req, res) => {
                 css: ['header-footer.css', 'content-home.css'],
                 isAdmin: true,
                 drinks: drinks,
-                user: user.toObject()
+                user: user
             });
         })
     });

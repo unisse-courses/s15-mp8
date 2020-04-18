@@ -1,29 +1,58 @@
-const User = require('../models/user');
-const Drink = require('../models/drink');
-const DrinkOrder = require('../models/drinkorder');
-const Cart = require('../models/cart');
-const Order = require('../models/order');
+const UserModel = require('../models/user');
+const DrinkModel = require('../models/drink');
+const DrinkOrderModel = require('../models/drinkorder');
+const CartModel = require('../models/cart');
+const OrderModel = require('../models/order');
 
-exports.addDrinkOrder = (req, res) => {
-    var drinkorder;
-    
-    /*  finds the drink thens adds it to the drinkOrder;
-        finds user id then adds drinkOrder and user to 
-        cart schema.
-    */
+const mongoose = require('mongoose');
+const DrinkOrder = mongoose.model('DrinkOrder');
+const Cart = mongoose.model('Cart');
 
-    // Drink.findOne({name: req.body.drinkname})
-    // .exec()
-    // .then(drink => {
-    //     if (drink == null) {
-    //         console.log( "drink not found to add to drinkOrder");
-    //         result = {success: false}
-    //         res.send(result);
-    //     } else {
-    //         drinkorder = insertDrinkOrder(req, res);
-    //         insertCart(req, res, drinkorder);
-    //     }
-    // });
+exports.addToCart = (req, res) => {
+    UserModel.getUser({_id: req.session.user}, function(err, user) {
+        DrinkModel.getDrink({name: req.body.drinkname}, function(err, drink) {
+            const drinkorder = new DrinkOrder();
+
+            drinkorder._id = new mongoose.Types.ObjectId();
+            drinkorder.drink = drink._id;
+            drinkorder.size = req.body.size;
+            drinkorder.quantity = req.body.quantity;
+            drinkorder.requests = req.body.requests;
+            drinkorder.price = req.body.totalprice;
+
+            DrinkOrderModel.create(drinkorder, (err, drinkorder) => {
+                if (err)
+                    console.log("error in drinkorder: " + err)
+                else {
+                    console.log("successful drinkorder: " + drinkorder);
+
+                    if (req.session.cart == null) {
+                        const tempcart = new Cart()
+
+                        tempcart._id = new mongoose.Types.ObjectId();
+                        tempcart.customer = user._id;
+                        tempcart.drinks = drinkorder._id;
+                        tempcart.totalprice = drinkorder.price;
+
+                        CartModel.create(tempcart, (err, cart) => {
+                            if (err)
+                                console.log("error in cart: " + err)
+                            else {
+                                req.session.cart = mongoose.Types.ObjectId(cart._id).toString()
+                                console.log(req.session);
+                                
+                                console.log("successful creating cart");
+                            }
+                        })
+                    }
+                    else {
+                        //get current cart
+                    }
+                }
+                    
+            })
+        })
+    })
 };
 
 // function insertDrinkOrder (req, res) {

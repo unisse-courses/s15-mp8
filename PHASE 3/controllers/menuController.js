@@ -28,10 +28,9 @@ exports.getDrinksForOrder = function (req, res) {
                 category: category,
                 drinks: drinks,
                 js: 'order.js',
-                user: user.toObject()
+                user: user
             });
         }) 
-        // console.log("drinks are: " + drinks);
     })
 };
 

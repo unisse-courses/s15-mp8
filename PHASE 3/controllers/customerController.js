@@ -3,19 +3,21 @@ const mongoose = require('mongoose');
 const UserModel = require('../models/user');
 const CartModel = require('../models/cart');
 const DrinkModel = require('../models/drink')
-// const FavoriteModel = require('../models/favorite');
+const DrinkOrderModel = require('../models/drinkorder')
 const OrderModel = require('../models/order')
 
 // const Favorite = mongoose.model('Favorite');
 const User = mongoose.model('User');
 const Drink = mongoose.model('Drink');
+const DrinkOrder = mongoose.model('DrinkOrder')
+const Cart = mongoose.model('Cart');
 
 exports.getHomepage = (req, res) => {
     // insertFavorite(req, res);
     UserModel.getUser({_id: req.session.user}, function(err, user) {
         DrinkModel.getNewlyAdded(function(drinks) {
             res.render('homepage', {
-                user: user.toObject(),
+                user: user,
                 title: 'Home - Starbucks Assist', 
                 layout: 'home', 
                 loc: 'Home',
@@ -27,8 +29,62 @@ exports.getHomepage = (req, res) => {
     });
 };
 
+exports.addToCart = (req, res) => {
+    UserModel.getUser({_id: req.session.user}, function(err, user) {
+        DrinkModel.getDrink({name: req.body.drinkname}, function(err, drink) {
+            const drinkorder = new DrinkOrder();
+
+            drinkorder._id = new mongoose.Types.ObjectId();
+            drinkorder.drink = drink._id;
+            drinkorder.size = req.body.size;
+            drinkorder.quantity = req.body.quantity;
+            drinkorder.requests = req.body.requests;
+            drinkorder.price = req.body.totalprice;
+
+            DrinkOrderModel.create(drinkorder, (err, drinkorder) => {
+                if (err)
+                    console.log("error in drinkorder: " + err)
+                else {
+                    console.log("successful drinkorder: " + drinkorder);
+
+                    if (req.session.cart == null) {
+                        const tempcart = new Cart()
+
+                        tempcart._id = new mongoose.Types.ObjectId();
+                        tempcart.customer = user._id;
+                        tempcart.drinks = drinkorder._id;
+                        tempcart.totalprice = drinkorder.price;
+
+                        CartModel.create(tempcart, (err, cart) => {
+                            if (err)
+                                console.log("error in cart: " + err)
+                            else {
+                                // req.session.isAdmin = true;
+                                req.session.cart = mongoose.Types.ObjectId(cart._id).toString()
+                                console.log(req.session);
+                                req.session.save((err) => {
+                                    if(!err) {
+                                        console.log("req sess here: " + req.session);
+                                    }
+                                });
+                                
+                                console.log("successful creating cart");
+                            }
+                        })
+                    }
+                    else {
+                        //get current cart
+                    }
+                }
+                    
+            })
+        })
+    })
+};
+
 exports.getCart = (req, res) => {
-    CartModel.getCart({_id: "5e8702a71c9d440000a8d164"}, function(err, cart) {
+    console.log(req.session);
+    CartModel.getCart({_id: req.session.cart}, function(err, cart) {
         UserModel.getUser({_id: req.session.user}, function(err, user) {
             res.render('cart-customer',  {
                 title: 'My Cart - Starbucks Assist', 
@@ -38,10 +94,10 @@ exports.getCart = (req, res) => {
                 loggedIn: true,
                 css: ['header-footer.css', 'content-cart.css'],
                 js: 'cart.js',
-                // cart: cart,
-                // drinkorder: cart.drinks,
-                // drink: cart.drinks.drink,
-                user: user.toObject()
+                cart: cart,
+                drinkorder: cart.drinks,
+                drink: cart.drinks.drink,
+                user: user
             });
         }) 
     });

@@ -15,6 +15,13 @@ var drinkSchema = new Schema({
 
 const DrinkModel = mongoose.model(`Drink`, drinkSchema);
 
+exports.getDrink = function (name, next) {
+    DrinkModel.findOne(name)
+    .exec(function(err, result) {
+        next(err, result);
+    })
+}
+
 exports.getDrinksByCategory = (category, sort, next) => {
     DrinkModel.find(category).sort(sort).populate('pricelist').exec(function(err, result) {
         if (err) throw err

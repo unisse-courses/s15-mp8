@@ -88,8 +88,8 @@ exports.registerProcess = (req, res) => {
                 newUser.emailAddress = emailAdd;
                 newUser.phone = phone;
                 newUser.password = hashed;
-                // newUser.displayphoto = "default.png";
-                newUser.isAdmin = true;
+                newUser.displayphoto = "default.png";
+                newUser.isAdmin = false;
                 
                 console.log ("before saving: " + newUser);
                 UserModel.create(newUser, (err, user) => {
