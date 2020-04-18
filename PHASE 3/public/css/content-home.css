@@ -1,0 +1,110 @@
+/*HOME*/
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+.content {
+    display: flex;
+    /* position: relative; */
+    background-color: white;
+    align-items: center;
+    padding: 0px 50px 60px;
+    min-height: 85vh;
+    width: 100%;
+}
+
+.content-left {
+    /* display: inline-block; */
+    width: 65%;
+    /* text-align: center; */
+}
+
+.content-right {
+    display: inline-flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 50px;
+    width: 35%;
+    right: 0;
+    text-align: center;
+}
+
+#welcome-back {
+    padding-left: 70px;
+}
+
+#bestsellers-table .table-head{
+    background-color: #0f5321;
+    color: white;
+    font-size: 18pt;
+}
+
+#bestsellers-table td {
+    background-color: beige;
+    font-size: 14pt;
+    font-family: "Open Sans";
+    text-align: center;
+}
+
+#bestsellers-table .table-head > th, #bestsellers-table td {
+    padding: 30px;
+}
+
+#bestsellers-table thead th {
+    border-radius: 0.6em 0.6em 0 0;
+}
+
+#bestsellers-table tr:last-child td:last-child {
+    border-radius: 0 0 0.6em 0.6em;
+}
+
+#bestsellers-table tbody tr:nth-child(odd) td{
+    background-color: rgb(234, 235, 221);
+}
+
+#bestsellers-table tbody tr:nth-child(even) td{
+    background-color: rgb(243, 239, 226);
+}
+
+* {box-sizing: border-box}
+.mySlides1, .mySlides2 {display: none}
+img {vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container {
+  width: 90%;
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0%;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a grey background color */
+.prev:hover, .next:hover {
+  background-color: #f1f1f1;
+  color: black;
+}
+
+.banner {
+    height: 60vh;
+    width: 200px;
+}

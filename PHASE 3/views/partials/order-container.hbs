@@ -1,0 +1,41 @@
+{{#if_equal details.status stat}}
+    <div class="order-container">
+        <div class="details">
+            <div class="left">
+                <div class="top">
+                    <label>Customer Name: <span class="customer-name">{{customer.nickname}}</span></label>
+                    <label>Order #: <span class="order-num">{{details.ordernum}}</span></label>
+                </div>
+                <div class="bottom">
+                    <label>Number of order: <span class="order-quant">{{drinkorders.length}}</span></label>
+                    {{!-- <a class="details-modal" data-toggle="modal" data-target="#orderDetailsModal">Order Details</a> --}}
+                    <div class="modal-body mr-5 p-0 pt-2">
+                        <div class="labeltxt">
+                            <hr class="new1">
+                            <div class="row font-weight-bolder">
+                                <div class="col-sm drink-name">Drinks</div>
+                                <div class="col-sm drink-size">Size</div>
+                                <div class="col-sm drink-quant">Quantity</div>
+                                <div class="col-sm drink-price">Price</div>
+                                <div class="col-sm drink-request">Request</div>
+                            </div>
+                            {{#each drinkorders}}
+                                <hr class="new1">
+                                <div class="row">
+                                    <div class="col-sm drink-name">{{drink.name}}</div>
+                                    <div class="col-sm drink-size">{{size}}</div>
+                                    <div class="col-sm drink-quant">{{quantity}}</div>
+                                    <div class="col-sm drink-price">{{price}}</div>
+                                    <div class="col-sm drink-request">{{requests}}</div>
+                                </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <button class="update-btn">{{button}}</button>
+            </div>
+        </div>
+    </div>
+{{/if_equal}}

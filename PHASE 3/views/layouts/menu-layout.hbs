@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+    <!-- Custom -->
+    <link rel="stylesheet" type="text/css" media="all" href="/css/header-footer.css">
+    {{#unless isAdmin}}
+        <link rel="stylesheet" type="text/css" media="all" href="/css/content-order.css">
+    {{else}}
+        <link rel="stylesheet" type="text/css" media="all" href="/css/update-menu.css">
+    {{/unless}}
+    {{#if js}}
+        <script type="text/javascript" src="/js/{{js}}"></script>
+    {{/if}}
+    <title>{{title}}</title>
+
+    <base href="/">
+</head>
+<body>
+    {{#unless isAdmin}}
+        {{> customer-header}}
+    {{else}}
+        {{> admin-header}}
+    {{/unless}}
+    
+    {{{body}}}
+
+    {{#unless isAdmin}}
+        <div id="orderbox">
+            <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content" style="border:none; background-color: #0b421a">
+                        <div class="modal-header" style = "background-color: #0b421a">
+                            <form style="width: 600px">
+                                <div style="display: flex; flex-direction: column" class="modal-header"style = "background-color: #0b421a">
+                                    <div style="display: inherit; width: 100%">
+                                        <h3 class="modal-title text-center" id="exampleModalLongTitle" style="color:white"><b><span id="chosen-drink-name"></span></b></h3>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    
+                                    <label class="pt-3" style="color: rgba(255, 255, 255, 0.781); font-style: italic">Please indicate in the requests textbox if you want your drink to be hot.</label>
+                                </div>
+                                
+                                <div class="modal-body"style = "background-color: #0b421a">
+                                    <div class="input pb-2">
+                                        <label class="input-label" style="color:white"><b>Size:</b></label>
+                                        <select id="sizes" style="border-radius:10px">
+                                            <option value = "Venti"> Venti </option>
+                                            <option value = "Grande"> Grande </option>
+                                            <option value = "Tall"> Tall </option>
+                                        </select>
+                                    </div>
+                                    <div class="input pb-2">
+                                        <label class="input-label"style="color:white"><b>Quantity:</b></label>
+                                        <select id="quantity" style="border-radius:10px">
+                                            <option value = "1"> 1 </option>
+                                            <option value = "2"> 2 </option>
+                                            <option value = "3"> 3 </option>
+                                            <option value = "4"> 4 </option>
+                                            <option value = "5"> 5 </option>
+                                            <option value = "6"> 6 </option>
+                                            <option value = "7"> 7 </option>
+                                            <option value = "8"> 8 </option>
+                                            <option value = "9"> 9 </option>
+                                            <option value = "10"> 10 </option>
+                                        </select>
+                                    </div>
+                                    <div class="input pb-2">
+                                        <label class="input-label"style="color:white"><b>Requests:</b></label>
+                                        <textarea id="request" rows="3" cols="25" style="border-radius:10px; vertical-align:top"></textarea>
+                                    </div>
+                                </div>
+                                <div class="modal-footer"style = "background-color: #0b421a">
+                                    <h5 style="color:white">Price: <span style = "font-weight: 700" id="price"> PHP <span id="total-price"></span>.00 </h5>
+                                    <a type="button" id="order-btn" class="btn btn-secondary" data-dismiss="modal" style = "background-color:white; color: green">
+                                        <b>Order</b>
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{else}}
+        <div class="updatebox">
+            <div class="modal modal-add fade" id="add-item-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content" >
+                        <div class="modal-header">
+                            <h3 class="modal-title text-center" id="exampleModalLongTitle" style="color:#0b421a"><b>Add A Drink:</b></h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#0b421a">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class = "leftie">
+                                <img class="currpic" id="newavatar" src="/images/icons/pic.png" width="136px"    height="136px"/>
+                                <input id="inputfile" class="uploadimage" onchange="changeImage()" type="file"    name="avatar" accept="image/*">
+                            </div>
+                            <div class="rightie">
+                                <form style="width: inherit;">
+                                    <div class="input pb-2">
+                                        <label class="input1" style="color:#0b421a"><b>Name of Drink:</b></label>
+                                        <input name = "drink-name" type="text"></input>
+                                    </div>
+                                    <div class="box">
+                                        <div class="input pb-2">
+                                            <label class="sizes" style="color:#0b421a"><b> Venti:</b></label>
+                                            <input name = "venti-price" type="text" class="small"></input>
+                                        </div>
+                                        <div class="input pb-2">
+                                            <label class="sizes" style="color:#0b421a"><b> Grande:</b></label>
+                                            <input name = "grande-price" type="text" class="small"></input>
+                                        </div>
+                                        <div class="input pb-2">
+                                            <label class="sizes" style="color:#0b421a"><b> Tall:</b></label>
+                                            <input name = "tall-price" type="text" class="small"></input>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a type="button" id="order-btn" class="btn btn-secondary" data-dismiss="modal" style = "background-color:#0b421a; color: white">
+                                <b>Upload</b>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        
+
+        <div data-dismiss="modal">
+            <div class="updatebox">
+                <div class="modal fade" id="edit-item-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content" >
+                            <div class="modal-header">
+                                <h3 class="modal-title text-center" id="exampleModalLongTitle"><b>Edit Drink:</b></h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#0b421a">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class = "leftie">
+                                    <img class="currpic" id="drink-pic" src="" width="136px"    height="136px"/>
+                                    <input id="inputfile" class="uploadimage" onchange="changeImage()" type="file"    name="avatar" accept="image/*">
+                                </div>
+                                <div class="rightie">
+                                    <form>
+                                        <div class="input pb-2">
+                                            <label class="input1" style="color:#0b421a"><b>Name of Drink:</b></label>
+                                            <input id="drink-name" name = "drinkname" type="text" placeholder=""></input>
+                                        </div>
+                                        <div class="box">
+                                            <div class="input pb-2">
+                                                <label class="sizes" style="color:#0b421a"><b> Tall:</b></label>
+                                                <input name = "tall-price" id = "tall-price" type="text" class="small size" placeholder=""></input>
+                                            </div>
+                                            <div class="input pb-2">
+                                                <label class="sizes" style="color:#0b421a"><b> Grande:</b></label>
+                                                <input name = "grande-price" id = "grande-price" type="text" class="small size" placeholder=""></input>
+                                            </div>
+                                            <div class="input pb-2">
+                                                <label class="sizes" style="color:#0b421a"><b> Venti:</b></label>
+                                                <input name = "venti-price" id = "venti-price" type="text" class="small size" placeholder=""></input>
+                                            </div>
+                                            
+                                            
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer edit">
+                                <a type="button" id="delete-btn" class="btn btn-secondary" onclick="openDeleteModal()" style = "background-color:rgb(179, 6, 6); color: white">
+                                    <b>Delete</b>
+                                </a>
+                                <a type="button" id="update-btn" class="btn btn-secondary" data-dismiss="modal" style = "background-color:#0b421a; color: white">
+                                    <b>Update</b>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content" style = "background-color: #0b421a;">
+                    <div class="modal-header" style="border-bottom: none;">
+                        <h3 class="modal-title" id="deleteModalTitle" style="color: white;"><b>Are you sure you want to remove <span id="drink-name">Iced Shaken Hibiscus with Pomegranate Pearl</span>?</b></h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body p-5" style="color: white; border-top:none;">
+                        
+                        <button id="yesDelete" class="decisionDelete" data-dismiss="modal">Yes</button>
+                        <button id="noDelete" class="decisionDelete" data-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/unless}}
+</body>
+</html>

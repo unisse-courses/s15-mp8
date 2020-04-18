@@ -1,0 +1,184 @@
+const mongoose = require('mongoose');
+
+const UserModel = require('../models/user');
+const CartModel = require('../models/cart');
+const DrinkModel = require('../models/drink')
+// const FavoriteModel = require('../models/favorite');
+const OrderModel = require('../models/order')
+
+// const Favorite = mongoose.model('Favorite');
+const User = mongoose.model('User');
+const Drink = mongoose.model('Drink');
+
+exports.getHomepage = (req, res) => {
+    // insertFavorite(req, res);
+    UserModel.getUser({_id: req.session.user}, function(err, user) {
+        DrinkModel.getNewlyAdded(function(drinks) {
+            res.render('homepage', {
+                user: user.toObject(),
+                title: 'Home - Starbucks Assist', 
+                layout: 'home', 
+                loc: 'Home',
+                loggedIn: true,
+                css: ['header-footer.css', 'content-home.css'],
+                drinks: drinks
+            })
+        })
+    });
+};
+
+exports.getCart = (req, res) => {
+    CartModel.getCart({_id: "5e8702a71c9d440000a8d164"}, function(cart) {
+        UserModel.getUser({_id: req.session.user}, function(err, user) {
+            res.render('cart-customer',  {
+                title: 'My Cart - Starbucks Assist', 
+                layout: 'home', 
+                loc: 'View Cart',
+                isAdmin: false,
+                loggedIn: true,
+                css: ['header-footer.css', 'content-cart.css'],
+                js: 'cart.js',
+                cart: cart,
+                drinkorder: cart.drinks,
+                drink: cart.drinks.drink,
+                user: user.toObject()
+            });
+        }) 
+    });
+}
+
+exports.getUserDetails = (req, res) => {
+    UserModel.getUser({_id: req.session.user}, function(err, user) {
+        res.render('acc-settings',  {
+            title: 'Account Settings - Starbucks Assist', 
+            layout: 'home', 
+            isAdmin: false,
+            loggedIn: true,
+            css: ['header-footer.css', 'acct_settings.css'], 
+            user: user.toObject()
+        });
+    }) 
+}
+
+exports.getOrderStatus = (req, res) => {
+    UserModel.getUser({_id: req.session.user}, function(err, user) {
+        OrderModel.getOrderHistory({customer: user._id}, function(orders) {
+            res.render('order-status-customer',  {
+                title: 'Order Status - Starbucks Assist', 
+                layout: 'home', 
+                loc: 'Order Status',
+                isAdmin: false,
+                loggedIn: true,
+                css: ['header-footer.css', 'content-status.css'],
+                user: user.toObject(),
+                orders: orders
+            });
+        })
+    }) 
+}
+
+exports.getFavorites = (req, res) => {
+    UserModel.getUser({_id: req.session.user}, function(err, user) {
+        UserModel.getFavorites({_id: req.session.user}, function(err, favorites) {
+            res.render('my-favorites',  {
+                title: 'My Favorites - Starbucks Assist', 
+                layout: 'home', 
+                isAdmin: false,
+                loggedIn: true,
+                css: ['header-footer.css', 'content-my-favorites.css'],
+                js: 'favorites.js',
+                favorites: favorites,
+                user: user.toObject()      
+            });
+        })
+    }) 
+}
+
+exports.getTransactionHistory = (req, res) => {
+    UserModel.getUser({_id: req.session.user}, function(err, user) {
+        OrderModel.getOrderHistory({customer: user._id}, function(orders) {
+            res.render('transaction-history',  {
+                title: 'Transaction History - Starbucks Assist', 
+                layout: 'home', 
+                isAdmin: false,
+                loggedIn: true,
+                css: ['header-footer.css', 'transaction-history.css'],
+                user: user.toObject(),
+                orders: orders
+            });
+        })
+    }) 
+}
+
+exports.logoutUser = (req, res) => {
+    if (req.session) {
+      req.session.destroy(() => {
+        res.clearCookie('connect.sid');
+        res.redirect('/');
+      });
+    }
+};
+
+// function insertFavorite(req, res, success, message) {
+//     var favorite = new Favorite();
+//     var customerId, drinkId;
+
+//     User.findOne({fullname: "Frances Lopez"})
+//     .exec()
+//     .then(function(user) {
+//         customerId = user._id;
+//         Drink.findOne({name: "Caramel Macchiato"})
+//         .exec()
+//         .then(function(drink1) {
+//             drinkId = drink1._id;
+//             // favs.push(drink1._id);
+//             // Drink.find({name: "Cappuccino"})
+//             // .exec()
+//             // .then(function(drink2) {
+//             //     favs.push(drink2._id);
+//             //     Drink.find({name: "Caffe Latte"})
+//             //     .exec()
+//             //     .then(function(drink3) {
+//             //         favs.push(drink3._id);
+//                     favorite._id = new mongoose.Types.ObjectId();
+//                     favorite.customer = customerId;
+//                     favorite.drink = drinkId;
+
+//                     favorite.save((err, doc) => {
+//                         if (!err) {
+//                             console.log("favorite inserted! " + favorite);
+//                         }
+//                         else {
+//                             console.log("error inserting favorite: " +err);
+//                         }
+//                     });
+//         //         })
+//         //         .catch(err => {
+//         //             console.log(err);
+//         //             res.status(500).json({
+//         //                 error: err
+//         //             });
+//         //         });
+//         //     })
+//         //     .catch(err => {
+//         //         console.log(err);
+//         //         res.status(500).json({
+//         //             error: err
+//         //         });
+//         //     });
+//         })
+//         .catch(err => {
+//             console.log(err);
+//             res.status(500).json({
+//                 error: err
+//             });
+//         });
+
+//     })
+//     .catch(err => {
+//         console.log(err);
+//         res.status(500).json({
+//             error: err
+//         });
+//     });
+// }

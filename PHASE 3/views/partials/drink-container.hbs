@@ -1,0 +1,20 @@
+<div class="drink-box py-3">
+    <div class="drink-pic pt-2 pb-2">
+        <a class="chosen-drink" id="chosen-drink-{{@index}}" data-toggle="modal" data-target= {{#unless admin}} "#orderModal" {{else}} "#edit-item-modal" {{/unless}}>
+            <img class="image" id="drink-pic-{{@index}}" src="{{picture}}"> 
+            {{#if admin}}
+                <div class="middle"><label>EDIT</label></div>
+            {{else}}
+                <div class="middle"><label>ORDER</label></div>
+            {{/if}}
+        </a>
+    </div>
+    <div class="drink-name">
+        <a class="drink-name" id="drink-name-{{@index}}">{{name}}</a>
+    </div>
+    <div class="prices">
+        <label class="price-label" id="price-tall-{{@index}}">{{pricelist.tall}} <span class="price-text">Tall</span></label> •
+        <label class="price-label" id="price-grande-{{@index}}">{{pricelist.grande}} <span class="price-text">Grande</span></label> •
+        <label class="price-label" id="price-venti-{{@index}}">{{pricelist.venti}} <span class="price-text">Venti</span></label> 
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<div class = "content">
+    <h1 class="pb-4" style="color:#0b421a; text-align:center"> <b>HISTORY OF TRANSACTIONS</b></h1>
+        <table class="pb-4" id = "transaction">  
+            <tr> 
+                <th> Date </th>
+                <th> Order Number </th>
+                <th> Drink </th> 
+                <th> Size </th>
+                <th> Quantity </th> 
+                <th> Price </th> 
+            </tr> 
+
+            {{#each orders}}
+                {{#each drinkorders}}
+                    <tr> 
+                        <td class="date"> {{#date_format ../details.orderdate}} {{/date_format}}</td>  
+                        <td class="order-num"> #{{#ordernum_format ../details.ordernum}} {{/ordernum_format}}</td>  
+                        <td class="drink-name"> {{drink.name}} </td>
+                        <td class="drink-size"> {{size}} </td> 
+                        <td class="drink-quant"> {{quantity}} </td> 
+                        <td class="drink-price"> PHP {{price}} </td> 
+                    </tr> 
+                {{/each}}
+            {{/each}}
+        </table>
+</div>
+
+{{> footer}}

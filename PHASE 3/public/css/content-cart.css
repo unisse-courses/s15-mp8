@@ -1,0 +1,312 @@
+/*CART*/
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+
+.content {
+    display: flex;
+    padding: 50px;
+    min-height: 100vh;
+    position: relative;
+    /* display: flex;
+    flex-direction: row; */
+}
+
+.content-left {
+    width: 70%;
+}
+
+.content-right {
+    width: 30%;
+    min-height: 700px;
+}
+
+.content-right label {
+    position: relative;
+    top: 40%;
+    text-align: center;
+    /* height: 30%; */
+    width: 100%;
+    /* margin: -15% 0 0 -25%; */
+}
+
+
+
+#head-label {
+    font-family: "Open Sans";
+    font-size: 20pt;
+}
+
+.order {
+    /* display: flex; */
+    /* flex-direction: row;
+    flex-grow: 1; */
+    padding: 15px;
+    height: 100px;
+    width: 100%;
+    justify-content: space-evenly;
+    text-align: -webkit-center;
+    display: table;
+}
+
+.drink-pic{
+    /* display: inline; */
+    /* width: 180px; 
+    height: 180px;  */
+    width: 200px;
+    width: fit-content;
+    position: relative;
+    border-radius: 100px;
+    background-color: #0b421a;
+    /* overflow: hidden; */
+    text-align: center;
+    margin: 0;
+}
+
+.drink-pic img{
+    /* margin: -10px 0px 0px -180px; */
+    text-align: center;
+    object-fit: cover;
+    object-position: 20% 0px; 
+}
+
+.drink-box > .drink-pic {   
+    vertical-align: bottom;
+    display: table-cell;                      
+}
+
+.request-btn {
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 14pt;
+    color: #0b421a;
+}
+
+.image {
+    opacity: 1;
+    display: block;
+    width: 150px;
+    height: 130px;
+    text-align: center;
+    border-radius: inherit;
+    transition: .5s ease;
+    backface-visibility: hidden;
+    border-radius: 100px;
+}
+
+.name-size {
+    width: 300px;
+    display: table-cell;
+    vertical-align: middle;
+    position: relative;
+    height: 100%;
+    text-align: -webkit-center;
+}
+
+.drink-name {
+    font-weight: 700;
+    display: block;
+    text-align: -webkit-center;
+    margin: 0;
+    font-size: 16pt;
+}
+
+.drink-size {
+    display: block;
+    font-size: 15pt;
+    text-align: -webkit-center;
+    margin: 0;
+}
+
+.quant-section {
+    width: 300px;
+    margin: 0 auto;
+    text-align: center;
+    vertical-align: top;
+    padding-top: 50px;
+    display: table-row-group;
+}
+
+.value-button {
+    display: table-cell;
+    border: 1px solid #ddd;
+    margin: 0px;
+    width: 30px;
+    height: auto;
+    text-align: center;
+    vertical-align: middle;
+    background: #eee;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+.value-button:hover {
+    cursor: pointer;
+}
+
+.quant-section #decrease {
+    margin-right: -4px;
+    border-radius: 8px 0 0 8px;
+  }
+  
+.quant-section #increase {
+    margin-left: -4px;
+    border-radius: 0 8px 8px 0;
+  }
+  
+.quant-section #input-wrap {
+    margin: 0px;
+    padding: 0px;
+  }
+  
+input.number {
+    text-align: center;
+    border: none;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin: 0px;
+    width: 40px;
+    height: 30px;
+  }
+  
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+}
+
+.drink-price {
+    padding-left: 100px;
+    width: 250px;
+    padding-top: 30px;
+    display: table-cell;
+    vertical-align: middle;
+    
+}
+
+.price {
+    margin-top: 10px;
+    font-size: 14pt;
+}
+
+.total-order {
+    width: 100%;
+    display:block;
+    font-family: "Open Sans";
+    font-size: 18pt;
+    text-align:center;
+}
+
+.total-price {
+    font-weight: 800;
+}
+
+#checkout {
+    cursor: pointer;
+    border-radius: 50px;
+    text-decoration: none;
+    text-align: center;
+    background-color:#0b421a;
+    color: white;
+    padding: 15px;
+    border: 0;
+    margin-right: 100px;
+    margin-bottom: 50px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    font-size: 14pt;
+}
+
+.modal-body {
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+}
+
+.order-num {
+    font-size: 40pt;
+    text-decoration: underline;
+    font-weight: 1000;
+    letter-spacing: 3px;
+    text-align: center;
+}
+
+.value-button.decrease {
+    border-radius: 10px  0px 0px 10px;
+    background-color: #0b421a;
+    color: white;
+    font-size: 14pt;
+}
+
+.value-button.increase {
+    border-radius:  0px 10px 10px 0px ;
+    background-color: #0b421a;
+    color: white;
+    font-size: 14pt;
+}
+
+.minus {
+    position: absolute;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    vertical-align: middle;
+    background-color: rgb(193, 1, 1);
+    color: white;
+    cursor: pointer;
+}
+
+.minus:active {
+    box-shadow: 0 5px rgb(173, 13, 13);
+    transform: translateY(2px);
+}
+
+.modal-content {
+    border-radius: 10px;
+    padding-bottom: 10px;
+}
+
+#deleteModal > .modal-dialog {
+    max-width: 70vh;
+}
+
+#deleteModal > .modal-header {
+    border: 0;
+}
+
+#deleteModalTitle {
+    padding: 20px;
+    padding-right: 10px;
+}
+
+.decisionDelete {
+    width: 100px;
+    background-color: white;
+    color: #0b421a;
+    font-weight: 600;
+    font-size: 14pt;
+    border-radius: 15px;
+}
+
+#yesDelete{
+    /* position: absolute; */
+    left: 30%;
+}
+
+#noDelete{
+    /* position: absolute; */
+    right: 30%;
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}

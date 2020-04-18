@@ -1,0 +1,84 @@
+<div class="content p-5">
+    <div class="container">
+        <hr>
+        <div class="card bg-light">
+        <article class="card-body mx-auto">
+            <h1 class="card-title p-3 text-center">Create Account</h1>
+            <form action="/addUser" method="POST">
+                <!-- Full name -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input id="fullname" name="fullname" class="form-control" placeholder="Full name" type="text">
+                </div> 
+
+                <!-- Nickname -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input id="nickname" name="nickname" class="form-control" placeholder="Nickname" type="text">
+                </div> 
+
+                <!-- Email Address -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                    </div>
+                    <input id="emailAdd" name="emailAdd" class="form-control" placeholder="Email address" type="email">
+                </div> 
+
+                <!-- Phone Number -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                    </div>
+                    <input id="phone" name="phone" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" class="form-control" placeholder="Phone number">     
+                </div>
+                
+                <!-- Input Password -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input id="pword" name="pword" class="form-control" placeholder="Create password" type="password">
+                </div> 
+
+                <!-- Confirm Password -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input id="confirmPass" name="confirmPass" class="form-control" placeholder="Repeat password" type="password">
+                </div> 
+
+                <div class="form-group">
+                    {{#if error_msg}}
+                        <div class="row">
+                        <div class="col s12 card-panel z-depth-0 red lighten-5">
+                            <h6 class="red-text text-darken-2"><strong>{{error_msg}}</strong></h6>
+                        </div>
+                        </div>
+                    {{/if}}
+
+                    {{#if success_msg}}
+                        <div class="row">
+                        <div class="col s12 card-panel z-depth-0 green lighten-5">
+                            <h6 class="green-text text-darken-2"><strong>{{success_msg}}</strong></h6>
+                        </div>
+                        </div>
+                    {{/if}}
+                </div>
+
+                <div class="form-group pt-3">
+                    <input id="btnsubmit" value="Submit" type="submit" class="btn btn-primary btn-block btn-submit" style="color: white; background-color:#0b421a">
+                </div> <!-- form-group// -->                                                                   
+            </form>
+        </article>
+        </div> <!-- card.// -->
+        
+    </div> 
+</div>
+
+{{> footer}}
