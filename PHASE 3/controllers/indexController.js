@@ -30,6 +30,7 @@ exports.getHomepage = (req, res) => {
             title: 'Home - Starbucks Assist', 
             layout: 'home', 
             loggedIn: false,
+            isGeneral: true,
             css: ['header-footer.css', 'content-home.css'],
             drinks: drinks
         });
@@ -116,6 +117,14 @@ exports.registerProcess = (req, res) => {
     }
 };
 
+exports.loginView = (req, res) => {
+    res.render('login',  { 
+        title: 'Log In - Starbucks Assist', 
+        layout: 'home', 
+        isRegister: false,
+        css: ['header-footer.css', 'content-register.css'] });
+};
+
 exports.login = (req,res) => {
     // UserModel.getUser({emailAddress: req.body.emailAddress, password: req.body.password}, user => {
     //   if (user == null) {
@@ -134,21 +143,21 @@ exports.login = (req,res) => {
 
     if (errors.isEmpty()) {
         const {
-            email,
-            pass
+            emailAdd,
+            pword
         } = req.body;
 
-        UserModel.getUser({ emailAddress: email }, (err, user) => {
+        UserModel.getUser({ emailAddress: emailAdd }, (err, user) => {
         if (err) {
             // Database error occurred...
             req.flash('error_msg', 'Something happened! Please try again.');
-            // res.redirect('/login');
+            res.redirect('/login');
         } else {
             // Successful query
             if (user) {
             // User found!
             // Check password with hashed value in the database
-            bcrypt.compare(pass, user.password, (err, result) => {
+            bcrypt.compare(pword, user.password, (err, result) => {
                 // passwords match (result == true)
                 if (result) {
                 // Update session object once matched!
@@ -164,22 +173,22 @@ exports.login = (req,res) => {
 
                 } else {
                     // passwords don't match
-                    req.flash('login_error', 'Incorrect password. Please try again.');
+                    req.flash('error_msg', 'Incorrect password. Please try again.');
                     //gawa login page
-                    res.redirect('/');
+                    res.redirect('/login');
                 }
             });
             } else {
             // No user found
-                req.flash('login_error', 'No registered user with that email. Please register.');
-                res.redirect('/');
+                req.flash('error_msg', 'No registered user with that email. Please register.');
+                res.redirect('/login');
             }
         }
         });
     } else {
         const messages = errors.array().map((item) => item.msg);
 
-        req.flash('login_error', messages.join(' '));
+        req.flash('error_msg', messages.join(' '));
         res.redirect('/');
     }
 }

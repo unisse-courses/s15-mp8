@@ -10,14 +10,21 @@
 
         <div class="nav-profile">
             <!-- Button trigger modal -->
-            <a type="button" id="modalBtn" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                {{#with registerOff}}
-                    Log In
+             
+                {{#if isGeneral}}
+                    <a type="button" id="modalBtn" class="btn btn-primary" href="/register"> Register </a> |
+                    <a type="button" id="modalBtn" class="btn btn-primary" href="/login"> Log In </a>
+                    
                 {{else}}
-                    Register | Log In
-                {{/with}}
-            </a>
-            
+                    <a type="button" id="modalBtn" class="btn btn-primary"
+                    {{#with registerOff}}
+                        href="/login"> Log In
+                    {{else}}
+                        href="/register"> Register
+                    {{/with}}
+                    </a>
+                {{/if}}
+
             <!-- Modal -->
             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">

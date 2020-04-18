@@ -17,6 +17,8 @@ router.get('/', isPublic, indexController.getHomepage);
 //Register and Login
 router.get('/register', isPublic, indexController.registerView);
 router.post('/addUser', indexController.registerProcess);
+
+router.get('/login', isPublic, indexController.loginView);
 router.post('/login', indexController.login);
 
 //Customer Route
