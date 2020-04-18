@@ -67,11 +67,11 @@ exports.create = function (obj, next) {
     });
 }
 
-exports.getUser = function (user, drink, next) {
-    UserModel.findOne(filter)
-    .exec(function(err, result) {
-        // console.log("nahanap ko");
-        // console.log(result);
-        next(err, result);
-    })
-}
+// exports.getUser = function (user, drink, next) {
+//     UserModel.findOne(filter)
+//     .exec(function(err, result) {
+//         // console.log("nahanap ko");
+//         // console.log(result);
+//         next(err, result);
+//     })
+// }

@@ -28,7 +28,7 @@ exports.getHomepage = (req, res) => {
 };
 
 exports.getCart = (req, res) => {
-    CartModel.getCart({_id: "5e8702a71c9d440000a8d164"}, function(cart) {
+    CartModel.getCart({_id: "5e8702a71c9d440000a8d164"}, function(err, cart) {
         UserModel.getUser({_id: req.session.user}, function(err, user) {
             res.render('cart-customer',  {
                 title: 'My Cart - Starbucks Assist', 
@@ -38,9 +38,9 @@ exports.getCart = (req, res) => {
                 loggedIn: true,
                 css: ['header-footer.css', 'content-cart.css'],
                 js: 'cart.js',
-                cart: cart,
-                drinkorder: cart.drinks,
-                drink: cart.drinks.drink,
+                // cart: cart,
+                // drinkorder: cart.drinks,
+                // drink: cart.drinks.drink,
                 user: user.toObject()
             });
         }) 

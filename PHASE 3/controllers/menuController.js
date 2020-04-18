@@ -18,7 +18,7 @@ exports.getDrinksForOrder = function (req, res) {
     }  
     
     drinkModel.getDrinksByCategory({category: category}, {name: 1} , function(drinks) {
-        UserModel.getUser({fullname: "Frances Lopez"}, function(user) {
+        UserModel.getUser({_id: req.session.user}, function(err, user) {
             res.render('menu',  { 
                 title: `${category} - Order Menu`, 
                 layout: 'menu-layout',
@@ -28,7 +28,7 @@ exports.getDrinksForOrder = function (req, res) {
                 category: category,
                 drinks: drinks,
                 js: 'order.js',
-                user: user
+                user: user.toObject()
             });
         }) 
         // console.log("drinks are: " + drinks);
