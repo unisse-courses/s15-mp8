@@ -1,4 +1,4 @@
-# Project Title: Starbucks Assist
+# Project Title: Starbucks Assist1
 This project is an online ordering system wherein customer's can have a convenient time to pick-up their order. They no longer need to wait for their drink or even wait in line as they can use the system to order it ahead. In the system, customers will need an account first before being able to order any drink. The customers will also be able to see the new products that are released by Starbucks also known as the Barista's recommendation. This project aims to give customers a sense of ease and convenience in picking up their order as it will be ready once they pick it up allowing them to save time and skip waiting lines.
 
 ## Getting Started
