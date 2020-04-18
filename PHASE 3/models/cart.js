@@ -18,7 +18,7 @@ exports.getCart = function (cartid, next) {
     .exec(function(err, result) {
             if (err) throw err
             console.log("cart found: " + result);
-            next(err, result);
+            next(result.toObject());
     });
 }
 
