@@ -133,22 +133,25 @@ exports.getCart = (req, res) => {
     console.log(req.session);
     if (req.session.cart != null) {
         CartModel.getCart({_id: req.session.cart}, function(err, cart, quant) {
-            UserModel.getUser({_id: req.session.user}, function(err, user) {
-                res.render('cart-customer',  {
-                    title: 'My Cart - Starbucks Assist', 
-                    layout: 'home', 
-                    loc: 'View Cart',
-                    isAdmin: false,
-                    loggedIn: true,
-                    css: ['header-footer.css', 'content-cart.css'],
-                    js: 'cart.js',
-                    cart: cart,
-                    noItems: quant,
-                    drinkorder: cart.drinks,
-                    drink: cart.drinks.drink,
-                    user: user
-                });
-            }) 
+            OrderModel.countOrders(function(err, ordernum) {
+                UserModel.getUser({_id: req.session.user}, function(err, user) {
+                    res.render('cart-customer',  {
+                        title: 'My Cart - Starbucks Assist', 
+                        layout: 'home', 
+                        loc: 'View Cart',
+                        isAdmin: false,
+                        loggedIn: true,
+                        css: ['header-footer.css', 'content-cart.css'],
+                        js: 'cart.js',
+                        cart: cart,
+                        noItems: quant,
+                        drinkorder: cart.drinks,
+                        drink: cart.drinks.drink,
+                        user: user,
+                        ordernum: ordernum
+                    });
+                }) 
+            })
         });
     } else {
         UserModel.getUser({_id: req.session.user}, function(err, user) {

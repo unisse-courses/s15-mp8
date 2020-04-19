@@ -93,6 +93,7 @@ exports.create = function (obj, next) {
 
 exports.countOrders = function (next) {
     orderModel.countDocuments({}, function( err, count){
+        count++;
         next(err,count);
     });
 }

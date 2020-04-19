@@ -209,7 +209,7 @@ $(document).ready(function() {
         $.post('/customer/checkout', function(data, status) {
             //if success
             console.log("pasok proceed")
-            window.location = '/customer/order-status'
+            window.location = "/customer/order-status"
         })
     })
 });
