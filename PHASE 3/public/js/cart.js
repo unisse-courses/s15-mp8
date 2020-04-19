@@ -136,6 +136,8 @@ $(document).ready(function() {
             totalCart += parseInt(temp);  // Or this.innerHTML, this.innerText
         });
 
+        $(`#div-${_id}`).attr('style', 'display: none');
+
         var priceDelete = $(`#price-${_id}`).text();
         priceDelete = priceDelete.substring(4, priceDelete.length)
 
@@ -163,7 +165,7 @@ $(document).ready(function() {
 
         $.post('/customer/deleteDrink', obj, function(data, status) {
             //if success
-            $(`#div-${_id}`).attr('style', 'display: none');
+
         })
     })
 
