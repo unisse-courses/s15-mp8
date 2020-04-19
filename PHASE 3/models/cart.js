@@ -23,11 +23,52 @@ exports.getCart = function (cartid, next) {
     });
 }
 
-//not yet checked
 exports.create = function (obj, next) {
     const cart = new CartModel(obj);
     
     cart.save(function(err, cart) {
         next(err, cart);
     });
+}
+
+exports.addDrink = function (cartid, drinkorder, next) {
+    CartModel.findOne({_id: cartid})
+    .populate('drinks')
+    .exec(function(err, result) {
+        if (err) throw err
+
+        result.drinks.push(drinkorder);
+
+        var totalprice = 0;
+
+        result.drinks.forEach(function(doc) {
+            totalprice += parseInt(doc.price);
+        })
+
+        result.totalprice = totalprice;
+
+        result.save();
+
+        next(err, result)
+    })
+}
+
+exports.updateTotal = function (cartid, next) {
+    var total = 0;
+
+    CartModel.findOne({_id: cartid})
+    .populate('drinks')
+    .exec(function(err, result) {
+        if (err) throw err
+
+        result.drinks.forEach(function(doc) {
+            total += parseInt(doc.price);
+        })
+
+        result.totalprice = total;
+
+        result.save();
+
+        next(err, result)
+    })
 }

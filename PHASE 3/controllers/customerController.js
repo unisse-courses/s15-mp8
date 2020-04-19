@@ -73,7 +73,20 @@ exports.addToCart = (req, res) => {
                         })
                     }
                     else {
-                        //get current cart
+                        CartModel.addDrink(req.session.cart, drinkorder, (err, cart) => {
+                            if (err)
+                                console.log("error in cart: " + err)
+                            else {
+                                console.log(req.session);
+                                req.session.save((err) => {
+                                    if(!err) {
+                                        console.log("req sess here: " + req.session);
+                                    }
+                                });
+                                
+                                console.log("successful adding to cart");
+                            }
+                        })
                     }
                 }
                     
@@ -82,9 +95,39 @@ exports.addToCart = (req, res) => {
     })
 };
 
+exports.updateQuant = (req, res) => {
+    DrinkOrderModel.updateQuantity(req.body.id, req.body.quant, req.body.price, function(err, drinkorder) {
+        CartModel.updateTotal(req.session.cart, function(err, cart) {
+            if (!err) {
+                console.log("quant and total updated! " +drinkorder);
+            } else {
+                console.log("err in updating quant and total: " + err);
+            }
+        })
+    });
+}
+
 exports.getCart = (req, res) => {
     console.log(req.session);
-    CartModel.getCart({_id: req.session.cart}, function(err, cart) {
+    if (req.session.cart != null) {
+        CartModel.getCart({_id: req.session.cart}, function(err, cart) {
+            UserModel.getUser({_id: req.session.user}, function(err, user) {
+                res.render('cart-customer',  {
+                    title: 'My Cart - Starbucks Assist', 
+                    layout: 'home', 
+                    loc: 'View Cart',
+                    isAdmin: false,
+                    loggedIn: true,
+                    css: ['header-footer.css', 'content-cart.css'],
+                    js: 'cart.js',
+                    cart: cart,
+                    drinkorder: cart.drinks,
+                    drink: cart.drinks.drink,
+                    user: user
+                });
+            }) 
+        });
+    } else {
         UserModel.getUser({_id: req.session.user}, function(err, user) {
             res.render('cart-customer',  {
                 title: 'My Cart - Starbucks Assist', 
@@ -94,13 +137,10 @@ exports.getCart = (req, res) => {
                 loggedIn: true,
                 css: ['header-footer.css', 'content-cart.css'],
                 js: 'cart.js',
-                cart: cart,
-                drinkorder: cart.drinks,
-                drink: cart.drinks.drink,
                 user: user
             });
         }) 
-    });
+    }
 }
 
 exports.getUserDetails = (req, res) => {

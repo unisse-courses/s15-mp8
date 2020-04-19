@@ -48,7 +48,6 @@ exports.getNewlyAdded = function (next) {
     });
 }
 
-//not checked
 exports.create = function (obj, next) {
     const drink = new DrinkModel(obj);
     

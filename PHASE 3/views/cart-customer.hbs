@@ -5,37 +5,39 @@
             {{#each drinkorder}}
                 <div class="order">
                     <div class="drink-pic py-2">
-                        <div role="button" class="minus" id="delete-drink-{{@index}}" data-toggle="modal" data-target="#deleteModal">x</div>
+                        <div role="button" class="minus" id="delete-drink-{{_id}}" data-toggle="modal" data-target="#deleteModal">x</div>
                         <img class="image" src="{{drink.picture}}">
                     </div>
                     
                     <div class="name-size">
-                        <label class="drink-name" id="drink-name-{{@index}}">{{drink.name}}</label>
-                        <label class="drink-size" id="drink-size-{{@index}}">{{size}}</label>
-                        <a class="request-btn" id="drink-request-{{@index}}" style="text-decoration: underline" type="button"data-toggle="modal" data-target="#viewRequest">
+                        <label class="drink-name" id="drink-name-{{_id}}">{{drink.name}}</label>
+                        <label class="drink-size" id="drink-size-{{_id}}">{{size}}</label>
+                        <a class="request-btn" id="drink-request-{{_id}}" style="text-decoration: underline" type="button"data-toggle="modal" data-target="#viewRequest">
                             View Request
                         </a>
                     </div>
             
                     <div class="drink-price">
                         <div class="quant-section">
-                            <div class="value-button decrease" id="decrease-{{@index}}" value="Decrease Value">-</div>
-                                <input type="number" class="number" id="number-{{@index}}" value="{{quantity}}" readonly/>
-                               <div class="value-button increase" id="increase-{{@index}}" value="Increase Value">+</div>
+                            <div class="value-button decrease" id="decrease-{{_id}}" value="Decrease Value">-</div>
+                                <input type="number" class="number" id="number-{{_id}}" value="{{quantity}}" readonly/>
+                               <div class="value-button increase" id="increase-{{_id}}" value="Increase Value">+</div>
                               
-                               <label style="display: none" id="request-{{@index}}">{{requests}}</label>
+                               <label style="display: none" id="request-{{_id}}">{{requests}}</label>
                         </div>
-                        <label class="price">PHP {{price}}.00</label>
+                        <label class="price" id="price-{{_id}}">PHP {{price}}.00</label>
                     </div>
                 </div>
             {{/each}}
         </div>
 
-        <div class="content-right">
-            <label class="total-order">Order Total ({{drink.length}} items)</label>
-            <label class="total-order total-price">PHP {{cart.totalprice}}</label>
-            <a id="checkout" data-toggle="modal" data-target="#orderNumberModal">CHECKOUT</a>
-        </div>
+        {{#if cart}}
+            <div class="content-right">
+                <label class="total-order">Order Total ({{drinkorder.length}} items)</label>
+                <label class="total-order total-price" id="total-price">PHP {{cart.totalprice}}.00</label>
+                <a id="checkout" data-toggle="modal" data-target="#orderNumberModal">CHECKOUT</a>
+            </div>
+        {{/if}}
     </div>
  
     <div>

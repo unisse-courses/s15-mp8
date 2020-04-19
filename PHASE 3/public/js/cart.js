@@ -2,28 +2,93 @@ $(document).ready(function() {
     $(".increase").on("click", function(){
         var id = this.id;
         var len = id.length;
-        id = id.substring(9, len);
-        id = "number-" + id;
+        var _id = id.substring(9, len);
+        id = "number-" + _id;
+
         var value = parseInt(document.getElementById(id).value, 10);
+
+
+        var origprice =  $(`#price-${_id}`).text();
+            origprice = origprice.substring(4, origprice.length);
+            origprice = parseInt(origprice);
+            origprice = origprice/value;
+
+        var price;
+
         value = isNaN(value) ? 0 : value;
         if(value<10){
             value++;
-                document.getElementById(id).value = value;
+            document.getElementById(id).value = value;
+
+            price = parseInt(value) * parseInt(origprice);
+            price = parseInt(price);
+
+            document.getElementById("price-" + _id).innerHTML = "PHP " + price.toString() + ".00";
         }
-        // console.log(value);
-    }),
+
+        var totalCart = 0;
+        $('.price').each(function(){
+            var temp = $(this).text();
+            temp = temp.substring(4, origprice.length);
+            totalCart += parseInt(temp);  // Or this.innerHTML, this.innerText
+        });
+
+        document.getElementById("total-price").innerHTML = "PHP " + totalCart.toString() + ".00";
+
+        var drinkorder = {
+            id: _id,
+            quant: value,
+            price: price
+        }
+
+        $.post('/customer/updateQuant', drinkorder, function(data, status) {
+            
+        });
+    })
 
     $(".decrease").on("click", function(){
         var id = this.id;
         var len = id.length;
-        id = id.substring(9, len);
-        id = "number-" + id;
+        var _id = id.substring(9, len);
+        id = "number-" + _id;
+
         var value = parseInt(document.getElementById(id).value, 10);
+
+        var origprice =  $(`#price-${_id}`).text();
+            origprice = origprice.substring(4, origprice.length);
+            origprice = parseInt(origprice);
+            origprice = origprice/value;
+
+        var price;
+
         value = isNaN(value) ? 0 : value;
         if(value>1){
             value--;
-                document.getElementById(id).value = value;
+            document.getElementById(id).value = value;
+
+            price = parseInt(value) * parseInt(origprice);
+            price = parseInt(price);
+            document.getElementById("price-" + _id).innerHTML = "PHP " + price.toString() + ".00";
         }
+
+        var totalCart = 0;
+        $('.price').each(function(){
+            var temp = $(this).text();
+            temp = temp.substring(4, origprice.length);
+            totalCart += parseInt(temp);  // Or this.innerHTML, this.innerText
+        });
+
+        document.getElementById("total-price").innerHTML = "PHP " + totalCart.toString() + ".00";
+
+        var drinkorder = {
+            id: _id,
+            quant: value,
+            price: price
+        }
+
+        $.post('/customer/updateQuant', drinkorder, function(data, status) {
+            
+        });
     });
     
     $(`div[id^="delete-drink-"]`).click(function() {

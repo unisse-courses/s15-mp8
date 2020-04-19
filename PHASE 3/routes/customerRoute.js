@@ -15,6 +15,8 @@ router.get('/cart', isPrivate, customerController.getCart);
 
 router.post('/addToCart', customerController.addToCart);
 
+router.post('/updateQuant', customerController.updateQuant);
+
 router.get('/account-settings', isPrivate, customerController.getUserDetails);
 
 router.get('/order-status', isPrivate, customerController.getOrderStatus);

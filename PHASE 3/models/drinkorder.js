@@ -12,11 +12,17 @@ var drinkOrderSchema = new Schema({
 
 const DrinkOrderModel = mongoose.model(`DrinkOrder`, drinkOrderSchema);
 
-//not checked
 exports.create = function (obj, next) {
     const drinkorder = new DrinkOrderModel(obj);
     
     drinkorder.save(function(err, drinkorder) {
         next(err, drinkorder);
     });
+}
+
+exports.updateQuantity = function (drinkorderid, quant, newprice, next) {
+    DrinkOrderModel.findOneAndUpdate({_id: drinkorderid}, {$set: {quantity: quant, price: newprice}})
+    .exec(function(err, result) {
+        next(err, result)
+    })
 }
