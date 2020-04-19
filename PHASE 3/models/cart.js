@@ -13,13 +13,19 @@ var cartSchema = new Schema({
 const CartModel = mongoose.model(`Cart`, cartSchema);
 
 exports.getCart = function (cartid, next) {
+    var counter = 0;
+
     CartModel.findOne({_id: cartid})
     .populate({path: 'drinks', populate: { path: 'drink' }})
     .exec(function(err, result) {
         if (err) throw err
-            
+        
+        result.drinks.forEach(function(docs) {
+            counter += docs.quantity
+        })
+
         console.log("cart found: " + result);
-        next(err, result.toObject());
+        next(err, result.toObject(), counter);
     });
 }
 
@@ -64,6 +70,24 @@ exports.updateTotal = function (cartid, next) {
         result.drinks.forEach(function(doc) {
             total += parseInt(doc.price);
         })
+
+        result.totalprice = total;
+
+        result.save();
+
+        next(err, result)
+    })
+}
+
+exports.deleteDrink = function (cartid, drinkorderid, total, next) {
+    CartModel.findOne({_id: cartid})
+    .populate('drinks')
+    .exec(function(err, result) {
+        if (err) throw err
+
+        result.drinks.pull({_id: drinkorderid});
+        console.log("updated cart"+ result);
+        console.log("drinkorderid: " + drinkorderid);
 
         result.totalprice = total;
 

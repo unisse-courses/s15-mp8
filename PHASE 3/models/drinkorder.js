@@ -26,3 +26,17 @@ exports.updateQuantity = function (drinkorderid, quant, newprice, next) {
         next(err, result)
     })
 }
+
+exports.updateRequest = function (drinkorderid, request, next) {
+    DrinkOrderModel.findOneAndUpdate({_id: drinkorderid}, {$set: {requests: request}})
+    .exec(function(err, result) {
+        next(err, result)
+    })
+}
+
+exports.deleteDrink = function (drinkorderid, next) {
+    DrinkOrderModel.findOneAndDelete({_id: drinkorderid})
+    .exec(function(err, result) {
+        next(err, result);
+    })
+}

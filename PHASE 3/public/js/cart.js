@@ -27,13 +27,22 @@ $(document).ready(function() {
         }
 
         var totalCart = 0;
+        var noItems = 0;
+
         $('.price').each(function(){
             var temp = $(this).text();
-            temp = temp.substring(4, origprice.length);
+            temp = temp.substring(4, temp.length);
             totalCart += parseInt(temp);  // Or this.innerHTML, this.innerText
         });
 
         document.getElementById("total-price").innerHTML = "PHP " + totalCart.toString() + ".00";
+
+        $('.number').each(function(){
+            var temp = $(this).val();
+            noItems += parseInt(temp);  // Or this.innerHTML, this.innerText
+        });
+
+        document.getElementById("noItems").innerHTML = noItems;
 
         var drinkorder = {
             id: _id,
@@ -72,13 +81,22 @@ $(document).ready(function() {
         }
 
         var totalCart = 0;
+        var noItems = 0;
+
         $('.price').each(function(){
             var temp = $(this).text();
-            temp = temp.substring(4, origprice.length);
+            temp = temp.substring(4, temp.length);
             totalCart += parseInt(temp);  // Or this.innerHTML, this.innerText
         });
 
         document.getElementById("total-price").innerHTML = "PHP " + totalCart.toString() + ".00";
+
+        $('.number').each(function(){
+            var temp = $(this).val();
+            noItems += parseInt(temp);  // Or this.innerHTML, this.innerText
+        });
+
+        document.getElementById("noItems").innerHTML = noItems;
 
         var drinkorder = {
             id: _id,
@@ -90,28 +108,89 @@ $(document).ready(function() {
             
         });
     });
+
+    $('#changeBtn').click(function() {
+        var _id = $("#id").val();
+        var request = $("#request").val();
+
+        var req = {
+            id: _id,
+            request: request
+        }
+        document.getElementById("request-"+_id).innerHTML = request;
+
+        $.post('/customer/updateRequest', req, function(data, status) {
+            //if(data.success) ? 
+        })
+    })
     
+    $('#yesDelete').click(function() {
+        var _id = $("#id").val();
+        console.log("del clicked");
+
+        var totalCart = 0;
+
+        $('.price').each(function(){
+            var temp = $(this).text();
+            temp = temp.substring(4, temp.length);
+            totalCart += parseInt(temp);  // Or this.innerHTML, this.innerText
+        });
+
+        var priceDelete = $(`#price-${_id}`).text();
+        priceDelete = priceDelete.substring(4, priceDelete.length)
+
+        console.log("priceDelete:" + priceDelete);
+
+        totalCart -= parseInt(priceDelete);
+
+        document.getElementById("total-price").innerHTML = "PHP " + totalCart.toString() + ".00";
+
+        $(`#number-${_id}`).removeClass("number");
+
+        var noItems = 0;
+
+        $('.number').each(function(){
+            var temp = $(this).val();
+            noItems += parseInt(temp);  // Or this.innerHTML, this.innerText
+        });
+
+        document.getElementById("noItems").innerHTML = noItems;
+
+        var obj = {
+            id: _id,
+            total: totalCart
+        }
+
+        $.post('/customer/deleteDrink', obj, function(data, status) {
+            //if success
+            $(`#div-${_id}`).attr('style', 'display: none');
+        })
+    })
+
     $(`div[id^="delete-drink-"]`).click(function() {
         var id = this.id;
-        var index = id.substring(13, id.length);
+        var _id = id.substring(13, id.length);
 
-        var drinkNameId = "drink-name-" + index;
+        var drinkNameId = "drink-name-" + _id;
         var drinkname = $(`#${drinkNameId}`).text();
+
+        $("#id").val(_id);
 
         $(".drink-delete").text(drinkname);
     });
     
     $(`a[id^="drink-request-"]`).click(function() {
         var id = this.id;
-        var index = id.substring(14, id.length);
+        var _id = id.substring(14, id.length);
 
-        var drinkNameId = "drink-name-" + index;
-        var drinkRequestId = "request-" + index;
+        var drinkNameId = "drink-name-" + _id;
+        var drinkRequestId = "request-" + _id;
         var drinkname = $(`#${drinkNameId}`).text();
         var request = $(`#${drinkRequestId}`).text();
 
         console.log("request is " + request)
 
+        $("#id").val(_id);
         $("#drink-name").text(drinkname);
         $("#request").val(request);
     });

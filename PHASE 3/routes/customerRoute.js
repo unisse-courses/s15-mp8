@@ -14,8 +14,10 @@ router.get('/home', isPrivate, customerController.getHomepage);
 router.get('/cart', isPrivate, customerController.getCart);
 
 router.post('/addToCart', customerController.addToCart);
-
 router.post('/updateQuant', customerController.updateQuant);
+router.post('/updateRequest', customerController.updateRequest);
+router.post('/deleteDrink', customerController.deleteDrink);
+
 
 router.get('/account-settings', isPrivate, customerController.getUserDetails);
 

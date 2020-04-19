@@ -107,10 +107,34 @@ exports.updateQuant = (req, res) => {
     });
 }
 
+exports.updateRequest = (req, res) => {
+    DrinkOrderModel.updateRequest(req.body.id, req.body.request, function(err, drinkorder) {
+        if (!err) {
+            console.log("request updated! " + drinkorder);
+        } else {
+            console.log("err in updating request: " + err);
+        }
+    });
+}
+
+exports.deleteDrink = (req, res) => {
+    CartModel.deleteDrink(req.session.cart, req.body.id, req.body.total, function(err, cart) {
+        DrinkOrderModel.deleteDrink(req.body.id, function(err, drinkorder) {
+            if (!err) {
+                console.log("deleted! " + drinkorder);
+            } else {
+                console.log("err in deleting: " + err);
+            }
+            res.redirect('/customer/cart')
+        });
+    })
+        
+}
+
 exports.getCart = (req, res) => {
     console.log(req.session);
     if (req.session.cart != null) {
-        CartModel.getCart({_id: req.session.cart}, function(err, cart) {
+        CartModel.getCart({_id: req.session.cart}, function(err, cart, quant) {
             UserModel.getUser({_id: req.session.user}, function(err, user) {
                 res.render('cart-customer',  {
                     title: 'My Cart - Starbucks Assist', 
@@ -121,6 +145,7 @@ exports.getCart = (req, res) => {
                     css: ['header-footer.css', 'content-cart.css'],
                     js: 'cart.js',
                     cart: cart,
+                    noItems: quant,
                     drinkorder: cart.drinks,
                     drink: cart.drinks.drink,
                     user: user

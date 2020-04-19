@@ -3,7 +3,7 @@
             <label id="head-label" class="pb-3">You ordered the following:</label>
             
             {{#each drinkorder}}
-                <div class="order">
+                <div class="order" id="div-{{_id}}">
                     <div class="drink-pic py-2">
                         <div role="button" class="minus" id="delete-drink-{{_id}}" data-toggle="modal" data-target="#deleteModal">x</div>
                         <img class="image" src="{{drink.picture}}">
@@ -33,7 +33,7 @@
 
         {{#if cart}}
             <div class="content-right">
-                <label class="total-order">Order Total ({{drinkorder.length}} items)</label>
+                <label class="total-order">Order Total (<span id="noItems">{{noItems}} </span> items)</label>
                 <label class="total-order total-price" id="total-price">PHP {{cart.totalprice}}.00</label>
                 <a id="checkout" data-toggle="modal" data-target="#orderNumberModal">CHECKOUT</a>
             </div>
@@ -54,7 +54,7 @@
                         <label class="order-num">00011</label>
                     </div>
                     <div class="modal-footer">
-                        <a id="closeOrderNum" role="button" href="user/customer/order-status" style="font-size: 14pt; font-weight: 400; color: #0b421a; text-decoration: none;">PROCEED</a>
+                        <a id="closeOrderNum" role="button" href="/customer/order-status" style="font-size: 14pt; font-weight: 400; color: #0b421a; text-decoration: none;">PROCEED</a>
                 
                     </div>
                 </div>
@@ -71,7 +71,11 @@
                         </button>
                     </div>
                     <div class="modal-body p-5" style="color: white; border-top:none;">
-                        <button id="yesDelete" class="decisionDelete" data-dismiss="modal">Yes</button>
+                        <form>
+                            <input type="hidden" value="" id="id">
+                            <button id="yesDelete" class="decisionDelete" data-dismiss="modal"> Yes </button>
+                        </form>
+                        
                         <button id="noDelete" class="decisionDelete" data-dismiss="modal">No</button>
                     </div>
                 </div>
@@ -84,10 +88,11 @@
                 <div class="modal-content" style="border:none; background-color: #0b421a">
                     <div class="modal-header"style = "background-color: #0b421a">
                         <form>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
+                            <input id="id" type="hidden" value="">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white; position: absolute; top: 0; right: 0; margin:5px">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <h3 class="modal-title text-left" style="color:white">Request for <span id="drink-name"></span></h3>
+                            <h3 class="modal-title text-left" style="color:white; margin:10px">Request for <span id="drink-name"></span></h3>
                             </div>
                             <div class="modal-body py-5"style = "background-color: #0b421a">
                                 <textarea class="text-left px-3 py-2" id="request" rows="5" cols="50" style="border-radius:10px; vertical-align:top"></textarea> 
