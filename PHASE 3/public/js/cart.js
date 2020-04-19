@@ -196,4 +196,20 @@ $(document).ready(function() {
         $("#drink-name").text(drinkname);
         $("#request").val(request);
     });
+
+    $("#closeOrderNum").click(function() {
+        // var ids = []
+        
+        // $('.order').each(function(){
+        //     var id = $(this).id;
+        //     id = id.substring(4, id.length);
+        //     ids.push(id);
+        // });
+
+        $.post('/customer/checkout', function(data, status) {
+            //if success
+            console.log("pasok proceed")
+            window.location = '/customer/order-status'
+        })
+    })
 });

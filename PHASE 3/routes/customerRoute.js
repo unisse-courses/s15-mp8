@@ -17,6 +17,7 @@ router.post('/addToCart', customerController.addToCart);
 router.post('/updateQuant', customerController.updateQuant);
 router.post('/updateRequest', customerController.updateRequest);
 router.post('/deleteDrink', customerController.deleteDrink);
+router.post('/checkout', customerController.checkout);
 
 
 router.get('/account-settings', isPrivate, customerController.getUserDetails);

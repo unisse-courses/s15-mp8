@@ -6,11 +6,9 @@ const DrinkModel = require('../models/drink')
 const DrinkOrderModel = require('../models/drinkorder')
 const OrderModel = require('../models/order')
 
-// const Favorite = mongoose.model('Favorite');
-const User = mongoose.model('User');
-const Drink = mongoose.model('Drink');
 const DrinkOrder = mongoose.model('DrinkOrder')
 const Cart = mongoose.model('Cart');
+const Order = mongoose.model('Order')
 
 exports.getHomepage = (req, res) => {
     // insertFavorite(req, res);
@@ -168,6 +166,32 @@ exports.getCart = (req, res) => {
     }
 }
 
+exports.checkout = function (req, res) {
+    OrderModel.countOrders(function(err, num) {
+        var order = new Order();
+        order._id = new mongoose.Types.ObjectId();
+        order.ordernum = num;
+        order.customer = req.session.user;
+        order.cart = req.session.cart;
+        order.status = "Received";
+
+        OrderModel.create(order, function(err, order) {
+            if (!err) {
+                console.log("order inserted");
+                req.session.cart = null;
+                req.session.save((err) => {
+                    if(!err) {
+                        console.log("req sess here: " + req.session);
+                    }
+                });
+            } else {
+                console.log("inserting order err: " + err);
+            }
+        })
+    })
+    res.redirect('/customer/order-status')
+}
+
 exports.getUserDetails = (req, res) => {
     UserModel.getUser({_id: req.session.user}, function(err, user) {
         res.render('acc-settings',  {
@@ -176,7 +200,7 @@ exports.getUserDetails = (req, res) => {
             isAdmin: false,
             loggedIn: true,
             css: ['header-footer.css', 'acct_settings.css'], 
-            user: user.toObject()
+            user: user
         });
     }) 
 }
@@ -191,7 +215,7 @@ exports.getOrderStatus = (req, res) => {
                 isAdmin: false,
                 loggedIn: true,
                 css: ['header-footer.css', 'content-status.css'],
-                user: user.toObject(),
+                user: user,
                 orders: orders
             });
         })
@@ -209,7 +233,7 @@ exports.getFavorites = (req, res) => {
                 css: ['header-footer.css', 'content-my-favorites.css'],
                 js: 'favorites.js',
                 favorites: favorites,
-                user: user.toObject()      
+                user: user    
             });
         })
     }) 

@@ -86,13 +86,13 @@ exports.getOrderStatuses = function (next) {
 exports.create = function (obj, next) {
     const order = new orderModel(obj);
     
-    order.save(function(err, user) {
-        next(err, user);
+    order.save(function(err, order) {
+        next(err, order);
     });
 }
 
-exports.countOrders = function () {
+exports.countOrders = function (next) {
     orderModel.countDocuments({}, function( err, count){
-        return count;
+        next(err,count);
     });
 }
