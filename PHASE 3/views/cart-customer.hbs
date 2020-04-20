@@ -39,72 +39,74 @@
             </div>
         {{/if}}
     </div>
- 
-    <div>
-        <div class="modal fade" id="orderNumberModal" tabindex="-1" role="dialog" aria-labelledby="editFaveModal" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content" style = "background-color: white;">
-                    <div class="modal-header">
-                        <h3 class="modal-title" id="editFaveModalTitle" style="color: #0b421a;"><b>Order Number</b></h3>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #0b421a;">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body p-5" style="color: #0b421a;">
-                        <label class="order-num">{{#ordernum_format ordernum}}{{/ordernum_format}}</label>
-                    </div>
-                    <div class="modal-footer">
-                        <a id="closeOrderNum" style="cursor:pointer; font-size: 14pt; font-weight: 400; color: #0b421a; text-decoration: none;">PROCEED</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content" style = "background-color: #0b421a;">
-                    <div class="modal-header" style="border-bottom: none;">
-                        <h3 class="modal-title" id="deleteModalTitle" style="color: white;"><b>Are you sure you want to remove <span class="drink-delete"></span>?</b></h3>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body p-5" style="color: white; border-top:none;">
-                        <form>
-                            <input type="hidden" value="" id="id">
-                            <button id="yesDelete" class="decisionDelete" data-dismiss="modal"> Yes </button>
-                        </form>
-                        
-                        <button id="noDelete" class="decisionDelete" data-dismiss="modal">No</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="orderbox">
-            <div class="modal fade" id="viewRequest" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    
+    {{#if cart}}
+        <div>
+            <div class="modal fade" id="orderNumberModal" tabindex="-1" role="dialog" aria-labelledby="editFaveModal" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content" style="border:none; background-color: #0b421a">
-                    <div class="modal-header"style = "background-color: #0b421a">
-                        <form>
-                            <input id="id" type="hidden" value="">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white; position: absolute; top: 0; right: 0; margin:5px">
+                    <div class="modal-content" style = "background-color: white;">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="editFaveModalTitle" style="color: #0b421a;"><b>Order Number</b></h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #0b421a;">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <h3 class="modal-title text-left" style="color:white; margin:10px">Request for <span id="drink-name"></span></h3>
-                            </div>
-                            <div class="modal-body py-5"style = "background-color: #0b421a">
-                                <textarea class="text-left px-3 py-2" id="request" rows="5" cols="50" style="border-radius:10px; vertical-align:top"></textarea> 
-                            </div>
-                            <div class="modal-footer" style = "background-color: #0b421a">
-                                <a type="button" id="changeBtn" class="btn btn-secondary" data-dismiss="modal" style = "background-color:white; color: green">
-                                    <b>Change</b>
-                                </a>
-                            </div>
-                        </form>
+                        </div>
+                        <div class="modal-body p-5" style="color: #0b421a;">
+                            <label class="order-num">{{#ordernum_format ordernum}}{{/ordernum_format}}</label>
+                        </div>
+                        <div class="modal-footer">
+                            <a id="closeOrderNum" style="cursor:pointer; font-size: 14pt; font-weight: 400; color: #0b421a; text-decoration: none;">PROCEED</a>
+                        </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content" style = "background-color: #0b421a;">
+                        <div class="modal-header" style="border-bottom: none;">
+                            <h3 class="modal-title" id="deleteModalTitle" style="color: white;"><b>Are you sure you want to remove <span class="drink-delete"></span>?</b></h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body p-5" style="color: white; border-top:none;">
+                            <form>
+                                <input type="hidden" value="" id="id">
+                                <button id="yesDelete" class="decisionDelete" data-dismiss="modal"> Yes </button>
+                            </form>
+                            
+                            <button id="noDelete" class="decisionDelete" data-dismiss="modal">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="orderbox">
+                <div class="modal fade" id="viewRequest" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content" style="border:none; background-color: #0b421a">
+                        <div class="modal-header"style = "background-color: #0b421a">
+                            <form>
+                                <input id="id" type="hidden" value="">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="box-shadow:none; color:white; position: absolute; top: 0; right: 0; margin:5px">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h3 class="modal-title text-left" style="color:white; margin:10px">Request for <span id="drink-name"></span></h3>
+                                </div>
+                                <div class="modal-body py-5"style = "background-color: #0b421a">
+                                    <textarea class="text-left px-3 py-2" id="request" rows="5" cols="50" style="border-radius:10px; vertical-align:top"></textarea> 
+                                </div>
+                                <div class="modal-footer" style = "background-color: #0b421a">
+                                    <a type="button" id="changeBtn" class="btn btn-secondary" data-dismiss="modal" style = "background-color:white; color: green">
+                                        <b>Change</b>
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    {{/if}}

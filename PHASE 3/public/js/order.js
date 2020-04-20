@@ -1,6 +1,11 @@
 
 $(document).ready(function() {
-    $(`a[id^="chosen-drink-"`).click(function() {
+    $(`.chosen-drink`).click(function() {
+
+        $('#request').val('');
+        $('#quantity').val('1');
+        $('#sizes').val('Venti');
+
         var id = this.id;
         var index = id.substring(13, id.length);
 

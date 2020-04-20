@@ -50,9 +50,8 @@ exports.getDrinksForUpdate = function (req, res) {
         category = "Teavana Teas"
     }  
     
-    UserModel.getUser({fullname: "Admin"}, function(user) {
+    UserModel.getUser({_id: req.session.user}, function(err, user) {
         drinkModel.getDrinksByCategory({category: category}, {name: 1} , function(drinks) {
-        
             res.render('menu',  { 
                 title: `${category} - Update Menu`, 
                 layout: 'menu-layout',
