@@ -44,8 +44,6 @@ exports.getAllUsers = function (sort, next) {
 exports.getUser = function (filter, next) {
     UserModel.findOne(filter)
     .exec(function(err, result) {
-        // console.log("nahanap ko");
-        // console.log(result);
         next(err, result.toObject());
     })
 }

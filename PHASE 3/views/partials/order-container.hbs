@@ -1,5 +1,5 @@
 {{#if_equal details.status stat}}
-    <div class="order-container">
+    <div class="order-container" id="order-{{details._id}}">
         <div class="details">
             <div class="left">
                 <div class="top">
@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class="right">
-                <button class="update-btn">{{button}}</button>
+                <button class="update-btn" id="{{button}}-{{details._id}}">{{button}}</button>
             </div>
         </div>
     </div>

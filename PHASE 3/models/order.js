@@ -97,3 +97,10 @@ exports.countOrders = function (next) {
         next(err,count);
     });
 }
+
+exports.updateStatus = function (orderid, status, next) {
+    orderModel.findByIdAndUpdate({_id: orderid}, {$set: {status: status}})
+    .exec(function(err, result) {
+        next(err, result.toObject());
+    })
+}

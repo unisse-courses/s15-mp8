@@ -27,9 +27,18 @@ exports.getOrderStatus = (req, res) => {
                 layout: 'update-status',
                 orders: orders, 
                 btn: btn,
-                user: user
+                user: user,
+                js: 'order-status.js'
             });
         })
     });
+}
 
+exports.updateStatus = function (req, res) {
+    OrderModel.updateStatus(req.body.id, req.body.status, function(err, orders) {
+        if (!err) 
+            console.log("successful updating status");
+        else
+            console.log("err in updating status:" + err);
+    })
 }
