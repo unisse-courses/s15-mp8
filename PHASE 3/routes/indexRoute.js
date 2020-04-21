@@ -1,5 +1,7 @@
 const router = require('express').Router();
 
+const { registerValidation, loginValidation } = require('../validators.js');
+
 //for checking of users only; not important
 const mongoose = require('mongoose');
 mongoose.set('useFindAndModify', false);
@@ -16,10 +18,10 @@ router.get('/', isPublic, indexController.getHomepage);
 
 //Register and Login
 router.get('/register', isPublic, indexController.registerView);
-router.post('/addUser', indexController.registerProcess);
+router.post('/addUser', isPublic, registerValidation, indexController.registerProcess);
 
 router.get('/login', isPublic, indexController.loginView);
-router.post('/login', indexController.login);
+router.post('/login', isPublic, loginValidation,  indexController.login);
 
 //Customer Route
 router.use('/customer', customerRouter);

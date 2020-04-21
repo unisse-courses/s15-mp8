@@ -12,9 +12,6 @@ const app = express();
 const port = 3000;
 
 const indexRouter = require("./routes/indexRoute");
-// const userRouter = require("./routes/userRoute");
-// const customerRouter = require("./routes/customerRoute");
-// const adminRouter = require("./routes/adminRoute");
 
 app.engine('hbs', exphbs({
     extname: 'hbs',
@@ -91,7 +88,6 @@ app.use((req, res, next) => {
 });
 
 app.use('/', indexRouter);
-// app.use('/user', userRouter);
 
 app.listen(port, () => {
     console.log('App listening at port ' + port);

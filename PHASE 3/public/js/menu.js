@@ -45,3 +45,73 @@
         
 //     });
 // });
+
+
+$(document).ready(function() {
+    function checkField(field, val) {
+        var valid = val;
+
+        if(field.val() == '') {
+            valid = false;
+        } else {
+            field.css('background-color', 'white');
+        }
+
+        return valid;
+    }
+
+    $(".addDrinkForm").submit(function(e) {
+        e.preventDefault();
+        var valid = true;
+        valid = checkField($("#drinkPic"), valid);
+        valid = checkField($("#drinkName"), valid);
+        valid = checkField($("#tallPrice"), valid);
+        valid = checkField($("#grandePrice"), valid);
+        valid = checkField($("#ventiPrice"), valid);
+
+        if (!valid) {
+            $(".messageModal").text("There's a missing field. Answer all fields.");
+        }
+            
+        else {
+            var newDrink = {
+                drinkName: $("#drinkName").val(),
+                tallPrice: $("#tallPrice").val(),
+                grandePrice: $("#grandePrice").val(),
+                ventiPrice: $("#ventiPrice").val(),
+                category: $("#category").val()
+            }
+
+            var url;
+
+            if (newDrink.category == "Espresso")
+                url = "espresso";
+            else if (newDrink.category == "Chocolate")
+                url = "chocolate";
+            else if (newDrink.category == "Teavana Teas")
+                url = "teavana-teas";
+            else if (newDrink.category == "Frappuccino")
+                url = "frappuccino";
+            else if (newDrink.category == "Coffee Craft")
+                url = "coffee-craft";
+
+
+            // $.post('/admin/menu/addDrink', newDrink, function(data, status) {
+            $(this).ajaxSubmit({
+                data: {newDrink: newDrink},
+                contentType: 'application/json',
+                success: function(response) {
+                        $("#drinkPic").val("");
+                        $("#drinkName").val("");
+                        $("#tallPrice").val("");
+                        $("#grandePrice").val("");
+                        $("#ventiPrice").val("");
+                        // console.log("ok hehe")
+                        // console.log("will submit")
+                        window.location = "/admin/menu/update/" + url;
+                }
+            });
+        } 
+
+    })
+});

@@ -46,19 +46,6 @@ exports.registerView = (req, res) => {
 };
 
 exports.registerProcess = (req, res) => {
-    // console.log("pasok post route");
-    // var result;
-    // UserModel.checkUser({ emailAddress: req.body.emailAddress }, user => {
-    //     if (user.length >= 1) {
-    //         result = { success: false, message: "Email already exists!" }
-    //         insertUser(req, res, result.success, result.message);
-    //     }
-    //     else{   
-    //         result = { success: true, message: "User created! Please login to access you account." }
-    //         insertUser(req, res, result.success, result.message);
-    //     }     
-    // })
-
     const errors = validationResult(req);
 
     if (errors.isEmpty()) {
@@ -189,7 +176,7 @@ exports.login = (req,res) => {
         const messages = errors.array().map((item) => item.msg);
 
         req.flash('error_msg', messages.join(' '));
-        res.redirect('/');
+        res.redirect('/login');
     }
 }
 

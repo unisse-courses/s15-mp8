@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+const { validationResult } = require('express-validator');
+
 const DrinkModel = require('../models/drink');
 const UserModel = require('../models/user');
 const PricesModel = require('../models/pricelist')
@@ -75,45 +77,49 @@ exports.getDrinksForUpdate = function (req, res) {
 };
 
 exports.addDrink = function (req, res, next) {
-    console.log("req.file " + req.file);
-    console.log("req.files " + req.files);
-    var newDrink = new Drink ();
-    var pricelist = new Prices ();
+        var newDrink = new Drink ();
+        var pricelist = new Prices ();
 
-    pricelist.tall = req.body.tallPrice;
-    pricelist.grande = req.body.grandePrice;
-    pricelist.venti = req.body.ventiPrice;
-    
-    console.log(newDrink);
+        pricelist.tall = req.body.tallPrice;
+        pricelist.grande = req.body.grandePrice;
+        pricelist.venti = req.body.ventiPrice;
+        
+        console.log(newDrink);
 
-    PricesModel.create(pricelist, function(err, pricelist){
-        newDrink._id = new mongoose.Types.ObjectId();
-        newDrink.name = req.body.drinkName;
-        newDrink.pricelist = pricelist;
-        newDrink.category = req.body.category;
-        var tempPic = req.file.path;
-        newDrink.picture = tempPic.substring(7, tempPic.length);
+        PricesModel.create(pricelist, function(err, pricelist){
+            newDrink._id = new mongoose.Types.ObjectId();
+            newDrink.name = req.body.drinkName;
+            newDrink.pricelist = pricelist;
+            newDrink.category = req.body.category;
+            var tempPic = req.file.path;
+            newDrink.picture = tempPic.substring(7, tempPic.length);
 
-        DrinkModel.create(newDrink, function(err, drink) {
-            if (!err)
-                console.log("drink created!");
-            else
-                console.log("err in creating drink: " + err);
+            DrinkModel.create(newDrink, function(err, drink) {
+                if (!err) {
+                    res.status(200).send({status: "ok"})
+                    console.log("drink created!");
+                }
+                    
+                else {
+                    res.status(200).send({status: "error"})
+                    console.log("err in creating drink: " + err);
+                }
+                    
+            })
         })
-    })
 
-    var url = req.body.category;
+        var url = req.body.category;
 
-    if (url == "Espresso")
-        url = "espresso";
-    else if (url == "Chocolate")
-        url = "chocolate";
-    else if (url == "Teavana Teas")
-        url = "teavana-teas";
-    else if (url == "Frappuccino")
-        url = "frappuccino";
-    else if (url == "Coffee Craft")
-        url = "coffee-craft";
+        // if (url == "Espresso")
+        //     url = "espresso";
+        // else if (url == "Chocolate")
+        //     url = "chocolate";
+        // else if (url == "Teavana Teas")
+        //     url = "teavana-teas";
+        // else if (url == "Frappuccino")
+        //     url = "frappuccino";
+        // else if (url == "Coffee Craft")
+        //     url = "coffee-craft";
 
-    res.redirect('/admin/menu/update/' + url);
+        // res.redirect('/admin/menu/update/' + url);
 };
