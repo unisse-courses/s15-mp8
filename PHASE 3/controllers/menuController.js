@@ -1,5 +1,12 @@
-const drinkModel = require('../models/drink');
+const mongoose = require('mongoose');
+
+const DrinkModel = require('../models/drink');
 const UserModel = require('../models/user');
+const PricesModel = require('../models/pricelist')
+
+const Drink = mongoose.model('Drink');
+const Prices = mongoose.model('Prices');
+
 
 exports.getDrinksForOrder = function (req, res) {
     var cat = req.params.category;
@@ -17,7 +24,7 @@ exports.getDrinksForOrder = function (req, res) {
         category = "Teavana Teas"
     }  
     
-    drinkModel.getDrinksByCategory({category: category}, {name: 1} , function(drinks) {
+    DrinkModel.getDrinksByCategory({category: category}, {name: 1} , function(drinks) {
         UserModel.getUser({_id: req.session.user}, function(err, user) {
             res.render('menu',  { 
                 title: `${category} - Order Menu`, 
@@ -51,7 +58,7 @@ exports.getDrinksForUpdate = function (req, res) {
     }  
     
     UserModel.getUser({_id: req.session.user}, function(err, user) {
-        drinkModel.getDrinksByCategory({category: category}, {name: 1} , function(drinks) {
+        DrinkModel.getDrinksByCategory({category: category}, {name: 1} , function(drinks) {
             res.render('menu',  { 
                 title: `${category} - Update Menu`, 
                 layout: 'menu-layout',
@@ -63,8 +70,50 @@ exports.getDrinksForUpdate = function (req, res) {
                 drinks: drinks,
                 user: user
             });
-            // console.log("drinks are: " + drinks);
         })
     });
+};
 
+exports.addDrink = function (req, res, next) {
+    console.log("req.file " + req.file);
+    console.log("req.files " + req.files);
+    var newDrink = new Drink ();
+    var pricelist = new Prices ();
+
+    pricelist.tall = req.body.tallPrice;
+    pricelist.grande = req.body.grandePrice;
+    pricelist.venti = req.body.ventiPrice;
+    
+    console.log(newDrink);
+
+    PricesModel.create(pricelist, function(err, pricelist){
+        newDrink._id = new mongoose.Types.ObjectId();
+        newDrink.name = req.body.drinkName;
+        newDrink.pricelist = pricelist;
+        newDrink.category = req.body.category;
+        var tempPic = req.file.path;
+        newDrink.picture = tempPic.substring(7, tempPic.length);
+
+        DrinkModel.create(newDrink, function(err, drink) {
+            if (!err)
+                console.log("drink created!");
+            else
+                console.log("err in creating drink: " + err);
+        })
+    })
+
+    var url = req.body.category;
+
+    if (url == "Espresso")
+        url = "espresso";
+    else if (url == "Chocolate")
+        url = "chocolate";
+    else if (url == "Teavana Teas")
+        url = "teavana-teas";
+    else if (url == "Frappuccino")
+        url = "frappuccino";
+    else if (url == "Coffee Craft")
+        url = "coffee-craft";
+
+    res.redirect('/admin/menu/update/' + url);
 };

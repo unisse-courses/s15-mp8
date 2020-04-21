@@ -207,9 +207,10 @@ $(document).ready(function() {
         // });
 
         $.post('/customer/checkout', function(data, status) {
-            //if success
-            console.log("pasok proceed")
-            window.location = "/customer/order-status"
+            if (data.status == "ok") {
+                // console.log("ok");
+                window.location = "/customer/order-status";
+            }
         })
     })
 });

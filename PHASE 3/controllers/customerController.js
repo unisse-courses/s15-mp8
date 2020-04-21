@@ -187,12 +187,13 @@ exports.checkout = function (req, res) {
                         console.log("req sess here: " + req.session);
                     }
                 });
+                res.status(200).send({status: "ok"})
             } else {
                 console.log("inserting order err: " + err);
             }
         })
     })
-    res.redirect('/customer/order-status')
+    
 }
 
 exports.getUserDetails = (req, res) => {
@@ -251,7 +252,7 @@ exports.getTransactionHistory = (req, res) => {
                 isAdmin: false,
                 loggedIn: true,
                 css: ['header-footer.css', 'transaction-history.css'],
-                user: user.toObject(),
+                user: user,
                 orders: orders
             });
         })

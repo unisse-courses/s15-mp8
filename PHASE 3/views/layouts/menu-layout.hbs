@@ -100,44 +100,43 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content" >
                         <div class="modal-header">
-                            <h3 class="modal-title text-center" id="exampleModalLongTitle" style="color:#0b421a"><b>Add A Drink:</b></h3>
+                            <h3 class="modal-title text-center" id="exampleModalLongTitle" style="color:#0b421a"><b>Add a Drink:</b></h3>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#0b421a">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class = "leftie">
-                                <img class="currpic" id="newavatar" src="/images/icons/pic.png" width="136px"    height="136px"/>
-                                <input id="inputfile" class="uploadimage" onchange="changeImage()" type="file"    name="avatar" accept="image/*">
+                        <form action="/admin/menu/addDrink" method="POST" enctype="multipart/form-data" >
+
+                            <textarea style="display: none;" type="text" name="category">{{category}}</textarea>
+                            <div class = "leftie m-3" style="display: flex;">
+                                <img class="currpic" id="newavatar" src="/images/icons/pic.png" width="110px" height="110px"/>
+                                <input id="drinkPic" class="uploadimage" type="file" name="drinkPic" style="margin:auto">
                             </div>
                             <div class="rightie">
-                                <form style="width: inherit;">
+                                <div class="input pb-2">
+                                    <label class="input1" style="color:#0b421a">Name of Drink:</label>
+                                    <input name ="drinkName" type="text"></input>
+                                </div>
+                                <div class="box">
                                     <div class="input pb-2">
-                                        <label class="input1" style="color:#0b421a"><b>Name of Drink:</b></label>
-                                        <input name = "drink-name" type="text"></input>
+                                        <label class="sizes" style="color:#0b421a"><b> Tall:</b></label>
+                                        <input name ="tallPrice" type="text" class="small"></input>
                                     </div>
-                                    <div class="box">
-                                        <div class="input pb-2">
-                                            <label class="sizes" style="color:#0b421a"><b> Venti:</b></label>
-                                            <input name = "venti-price" type="text" class="small"></input>
-                                        </div>
-                                        <div class="input pb-2">
-                                            <label class="sizes" style="color:#0b421a"><b> Grande:</b></label>
-                                            <input name = "grande-price" type="text" class="small"></input>
-                                        </div>
-                                        <div class="input pb-2">
-                                            <label class="sizes" style="color:#0b421a"><b> Tall:</b></label>
-                                            <input name = "tall-price" type="text" class="small"></input>
-                                        </div>
+                                    <div class="input pb-2">
+                                        <label class="sizes" style="color:#0b421a"><b> Grande:</b></label>
+                                        <input name ="grandePrice" type="text" class="small"></input>
                                     </div>
-                                </form>
+                                    <div class="input pb-2">
+                                        <label class="sizes" style="color:#0b421a"><b> Venti:</b></label>
+                                        <input name ="ventiPrice" type="text" class="small"></input>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <a type="button" id="order-btn" class="btn btn-secondary" data-dismiss="modal" style = "background-color:#0b421a; color: white">
-                                <b>Upload</b>
-                            </a>
-                        </div>
+                            <div class="modal-footer">
+                                <input type="submit" value="Add" id="addDrinkBtn" class="btn btn-secondary" style = "background-color:#0b421a; color: white">
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div> 
@@ -157,8 +156,8 @@
                             </div>
                             <div class="modal-body">
                                 <div class = "leftie">
-                                    <img class="currpic" id="drink-pic" src="" width="136px"    height="136px"/>
-                                    <input id="inputfile" class="uploadimage" onchange="changeImage()" type="file"    name="avatar" accept="image/*">
+                                    <img class="currpic" id="drink-pic" src="" width="110px" height="110px"/>
+                                    <input id="inputfile" class="uploadimage" type="file" name="avatar" accept="image/*">
                                 </div>
                                 <div class="rightie">
                                     <form>
