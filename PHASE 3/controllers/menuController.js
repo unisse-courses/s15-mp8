@@ -107,19 +107,48 @@ exports.addDrink = function (req, res, next) {
                     
             })
         })
+};
 
-        var url = req.body.category;
+async function createPricelist(obj) {
+    var pricelist = new Prices();
 
-        // if (url == "Espresso")
-        //     url = "espresso";
-        // else if (url == "Chocolate")
-        //     url = "chocolate";
-        // else if (url == "Teavana Teas")
-        //     url = "teavana-teas";
-        // else if (url == "Frappuccino")
-        //     url = "frappuccino";
-        // else if (url == "Coffee Craft")
-        //     url = "coffee-craft";
+    pricelist._id = obj.priceId;
+    pricelist.tall = obj.tall;
+    pricelist.grande = obj.grande;
+    pricelist.venti = obj.venti;
 
-        // res.redirect('/admin/menu/update/' + url);
+    return pricelist;
+}
+
+async function createDrink (obj, req) {
+    var updateDrink = new Drink();
+
+    updateDrink._id = obj.drinkId;
+    updateDrink.name = obj.drinkName;
+
+    if(req.file != undefined) {
+        var tempPic = req.file.path;
+        updateDrink.picture = tempPic.substring(7, tempPic.length);
+    }
+
+    return updateDrink;
+}
+
+exports.updateDrink = async function (req, res, next) {
+    var updateDrink = await createDrink(req.body.updateDrink, req)
+    var pricelist = await createPricelist(req.body.pricelist)
+
+    PricesModel.update(pricelist._id, pricelist, function(err, pricelist) {
+        DrinkModel.update(updateDrink._id, updateDrink, function(err, drink) {
+            if (!err) {
+                res.status(200).send({status: "ok"})
+                console.log("drink updated!");
+            }
+                
+            else {
+                res.status(200).send({status: "error"})
+                console.log("err in updating drink: " + err);
+            }
+        })
+    })
 };

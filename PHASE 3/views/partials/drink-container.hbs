@@ -1,7 +1,7 @@
 <div class="drink-box py-3">
     <div class="drink-pic pt-2 pb-2">
-        <a class="chosen-drink" id="chosen-drink-{{@index}}" data-toggle="modal" data-target= {{#unless admin}} "#orderModal" {{else}} "#edit-item-modal" {{/unless}}>
-            <img class="image" id="drink-pic-{{@index}}" src="{{picture}}"> 
+        <a class="chosen-drink" id="chosen-drink-{{_id}}" data-toggle="modal" data-target= {{#unless admin}} "#orderModal" {{else}} "#edit-item-modal" {{/unless}}>
+            <img class="image" id="drink-pic-{{_id}}" src="{{picture}}"> 
             {{#if admin}}
                 <div class="middle"><label>EDIT</label></div>
             {{else}}
@@ -10,11 +10,12 @@
         </a>
     </div>
     <div class="drink-name">
-        <a class="drink-name" id="drink-name-{{@index}}">{{name}}</a>
+        <a class="drink-name" id="drink-name-{{_id}}">{{name}}</a>
     </div>
     <div class="prices">
-        <label class="price-label"><span id="price-tall-{{@index}}">{{pricelist.tall}}</span> <span class="price-text">Tall</span></label> •
-        <label class="price-label"><span id="price-grande-{{@index}}">{{pricelist.grande}}</span> <span class="price-text">Grande</span></label> •
-        <label class="price-label"><span id="price-venti-{{@index}}">{{pricelist.venti}}</span> <span class="price-text">Venti</span></label> 
+        <input id="priceid-{{_id}}" type="hidden" value="{{pricelist._id}}">
+        <label class="price-label"><span id="price-tall-{{_id}}">{{pricelist.tall}}</span> <span class="price-text">Tall</span></label> •
+        <label class="price-label"><span id="price-grande-{{_id}}">{{pricelist.grande}}</span> <span class="price-text">Grande</span></label> •
+        <label class="price-label"><span id="price-venti-{{_id}}">{{pricelist.venti}}</span> <span class="price-text">Venti</span></label> 
     </div>
 </div>

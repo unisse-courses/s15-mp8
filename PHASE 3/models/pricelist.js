@@ -16,3 +16,16 @@ exports.create = function (obj, next) {
         next(err, price);
     });
 }
+
+exports.update = function (priceid, obj, next) {
+    PriceModel.findOne({_id: priceid})
+    .exec(function(err, pricelist) {
+        pricelist.tall = obj.tall;
+        pricelist.grande = obj.grande;
+        pricelist.venti = obj.venti;
+
+        pricelist.save();
+
+        next (err, pricelist);
+    })
+}

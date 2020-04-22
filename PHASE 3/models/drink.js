@@ -55,3 +55,17 @@ exports.create = function (obj, next) {
         next(err, drink);
     });
 }
+
+exports.update = function (drinkid, obj, next) {
+    DrinkModel.findOne({_id: drinkid})
+    .exec(function(err, drink) {
+        drink.name = obj.name;
+
+        if (obj.picture != null)
+            drink.picture = obj.picture;
+
+        drink.save();
+
+        next (err, drink);
+    })
+}
