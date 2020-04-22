@@ -32,5 +32,6 @@ router.get('/update/:category', menuController.getDrinksForUpdate);
 
 router.post('/addDrink', upload.single('drinkPic'), menuController.addDrink);
 router.post('/updateDrink', upload.single('updateDrinkPic'), menuController.updateDrink);
+router.post('/deleteDrink', menuController.deleteDrink);
 
 module.exports = router;

@@ -29,3 +29,10 @@ exports.update = function (priceid, obj, next) {
         next (err, pricelist);
     })
 }
+
+exports.delete = function (priceid, next) {
+    PriceModel.findOneAndDelete({_id: priceid})
+    .exec(function(err, pricelist) {
+        next(err, pricelist);
+    })
+} 

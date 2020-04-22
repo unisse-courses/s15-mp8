@@ -147,8 +147,23 @@ exports.updateDrink = async function (req, res, next) {
                 
             else {
                 res.status(200).send({status: "error"})
-                console.log("err in updating drink: " + err);
+                console.log("err in update drink: " + err);
             }
         })
     })
 };
+
+exports.deleteDrink = function (req, res) {
+    PricesModel.delete(req.body.priceId, function(err, pricelist) {
+        DrinkModel.delete(req.body.drinkId, function(err, drink){
+            if (!err) {
+                res.status(200).send({status: "ok"})
+                console.log("drink deleted!");
+            }       
+            else {
+                res.status(200).send({status: "error"})
+                console.log("err in delete drink: " + err);
+            }
+        })
+    })
+}

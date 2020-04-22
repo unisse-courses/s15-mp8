@@ -162,7 +162,6 @@
                                 <input id="chosenPriceId" type="hidden" value="">
                                 <div class="modal-body">
                                     <input id="drinkId" type="hidden">
-                                    <input id="pricelistId" type="hidden">
                                     <textarea style="display: none;" type="text" class="categ" id="category" name="category">{{category}}</textarea>
                                     <div class = "leftie">
                                         <img class="currpic" id="drink-pic" src="" width="110px" height="110px"/>
@@ -193,7 +192,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer edit">
-                                    <input type="button" id="delete-btn" class="btn btn-secondary" onclick="openDeleteModal()" style = "background-color:rgb(179, 6, 6); color: white" value="Delete">
+                                    <input type="submit" data-dismiss="modal" data-toggle="modal" data-target="#deleteModal" id="delete-btn" class="btn btn-secondary" style = "background-color:rgb(179, 6, 6); color: white" value="Delete">
                                     <input type="submit" id="update-btn" class="btn btn-secondary" style = "background-color:#0b421a; color: white" value="Update">
                                 </div>
                             </form>
@@ -207,15 +206,16 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content" style = "background-color: #0b421a;">
                     <div class="modal-header" style="border-bottom: none;">
-                        <h3 class="modal-title" id="deleteModalTitle" style="color: white;"><b>Are you sure you want to remove <span id="drink-name">Iced Shaken Hibiscus with Pomegranate Pearl</span>?</b></h3>
+                        <h3 class="modal-title" id="deleteModalTitle" style="color: white;"><b>Are you sure you want to remove <span id="delete-drink-name"></span>?</b></h3>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body p-5" style="color: white; border-top:none;">
-                        
-                        <button id="yesDelete" class="decisionDelete" data-dismiss="modal">Yes</button>
-                        <button id="noDelete" class="decisionDelete" data-dismiss="modal">No</button>
+                        <form action="/admin/update/deleteDrink" method="POST">
+                            <button id="yesDelete" class="decisionDelete" data-dismiss="modal">Yes</button>
+                            <button id="noDelete" class="decisionDelete" data-dismiss="modal">No</button>
+                        </form>
                     </div>
                 </div>
             </div>

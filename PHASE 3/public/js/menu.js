@@ -76,6 +76,7 @@ $(document).ready(function() {
 
     $(".addDrinkForm").submit(function(e) {
         e.preventDefault();
+
         var valid = true;
         valid = checkField($("#drinkPic"), valid);
         valid = checkField($("#drinkName"), valid);
@@ -135,9 +136,14 @@ $(document).ready(function() {
 
     $(".updateDrinkForm").submit(function(e) {
         e.preventDefault();
-        var id = $("#drinkId").val();
-        var priceId = $("#chosenPriceId").val();
-        console.log("priceId is " + priceId);
+        
+        var btn = $(this).find("input[type=submit]:focus" );
+        console.log("btn clicked is " + btn.attr('id'));
+
+        if (btn.attr('id') == "update-btn") {
+            var id = $("#drinkId").val();
+            var priceId = $("#chosenPriceId").val();
+            console.log("priceId is " + priceId);
             var pricelist = {
                 priceId: priceId,
                 tall: $("#updateTallPrice").val(),
@@ -168,33 +174,15 @@ $(document).ready(function() {
                 data: {updateDrink: updateDrink, pricelist: pricelist},
                 contentType: 'application/json',
                 success: function(response) {
-                        $("#updateDrinkPic").val("");
-                        $("#updateDrinkName").val("");
-                        $("#updateTallPrice").val("");
-                        $("#updateGrandePrice").val("");
-                        $("#updateVentiPrice").val("");
-                        window.location = "/admin/menu/update/" + url;
+                    window.location = "/admin/menu/update/" + url;
+                    // $("#updateDrinkPic").val("");
+                    // $("#updateDrinkName").val("");
+                    // $("#updateTallPrice").val("");
+                    // $("#updateGrandePrice").val("");
+                    // $("#updateVentiPrice").val("");
                 }
             });
-
-            // $.ajax('/admin/menu/updateDrink', {
-            //     data: {updateDrink: updateDrink},
-            //     method: 'POST',
-            //     contentType: 'application/json',
-            //     success: function(data, status) {
-            //         $("#updateDrinkPic").val("");
-            //         $("#updateDrinkName").val("");
-            //         $("#updateTallPrice").val("");
-            //         $("#updateGrandePrice").val("");
-            //         $("#updateVentiPrice").val("");
-            //         window.location = "/admin/menu/update/" + url;
-            //     },
-            //     error: function() {
-            //         // what to do when the request fails?
-            //     }
-            // });
-        
-
+        }
     });
 
     $(`a[id^="chosen-drink-"]`).click(function() {
@@ -213,7 +201,7 @@ $(document).ready(function() {
             grande: $("#price-grande-" + index).text(),
             venti: $("#price-venti-" + index).text()
         }
-        $("#drinkId").val(index)
+        $("#drinkId").val(index);
 
         $("#updateDrinkName").val(drinkname);
         
@@ -224,5 +212,44 @@ $(document).ready(function() {
         $("#chosenPriceId").val(priceId);
 
         $("#drink-pic").attr("src", img);
+    });
+
+    $("#delete-btn").click(function() {
+        console.log("delete clicked")
+
+        var priceId = $("#chosenPriceId").val()
+        var drinkId = $("#drinkId").val()
+
+
+        var drinkname = $(`#updateDrinkName`).val();
+
+        console.log(drinkname)
+
+        $("#delete-drink-name").text(drinkname);
+
+        $("#yesDelete").click(function() {
+            var ids = {
+                priceId: priceId,
+                drinkId: drinkId
+            }
+    
+            var url = $(".categ").val();
+    
+            if (url == "Espresso")
+                url = "espresso";
+            else if (url == "Chocolate")
+                url = "chocolate";
+            else if (url == "Teavana Teas")
+                url = "teavana-teas";
+            else if (url == "Frappuccino")
+                url = "frappuccino";
+            else if (url == "Coffee Craft")
+                url = "coffee-craft";
+    
+            $.post('/admin/menu/deleteDrink', ids, function (data, status) {
+                if (data.status == "ok")
+                    window.location = "/admin/menu/update/" + url;
+            })
+        })
     });
 });

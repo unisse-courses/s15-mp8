@@ -69,3 +69,10 @@ exports.update = function (drinkid, obj, next) {
         next (err, drink);
     })
 }
+
+exports.delete = function (drinkid, next) {
+    DrinkModel.findOneAndDelete({_id: drinkid})
+    .exec(function(err, drink) {
+        next(err, drink);
+    })
+} 
