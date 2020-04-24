@@ -77,36 +77,45 @@ exports.getDrinksForUpdate = function (req, res) {
 };
 
 exports.addDrink = function (req, res, next) {
-        var newDrink = new Drink ();
-        var pricelist = new Prices ();
+        DrinkModel.getDrink({name: req.body.drinkName}, function(err, drink) {
+            if (drink) {
+                res.status(200).send({status: "exist"})
+                console.log("drink already exist!");
+            } else {
+                var newDrink = new Drink ();
+                var pricelist = new Prices ();
 
-        pricelist.tall = req.body.tallPrice;
-        pricelist.grande = req.body.grandePrice;
-        pricelist.venti = req.body.ventiPrice;
-        
-        console.log(newDrink);
+                pricelist.tall = req.body.tallPrice;
+                pricelist.grande = req.body.grandePrice;
+                pricelist.venti = req.body.ventiPrice;
+                
+                console.log(newDrink);
 
-        PricesModel.create(pricelist, function(err, pricelist){
-            newDrink._id = new mongoose.Types.ObjectId();
-            newDrink.name = req.body.drinkName;
-            newDrink.pricelist = pricelist;
-            newDrink.category = req.body.category;
-            var tempPic = req.file.path;
-            newDrink.picture = tempPic.substring(7, tempPic.length);
+                PricesModel.create(pricelist, function(err, pricelist){
+                    newDrink._id = new mongoose.Types.ObjectId();
+                    newDrink.name = req.body.drinkName;
+                    newDrink.pricelist = pricelist;
+                    newDrink.category = req.body.category;
+                    var tempPic = req.file.path;
+                    newDrink.picture = tempPic.substring(7, tempPic.length);
 
-            DrinkModel.create(newDrink, function(err, drink) {
-                if (!err) {
-                    res.status(200).send({status: "ok"})
-                    console.log("drink created!");
-                }
-                    
-                else {
-                    res.status(200).send({status: "error"})
-                    console.log("err in creating drink: " + err);
-                }
-                    
-            })
+                    DrinkModel.create(newDrink, function(err, drink) {
+                        if (!err) {
+                            res.status(200).send({status: "ok"})
+                            console.log("drink created!");
+                        }
+                            
+                        else {
+                            res.status(200).send({status: "error"})
+                            console.log("err in creating drink: " + err);
+                        }
+                            
+                    })
+                })
+            }
         })
+    
+        
 };
 
 async function createPricelist(obj) {

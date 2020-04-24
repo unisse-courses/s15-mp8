@@ -25,6 +25,8 @@ router.get('/account-settings', isPrivate, customerController.getUserDetails);
 router.get('/order-status', isPrivate, customerController.getOrderStatus);
 
 router.get('/favorites', isPrivate, customerController.getFavorites);
+router.post('/addToFavorites', customerController.addToFavorites);
+router.post('/deleteFavorite', customerController.deleteFavorite);
 
 router.get('/transaction-history', isPrivate, customerController.getTransactionHistory);
 

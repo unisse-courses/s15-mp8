@@ -50,10 +50,17 @@ exports.getUser = function (filter, next) {
 
 //not checked yet
 exports.getFavorites = function (filter, next) {
+    var favorites = [];
+    
     UserModel.findOne(filter)
     .populate('favorites')
     .exec(function(err, result) {
-        next(err, result.favorites);
+        result.favorites.forEach(function(doc) {
+            console.log("Your fav: " + doc.name)
+            favorites.push(doc.toObject())
+        })
+        
+        next(err, favorites);
     })
 }
 
@@ -64,6 +71,95 @@ exports.create = function (obj, next) {
         next(err, user);
     });
 }
+
+exports.addToFavorites = function (userid, obj, next) {
+    UserModel.findOne({_id: userid})
+    .populate('favorites')
+    .exec(function(err, user) {
+        var index;
+        var counter = 0;
+        var check = false;
+
+        user.favorites.forEach(function(doc) {
+            if (doc.name == obj.name)
+                index = counter;
+            counter++;
+        })
+
+        console.log("index is " + index);
+
+        if (index > -1) {
+            check = true;
+        }
+        
+        if(!check) {
+            user.favorites.push(obj);
+
+            user.save();
+        }
+        
+
+        next(err, user.toObject(), check);
+    })
+};
+
+exports.deleteFavorite = function (userid, obj, next) {
+    UserModel.findOne({_id: userid})
+    .populate('favorites')
+    .exec(function(err, user) {
+        // var index = user.favorites.indexOf(obj);
+
+        // console.log("obj name is " + obj.toObject().name);
+        // console.log("index is " + index + " name is " + user.favorites[index]);
+
+        var index;
+        var counter = 0;
+
+        user.favorites.forEach(function(doc) {
+            if (doc.name == obj.name)
+                index = counter;
+            counter++;
+        })
+
+        if (index > -1) {
+            user.favorites.splice(index, 1);
+        }
+
+        user.save();
+
+        next(err, user.toObject());
+    })
+}
+
+// exports.checkFavorites = function (userid, obj, next) {
+//     UserModel.findOne({_id: userid})
+//     .populate('favorites')
+//     .exec(function(err, user) {
+//         // var index = user.favorites.indexOf(obj);
+
+//         // console.log("obj name is " + obj.toObject().name);
+//         // console.log("index is " + index + " name is " + user.favorites[index]);
+
+//         var index;
+//         var counter = 0;
+//         var check = false;
+
+//         user.favorites.forEach(function(doc) {
+//             if (doc.name == obj.name)
+//                 index = counter;
+//             counter++;
+//         })
+
+//         console.log("index is " + index);
+
+//         if (index > -1) {
+//             check = true;
+//         }
+
+//         next(err, check);
+//     })
+// }
+
 
 // exports.getUser = function (user, drink, next) {
 //     UserModel.findOne(filter)

@@ -22,6 +22,39 @@ exports.getDrink = function (name, next) {
     })
 }
 
+exports.getAllDrinkByCategory = function(next) {
+    var counter = 0;
+    var drinkCount = [];
+    var curCategory;
+    var drinkObjects = [];
+
+    DrinkModel.find().sort({category: 1})
+    .exec(function(err, drinks) {
+
+        drinks.forEach(function(doc) {
+            var drinkCounter = 0;
+
+            if (counter == 0) {
+                curCategory = doc.category;
+                drinkCounter++;
+            } else {
+                if (curCategory == doc.category) 
+                    drinkCounter++;
+                else {
+                    drinkCount.push(drinkCounter);
+
+                    drinkCounter = 1;
+                }
+            }
+            drinkObjects.push(doc.toObject());
+            
+            counter++;
+        })        
+
+        next(err, drinkObjects, drinkCount);
+    })
+}
+
 exports.getDrinksByCategory = (category, sort, next) => {
     DrinkModel.find(category).sort(sort).populate('pricelist').exec(function(err, result) {
         if (err) throw err

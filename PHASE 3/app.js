@@ -58,6 +58,10 @@ app.engine('hbs', exphbs({
                     ordernum = '0' + ordernum;
                 }
                 return ordernum;
+            },
+
+            getPreviousCategory : function (array, index) {
+                return array[index-1].category;
             }
         }
 }));

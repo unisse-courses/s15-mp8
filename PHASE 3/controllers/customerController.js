@@ -229,16 +229,20 @@ exports.getOrderStatus = (req, res) => {
 exports.getFavorites = (req, res) => {
     UserModel.getUser({_id: req.session.user}, function(err, user) {
         UserModel.getFavorites({_id: req.session.user}, function(err, favorites) {
-            res.render('my-favorites',  {
-                title: 'My Favorites - Starbucks Assist', 
-                layout: 'home', 
-                isAdmin: false,
-                loggedIn: true,
-                css: ['header-footer.css', 'content-my-favorites.css'],
-                js: 'favorites.js',
-                favorites: favorites,
-                user: user    
-            });
+            DrinkModel.getAllDrinkByCategory(function (err, drinks, drinkCount) {
+                res.render('my-favorites',  {
+                    title: 'My Favorites - Starbucks Assist', 
+                    layout: 'home', 
+                    isAdmin: false,
+                    loggedIn: true,
+                    css: ['header-footer.css', 'content-my-favorites.css'],
+                    js: 'favorites.js',
+                    favorites: favorites,
+                    user: user,
+                    drinks: drinks,
+                    drinkCount: drinkCount
+                });
+            }) 
         })
     }) 
 }
@@ -257,6 +261,42 @@ exports.getTransactionHistory = (req, res) => {
             });
         })
     }) 
+}
+
+exports.addToFavorites = function (req, res) {
+    // console.log("Your favorite is " + req.body.drinks); 
+    DrinkModel.getDrink({name: req.body.drink}, function(err, drink) {
+        UserModel.addToFavorites(req.session.user, drink, function(err, user, check) {
+            if(check) {
+                res.status(200).send({status: "exist"});
+                console.log("check true")
+            }
+            else {
+                console.log("check false")
+                if (!err) {
+                    console.log("favorite added");
+                    res.status(200).send({status: "ok"});
+                } else {
+                    console.log("error in adding fav: " + err);
+                }
+            }
+        })
+    })
+}
+
+exports.deleteFavorite = function (req, res) {
+    console.log("req, body" + req.body.drinkname);
+    DrinkModel.getDrink({name: req.body.drinkname}, function(err, drink) {
+        UserModel.deleteFavorite(req.session.user, drink, function(err, user) {
+            if (!err) {
+                console.log("favorite deleted");
+                res.status(200).send({status: "ok"})
+            } else {
+                console.log("error in deleting fav: " + err);
+            }
+                
+        })
+    })
 }
 
 exports.logoutUser = (req, res) => {
