@@ -131,41 +131,53 @@ exports.deleteFavorite = function (userid, obj, next) {
     })
 }
 
-// exports.checkFavorites = function (userid, obj, next) {
-//     UserModel.findOne({_id: userid})
-//     .populate('favorites')
-//     .exec(function(err, user) {
-//         // var index = user.favorites.indexOf(obj);
+exports.updateUser = function (userid, updateuser, next) {
+    var existing = false;
+    var obj;
 
-//         // console.log("obj name is " + obj.toObject().name);
-//         // console.log("index is " + index + " name is " + user.favorites[index]);
+    UserModel.findOne({_id: userid})
+    .exec(function(err, user) {
 
-//         var index;
-//         var counter = 0;
-//         var check = false;
+        UserModel.findOne({emailAddress: updateuser.emailAddress})
+        .exec(function(err, u) {
+        
+            if(u) {
 
-//         user.favorites.forEach(function(doc) {
-//             if (doc.name == obj.name)
-//                 index = counter;
-//             counter++;
-//         })
+                if(u._id != user._id) {
+                    existing = true;
+                    obj = u;
+                } else {
+                    user.fullname = updateuser.fullname;
+                    user.nickname = updateuser.nickname;
+                    user.password = updateuser.nickname;
+                    user.emailAddress = updateuser.emailAddress;
+                    user.phone = updateuser.phone;
+                    user.password = updateuser.password;
 
-//         console.log("index is " + index);
+                    if (updateuser.displayphoto != null)
+                        user.displayphoto = updateuser.displayphoto
 
-//         if (index > -1) {
-//             check = true;
-//         }
+                    user.save();
 
-//         next(err, check);
-//     })
-// }
+                    obj = user;
+                }
+            } else {
 
+                user.fullname = updateuser.fullname;
+                user.nickname = updateuser.nickname;
+                user.password = updateuser.nickname;
+                user.emailAddress = updateuser.emailAddress;
+                user.phone = updateuser.phone;
+                user.password = updateuser.password;
 
-// exports.getUser = function (user, drink, next) {
-//     UserModel.findOne(filter)
-//     .exec(function(err, result) {
-//         // console.log("nahanap ko");
-//         // console.log(result);
-//         next(err, result);
-//     })
-// }
+                if (updateuser.displayphoto != null)
+                    user.displayphoto = updateuser.displayphoto
+
+                user.save();
+
+                obj = user;
+            }
+            next(err, obj, existing);
+        })
+    })
+}

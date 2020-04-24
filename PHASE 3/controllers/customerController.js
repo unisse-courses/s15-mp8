@@ -1,11 +1,16 @@
 const mongoose = require('mongoose');
 
+const { validationResult } = require('express-validator');
+
+const bcrypt = require('bcrypt');
+
 const UserModel = require('../models/user');
 const CartModel = require('../models/cart');
 const DrinkModel = require('../models/drink')
 const DrinkOrderModel = require('../models/drinkorder')
 const OrderModel = require('../models/order')
 
+const User = mongoose.model('User');
 const DrinkOrder = mongoose.model('DrinkOrder')
 const Cart = mongoose.model('Cart');
 const Order = mongoose.model('Order')
@@ -204,9 +209,68 @@ exports.getUserDetails = (req, res) => {
             isAdmin: false,
             loggedIn: true,
             css: ['header-footer.css', 'acct_settings.css'], 
+            js: 'acct-settings.js',
             user: user
         });
     }) 
+};
+
+exports.updateUser = function (req, res, next) {
+    const errors = validationResult(req);
+
+    if (errors.isEmpty()) {
+        console.log("theres no error");
+        const { fullname, nickname, email, phone, pass1, pass2 } = req.body;
+        
+        console.log(fullname, nickname, email, phone, pass1, pass2);
+
+        
+        const saltRounds = 10;
+
+        // Hash password
+        bcrypt.hash(pass1, saltRounds, (err, hashed) => {
+            const updateduser = new User();
+            
+            updateduser.fullname = fullname;
+            updateduser.nickname = nickname;
+            updateduser.emailAddress = email;
+            updateduser.phone = phone;
+            updateduser.password = hashed;
+            
+            if(req.file != undefined) {
+                var tempPic = req.file.path;
+                updateduser.displayphoto = tempPic.substring(22, tempPic.length);
+            }
+            
+            
+            console.log ("before saving: " + updateduser);
+
+            UserModel.updateUser(req.session.user, updateduser, function(err, user, existing) {
+                if(err)
+                    console.log("error in updating user: " + err);
+                else {
+                    if(existing) {
+                        //email taken
+                        req.flash('error_msg', 'Email address already taken.');
+                        res.redirect('/customer/account-settings');
+                    } else {
+                        console.log("user updated");
+                        res.redirect('/customer/account-settings');
+                    }
+                    
+                }
+            })
+            
+        });
+        
+    } else {
+        console.log("theres an error");
+
+        const messages = errors.array().map((item) => item.msg);
+
+        req.flash('error_msg', messages.join(' '));
+        res.redirect('/customer/account-settings');
+    }
 }
 
 exports.getOrderStatus = (req, res) => {

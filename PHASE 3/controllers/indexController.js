@@ -164,7 +164,7 @@ exports.login = (req,res) => {
                     //gawa login page
                     res.redirect('/login');
                 }
-            });
+            }); 
             } else {
             // No user found
                 req.flash('error_msg', 'No registered user with that email. Please register.');

@@ -1,14 +1,15 @@
 <div class="content">
-        <div id="image"> 
-            <img id="dp" src="/images/uploads/default.png">   
-                <button id="edit">Change Photo</button>
-            <input id="fileUpload" type="file" style="display: none;"></input>
-        </div>
+        
         <div class = "editform">
-        <form>
+        <form action='/customer/updateUser' method="POST" enctype="multipart/form-data" >
+            <div id="image"> 
+                <img id="dp" src="images/uploads/{{user.displayphoto}}">  
+                    {{!-- <buttoinputn id="edit">Change Photo</button> --}}
+                <input name="displayPhoto" id="displayPhoto" type="file" value="Change Photo"></input>
+            </div>
             <div class ="input">
                 <label class="label">Name:</label>
-                <input class = "inputbox" name = "name" type="text" id="name" value="{{user.fullname}}"></input> 
+                <input class = "inputbox" name = "fullname" type="text" id="name" value="{{user.fullname}}"></input> 
             </div>
             <div class ="input">
                 <label class="label">Nickname:</label>
@@ -30,18 +31,21 @@
                 <label class="label">Re-type Password:</label>
                 <input class = "inputbox" name = "pass2" type="password" id="pass2"></input> 
             </div>
-        </form>
+            {{#if error_msg}}
+                <div class="row">
+                <div class="col s12 card-panel z-depth-0 red lighten-5">
+                    <h6 class="text-darken-2" style="color: rgb(155, 10, 10);"><strong>{{error_msg}}</strong></h6>
+                </div>
+                </div>
+            {{/if}}
+            <div id="save">
+                <input type='submit' id="savebtn" value="Save">
+            </div>
 
-        <div id="save">
-            <button type='submit' id="savebtn">Save</button>
-        </div>
+        </form>
+        
     </div> 
 
     </div>
 
     {{> footer}}
-
-    <script>
-        $("#pass1").val("********");
-        $("#pass2").val("********");
-    </script>
