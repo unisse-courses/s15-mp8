@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
+const { dbURL } = require('../config')
 
 // const databaseURL = 'mongodb+srv://admin:123@cluster0-il1k9.mongodb.net/test?retryWrites=true&w=majority';
-const databaseURL = 'mongodb+srv://admin:1234@cluster0-gncui.mongodb.net/test?retryWrites=true&w=majority';
+//const databaseURL = 'mongodb+srv://admin:1234@cluster0-gncui.mongodb.net/test?retryWrites=true&w=majority';
 
 const options = { useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false };
 
-mongoose.connect(databaseURL, options, (err) => {
+mongoose.connect(dbURL, options, (err) => {
     if (!err) {
         console.log(`MongoDB connected`);
     }

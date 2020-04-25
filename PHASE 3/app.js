@@ -8,8 +8,10 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const MongoStore = require('connect-mongo')(session);
 
+const { envPort, sessionKey } = require('./config');
+
 const app = express();
-const port = 3000;
+const port = envPort || 3000;
 
 const indexRouter = require("./routes/indexRoute");
 
@@ -76,7 +78,7 @@ app.use(bodyparser.urlencoded({
 app.use(express.static('public'));
 
 app.use(session({
-    secret: 'somegibberishsecret',
+    secret: sessionKey,
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
     resave: false,
     saveUninitialized: true,
