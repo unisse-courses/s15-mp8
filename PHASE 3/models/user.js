@@ -140,10 +140,12 @@ exports.updateUser = function (userid, updateuser, next) {
 
         UserModel.findOne({emailAddress: updateuser.emailAddress})
         .exec(function(err, u) {
-        
+            // console.log("user: " + user._id);
+            // console.log("u: " + u._id);
+            // console.log("isEqual " + ((u._id).toString() == (user._id).toString()))
             if(u) {
 
-                if(u._id != user._id) {
+                if(((u._id).toString() != (user._id).toString())) {
                     existing = true;
                     obj = u;
                 } else {
