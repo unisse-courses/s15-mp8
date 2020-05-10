@@ -223,29 +223,66 @@ exports.updateUser = function (req, res, next) {
         const { fullname, nickname, email, phone, pass1, pass2 } = req.body;
         
         console.log(fullname, nickname, email, phone, pass1, pass2);
+        console.log("pass1 length: " + pass1.length);
+        console.log("pass1 isNull: " + pass1==null);
 
-        
-        const saltRounds = 10;
+        if (pass1.length > 0) {
+            const saltRounds = 10;
 
-        // Hash password
-        bcrypt.hash(pass1, saltRounds, (err, hashed) => {
+            // Hash password
+            bcrypt.hash(pass1, saltRounds, (err, hashed) => {
+                const updateduser = new User();
+                
+                updateduser.fullname = fullname;
+                updateduser.nickname = nickname;
+                updateduser.emailAddress = email;
+                updateduser.phone = phone;
+                updateduser.password = hashed;
+                
+                if(req.file != undefined) {
+                    var tempPic = req.file.path;
+                    updateduser.displayphoto = tempPic.substring(22, tempPic.length);
+                }
+                
+                
+                console.log ("before saving: " + updateduser);
+
+                UserModel.updateFullUser(req.session.user, updateduser, function(err, user, existing) {
+                    if(err)
+                        console.log("error in updating user: " + err);
+                    else {
+                        if(existing) {
+                            //email taken
+                            req.flash('error_msg', 'Email address already taken.');
+                            res.redirect('/customer/account-settings');
+                        } else {
+                            console.log("user updated");
+                            res.redirect('/customer/account-settings');
+                        }
+                        
+                    }
+                })
+                
+            });
+        }
+        else {
+            console.log("Lol");
             const updateduser = new User();
-            
+                
             updateduser.fullname = fullname;
             updateduser.nickname = nickname;
             updateduser.emailAddress = email;
             updateduser.phone = phone;
-            updateduser.password = hashed;
+            updateduser.password = null;
             
             if(req.file != undefined) {
                 var tempPic = req.file.path;
                 updateduser.displayphoto = tempPic.substring(22, tempPic.length);
             }
             
-            
             console.log ("before saving: " + updateduser);
 
-            UserModel.updateUser(req.session.user, updateduser, function(err, user, existing) {
+            UserModel.updateFullUser(req.session.user, updateduser, function(err, user, existing) {
                 if(err)
                     console.log("error in updating user: " + err);
                 else {
@@ -260,8 +297,8 @@ exports.updateUser = function (req, res, next) {
                     
                 }
             })
-            
-        });
+        }
+        
         
     } else {
         console.log("theres an error");

@@ -29,7 +29,7 @@ const loginValidation = [
     body('emailAdd').not().isEmpty().withMessage("Email is required.")
       .isEmail().withMessage("Please provide a valid email."),
     // Password should not be empty and needs to be min 6 chars
-    body('pword').not().isEmpty().withMessage("Password is required.")
+    // body('pword').not().isEmpty().withMessage("Password is required.")
   ];
 
 const updateUserValidation = [
@@ -44,10 +44,10 @@ const updateUserValidation = [
   
     body('phone').not().isEmpty().withMessage("Phone is required."),
     // Password needs to be min 6 chars
-    body('pass1').blacklist('*').isLength({ min: 6 }).withMessage("Invalid password."),
+    body('pass1').blacklist('*'),
   
     // Confirm Password needs to be min 6 chars AND must match the req.body.password field
-    body('pass2').blacklist('*').isLength({ min: 6 }).withMessage("Please type your current or new password to save your changes.")
+    body('pass2').blacklist('*')
       
       .custom((value, { req }) => {
         if (value !== req.body.pass1) {

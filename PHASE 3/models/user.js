@@ -131,9 +131,11 @@ exports.deleteFavorite = function (userid, obj, next) {
     })
 }
 
-exports.updateUser = function (userid, updateuser, next) {
+exports.updateFullUser = function (userid, updateuser, next) {
     var existing = false;
     var obj;
+
+    console.log("eto yung pass : " + updateuser.password);
 
     UserModel.findOne({_id: userid})
     .exec(function(err, user) {
@@ -151,10 +153,11 @@ exports.updateUser = function (userid, updateuser, next) {
                 } else {
                     user.fullname = updateuser.fullname;
                     user.nickname = updateuser.nickname;
-                    user.password = updateuser.nickname;
                     user.emailAddress = updateuser.emailAddress;
                     user.phone = updateuser.phone;
-                    user.password = updateuser.password;
+                    
+                    if(updateuser.password!=null)
+                        user.password = updateuser.password;
 
                     if (updateuser.displayphoto != null)
                         user.displayphoto = updateuser.displayphoto
@@ -167,10 +170,11 @@ exports.updateUser = function (userid, updateuser, next) {
 
                 user.fullname = updateuser.fullname;
                 user.nickname = updateuser.nickname;
-                user.password = updateuser.nickname;
                 user.emailAddress = updateuser.emailAddress;
                 user.phone = updateuser.phone;
-                user.password = updateuser.password;
+
+                if(updateuser.password!=null)
+                    user.password = updateuser.password;
 
                 if (updateuser.displayphoto != null)
                     user.displayphoto = updateuser.displayphoto

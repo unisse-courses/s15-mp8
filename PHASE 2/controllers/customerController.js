@@ -2,11 +2,9 @@ const mongoose = require('mongoose');
 
 const UserModel = require('../models/user');
 const CartModel = require('../models/cart');
-const DrinkModel = require('../models/drink')
-const FavoriteModel = require('../models/favorite');
+const DrinkModel = require('../models/drink');
 const OrderModel = require('../models/order')
 
-const Favorite = mongoose.model('Favorite');
 const User = mongoose.model('User');
 const Drink = mongoose.model('Drink');
 
