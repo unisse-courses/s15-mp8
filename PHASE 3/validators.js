@@ -29,7 +29,7 @@ const loginValidation = [
     body('emailAdd').not().isEmpty().withMessage("Email is required.")
       .isEmail().withMessage("Please provide a valid email."),
     // Password should not be empty and needs to be min 6 chars
-    // body('pword').not().isEmpty().withMessage("Password is required.")
+    body('pword').not().isEmpty().withMessage("Password is required.")
   ];
 
 const updateUserValidation = [
