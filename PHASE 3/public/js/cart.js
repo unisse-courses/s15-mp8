@@ -137,11 +137,14 @@ $(document).ready(function() {
         });
 
         $(`#div-${_id}`).attr('style', 'display: none');
+        $(`#price-${_id}`).removeClass('price');
 
         var priceDelete = $(`#price-${_id}`).text();
         priceDelete = priceDelete.substring(4, priceDelete.length)
+        var quantDelete = $(`#number-${_id}`).val();
 
         console.log("priceDelete:" + priceDelete);
+        console.log("quantDelete:" + quantDelete);
 
         totalCart -= parseInt(priceDelete);
 
