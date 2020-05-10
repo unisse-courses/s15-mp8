@@ -34,12 +34,12 @@ exports.getAllUsers = function (sort, next) {
     });
 }
 
-// exports.checkUser = function (filter, next) {
-//     UserModel.find(filter)
-//     .exec(function(err, result) {
-//         next(result;
-//     })
-// }
+exports.checkUser =  function (filter, next) {
+    UserModel.findOne(filter)
+    .exec(function(err, result) {
+        next(err, result);
+    })
+}
 
 exports.getUser = function (filter, next) {
     UserModel.findOne(filter)

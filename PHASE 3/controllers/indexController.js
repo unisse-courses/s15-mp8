@@ -53,7 +53,7 @@ exports.registerProcess = (req, res) => {
         
         console.log(fullname, nickname, emailAdd, phone, pword)
 
-        UserModel.getUser({ emailAddress: emailAdd }, (err, result) => {
+        UserModel.checkUser({ emailAddress: emailAdd }, (err, result) => {
             // console.log("result dito is: " + result);
             if (result) {
                 console.log(result);
