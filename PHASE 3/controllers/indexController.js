@@ -134,7 +134,7 @@ exports.login = (req,res) => {
             pword
         } = req.body;
 
-        UserModel.getUser({ emailAddress: emailAdd }, (err, user) => {
+        UserModel.checkUser({ emailAddress: emailAdd }, (err, user) => {
         if (err) {
             // Database error occurred...
             req.flash('error_msg', 'Something happened! Please try again.');
