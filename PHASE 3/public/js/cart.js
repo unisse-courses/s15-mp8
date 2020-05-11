@@ -150,6 +150,9 @@ $(document).ready(function() {
 
         document.getElementById("total-price").innerHTML = "PHP " + totalCart.toString() + ".00";
 
+        if (totalCart == 0)
+            $(`#checkout`).attr('style', 'display: none');
+
         $(`#number-${_id}`).removeClass("number");
 
         var noItems = 0;

@@ -55,7 +55,7 @@ a > .tabs.active  {
 .container-box {
     background-color: #0b421a;
     color: white;
-    min-height: max-content;
+    min-height: 500px;
     max-height: max-content;
     border-radius: 0px 35px 15px 15px;
     padding: 50px;

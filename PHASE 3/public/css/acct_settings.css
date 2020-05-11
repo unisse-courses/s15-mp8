@@ -9,23 +9,25 @@
     /* align-items: center; */
     flex-wrap: wrap;
     padding: 50px 200px;
-    font-size: 14pt;
+    /* font-size: 14pt; */
 }
 
 #dp {
     width: 250px;
     height: 250px;
     border-radius: 50%;
+    margin-bottom: 25px;
 }
 
 #image{
-    margin:10px 80px;
-    padding :20px;
+    /* margin:10px 80px;
+    padding :20px; */
     display: flex;
     width: auto;
     /* margin-right:20px; */
     flex-direction: column;
     vertical-align: top;
+    text-align: center;
 }
 
 #edit{
@@ -79,4 +81,23 @@
 
 .input{
     text-align: right;
+}
+
+#formAcc {
+    display: flex;
+    flex-direction: row;
+}
+
+#left {
+    width: 30%;
+    text-align: center;
+}
+
+#right {
+    width: 70%;
+}
+
+#displayPhoto {
+    text-align: center;
+    width: auto;
 }

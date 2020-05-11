@@ -15,6 +15,11 @@
     text-align:left;
 }
 
+.drink-name {
+    width: 300px;
+    word-wrap: normal;
+}
+
 table, td, th{
     padding: 10px 0px;
     font-size: 14pt;

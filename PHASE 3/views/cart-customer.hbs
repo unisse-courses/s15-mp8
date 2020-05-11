@@ -35,7 +35,9 @@
             <div class="content-right">
                 <label class="total-order">Order Total (<span id="noItems">{{noItems}} </span> items)</label>
                 <label class="total-order total-price" id="total-price">PHP {{cart.totalprice}}.00</label>
-                <a id="checkout" data-toggle="modal" data-target="#orderNumberModal">CHECKOUT</a>
+                {{#if drinkorder}}
+                    <a id="checkout" data-toggle="modal" data-target="#orderNumberModal">CHECKOUT</a>
+                {{/if}}
             </div>
         {{/if}}
     </div>

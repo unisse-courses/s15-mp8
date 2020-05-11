@@ -1,46 +1,51 @@
 <div class="content">
         
         <div class = "editform">
-        <form action='/customer/updateUser' method="POST" enctype="multipart/form-data" >
-            <div id="image"> 
-                <img id="dp" src="images/uploads/{{user.displayphoto}}">  
-                    {{!-- <buttoinputn id="edit">Change Photo</button> --}}
-                <input name="displayPhoto" id="displayPhoto" type="file" value="Change Photo"></input>
-            </div>
-            <div class ="input">
-                <label class="label">Name:</label>
-                <input class = "inputbox" name = "fullname" type="text" id="name" value="{{user.fullname}}"></input> 
-            </div>
-            <div class ="input">
-                <label class="label">Nickname:</label>
-                <input class = "inputbox" name = "nickname" type="text" id="nickname" value="{{user.nickname}}"></input> 
-            </div>
-            <div class ="input">
-                <label class="label">Email Address:</label>
-                <input class = "inputbox" name = "email" type="email" id="email" value="{{user.emailAddress}}"></input> 
-            </div>
-            <div class ="input">
-                <label class="label">Phone Number:</label>
-                <input class = "inputbox" name = "phone" type="tel" id="phone" value="{{user.phone}}"></input> 
-            </div>
-            <div class ="input">
-                <label class="label">Change Password:</label>
-                <input class = "inputbox" name = "pass1" type="password" id="pass1" ></input> 
-            </div>
-            <div class ="input">
-                <label class="label">Re-type Password:</label>
-                <input class = "inputbox" name = "pass2" type="password" id="pass2"></input> 
-            </div>
-            {{#if error_msg}}
-                <div class="row">
-                <div class="col s12 card-panel z-depth-0 red lighten-5">
-                    <h6 class="text-darken-2" style="color: rgb(155, 10, 10);"><strong>{{error_msg}}</strong></h6>
+        <form id="formAcc" action='/customer/updateUser' method="POST" enctype="multipart/form-data" >
+            <div id="left">
+                <div id="image"> 
+                    <img id="dp" src="images/uploads/{{user.displayphoto}}">  
+                        {{!-- <buttoinputn id="edit">Change Photo</button> --}}
+                    <input name="displayPhoto" id="displayPhoto" type="file" value="Change Photo"></input>
                 </div>
-                </div>
-            {{/if}}
-            <div id="save">
-                <input type='submit' id="savebtn" value="Save">
             </div>
+            <div id="right">
+                <div class ="input">
+                    <label class="label">Name:</label>
+                    <input class = "inputbox" name = "fullname" type="text" id="name" value="{{user.fullname}}"></input> 
+                </div>
+                <div class ="input">
+                    <label class="label">Nickname:</label>
+                    <input class = "inputbox" name = "nickname" type="text" id="nickname" value="{{user.nickname}}"></input> 
+                </div>
+                <div class ="input">
+                    <label class="label">Email Address:</label>
+                    <input class = "inputbox" name = "email" type="email" id="email" value="{{user.emailAddress}}"></input> 
+                </div>
+                <div class ="input">
+                    <label class="label">Phone Number:</label>
+                    <input class = "inputbox" name = "phone" type="tel" id="phone" value="{{user.phone}}"></input> 
+                </div>
+                <div class ="input">
+                    <label class="label">Change Password:</label>
+                    <input class = "inputbox" name = "pass1" type="password" id="pass1" ></input> 
+                </div>
+                <div class ="input">
+                    <label class="label">Re-type Password:</label>
+                    <input class = "inputbox" name = "pass2" type="password" id="pass2"></input> 
+                </div>
+                {{#if error_msg}}
+                    <div class="row">
+                    <div class="col s12 card-panel z-depth-0 red lighten-5">
+                        <h6 class="text-darken-2" style="color: rgb(155, 10, 10);"><strong>{{error_msg}}</strong></h6>
+                    </div>
+                    </div>
+                {{/if}}
+                <div id="save">
+                    <input type='submit' id="savebtn" value="Save">
+                </div>
+            </div>
+            
 
         </form>
         
