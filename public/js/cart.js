@@ -231,7 +231,7 @@ $(document).ready(function() {
                     window.location = "/customer/order-status";
                 }
             })
-        // })
+        })
 
         
     })
