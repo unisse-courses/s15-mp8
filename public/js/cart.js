@@ -224,7 +224,7 @@ $(document).ready(function() {
         // });
         $("#closeOrderNum").off('click');
 
-        // $.when(updateQuant(), updateReq(), deleteDrink()).done(function() {
+        $(document).ajaxStop(function() {
             $.post('/customer/checkout', function(data, status) {
                 if (data.status == "ok") {
                     // console.log("ok");
