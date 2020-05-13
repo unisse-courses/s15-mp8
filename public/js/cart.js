@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $(".increase").on("click", function increase(){
+    function increase(){
         var id = this.id;
         var len = id.length;
         var _id = id.substring(9, len);
@@ -53,9 +53,11 @@ $(document).ready(function() {
         $.post('/customer/updateQuant', drinkorder, function(data, status) {
             
         });
-    })
-
-    $(".decrease").on("click", function decrease(){
+    }
+    
+    $(".increase").on("click", increase);
+    
+    function decrease(){
         var id = this.id;
         var len = id.length;
         var _id = id.substring(9, len);
@@ -107,9 +109,10 @@ $(document).ready(function() {
         $.post('/customer/updateQuant', drinkorder, function(data, status) {
             
         });
-    });
-
-    $('#changeBtn').click(function updateReq() {
+    }
+    $(".decrease").on("click", decrease);
+    
+    function updateReq() {
         var _id = $("#id").val();
         var request = $("#request").val();
 
@@ -122,9 +125,11 @@ $(document).ready(function() {
         $.post('/customer/updateRequest', req, function(data, status) {
             //if(data.success) ? 
         })
-    })
+    }
+
+    $('#changeBtn').click(updateReq);
     
-    $('#yesDelete').click(function deleteDrink() {
+    function deleteDrink() {
         var _id = $("#id").val();
         console.log("del clicked");
 
@@ -173,7 +178,9 @@ $(document).ready(function() {
             //if success
 
         })
-    })
+    }
+
+    $('#yesDelete').click(deleteDrink);
 
     $(`div[id^="delete-drink-"]`).click(function() {
         var id = this.id;
