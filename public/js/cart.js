@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    function increase(){
+    $(".increase").on("click", function(){
         var id = this.id;
         var len = id.length;
         var _id = id.substring(9, len);
@@ -50,14 +50,10 @@ $(document).ready(function() {
             price: price
         }
 
-        $.post('/customer/updateQuant', drinkorder, function(data, status) {
-            
-        });
-    }
-    
-    $(".increase").on("click", increase);
-    
-    function decrease(){
+        updateQuant(drinkorder);
+    })
+
+    $(".decrease").on("click", function (){
         var id = this.id;
         var len = id.length;
         var _id = id.substring(9, len);
@@ -106,13 +102,16 @@ $(document).ready(function() {
             price: price
         }
 
+        updateQuant(drinkorder);
+    });
+
+    function updateQuant(drinkorder) {
         $.post('/customer/updateQuant', drinkorder, function(data, status) {
             
         });
     }
-    $(".decrease").on("click", decrease);
-    
-    function updateReq() {
+
+    $('#changeBtn').click(function() {
         var _id = $("#id").val();
         var request = $("#request").val();
 
@@ -122,14 +121,16 @@ $(document).ready(function() {
         }
         document.getElementById("request-"+_id).innerHTML = request;
 
-        $.post('/customer/updateRequest', req, function(data, status) {
-            //if(data.success) ? 
-        })
-    }
+        updateReq(req);
+    })
 
-    $('#changeBtn').click(updateReq);
+    function updateReq(req) {
+        return $.post('/customer/updateRequest', req, function(data, status) {
+            //if(data.success) ? 
+        });
+    }
     
-    function deleteDrink() {
+    $('#yesDelete').click(function () {
         var _id = $("#id").val();
         console.log("del clicked");
 
@@ -174,13 +175,15 @@ $(document).ready(function() {
             total: totalCart
         }
 
-        $.post('/customer/deleteDrink', obj, function(data, status) {
+        deleteDrink(obj);
+    })
+
+    function deleteDrink(obj) {
+        return $.post('/customer/deleteDrink', obj, function(data, status) {
             //if success
 
         })
     }
-
-    $('#yesDelete').click(deleteDrink);
 
     $(`div[id^="delete-drink-"]`).click(function() {
         var id = this.id;
@@ -220,8 +223,7 @@ $(document).ready(function() {
         //     ids.push(id);
         // });
         $("#closeOrderNum").off('click');
-        
-        $.when(increase(), decrease(), updateReq(), deleteDrink()).done(function() {
+        $.when(updateQuant(), updateReq(), deleteDrink()).done(function() {
             $.post('/customer/checkout', function(data, status) {
                 if (data.status == "ok") {
                     // console.log("ok");
