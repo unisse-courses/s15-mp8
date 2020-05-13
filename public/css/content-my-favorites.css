@@ -93,7 +93,8 @@ h1{
 #dp{
     margin: auto;
     border: 0;
-    width: 150px;    
+    width: 150px;   
+    height: 150px; 
     vertical-align: middle;
     border-radius: 50%;
 }
