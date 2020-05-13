@@ -222,7 +222,6 @@ $(document).ready(function() {
         //     id = id.substring(4, id.length);
         //     ids.push(id);
         // });
-        $("#closeOrderNum").off('click');
 
         $(document).ajaxStop(function() {
             $.post('/customer/checkout', function(data, status) {
@@ -231,6 +230,8 @@ $(document).ready(function() {
                     window.location = "/customer/order-status";
                 }
             })
+            $("#closeOrderNum").off('click');
+            $("#closeOrderNum").attr('disable', 'disable');
         })
 
         
