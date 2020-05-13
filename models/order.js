@@ -24,27 +24,31 @@ exports.getOrderHistory = function (customer, next) {
 
         var ordersArray = [];
 
-        result.forEach(function(doc) {
+        if(result) {
+            result.forEach(function(doc) {
             
-            drinkOrderObjects = new Array();
-
-            ((doc.toObject()).cart.drinks).forEach(function(drinks) {
-                drinkOrderObjects.push(drinks);
-                // console.log("drinkorder found" + (drinkOrderObjects[counter].drink.name));
-                // console.log("drinkorder found" + (drinks.drink.name));
-                // console.log("drinkorder found" + (doc.toObject()).cart.drinks[counter].drink.name);
-                // counter++;
-            })
-            
-            var orders = {
-                details: doc.toObject(),
-                drinkorders: drinkOrderObjects
-            }
-
-            ordersArray.push(orders);
-        });
-  
-        next(ordersArray);
+                drinkOrderObjects = new Array();
+    
+                ((doc.toObject()).cart.drinks).forEach(function(drinks) {
+                    drinkOrderObjects.push(drinks);
+                    // console.log("drinkorder found" + (drinkOrderObjects[counter].drink.name));
+                    // console.log("drinkorder found" + (drinks.drink.name));
+                    // console.log("drinkorder found" + (doc.toObject()).cart.drinks[counter].drink.name);
+                    // counter++;
+                })
+                
+                var orders = {
+                    details: doc.toObject(),
+                    drinkorders: drinkOrderObjects
+                }
+    
+                ordersArray.push(orders);
+            });
+      
+            next(ordersArray);
+        }
+        else
+            next(null);
     })
 }
 
