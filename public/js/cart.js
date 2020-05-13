@@ -211,8 +211,9 @@ $(document).ready(function() {
         //     id = id.substring(4, id.length);
         //     ids.push(id);
         // });
+        
 
-        $("#closeOrderNum").attr('disabled','disabled');
+        $("#closeOrderNum").off('click');
 
         $.post('/customer/checkout', function(data, status) {
             if (data.status == "ok") {
