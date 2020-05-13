@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $(".increase").on("click", function(){
+    $(".increase").on("click", function increase(){
         var id = this.id;
         var len = id.length;
         var _id = id.substring(9, len);
@@ -55,7 +55,7 @@ $(document).ready(function() {
         });
     })
 
-    $(".decrease").on("click", function(){
+    $(".decrease").on("click", function decrease(){
         var id = this.id;
         var len = id.length;
         var _id = id.substring(9, len);
@@ -109,7 +109,7 @@ $(document).ready(function() {
         });
     });
 
-    $('#changeBtn').click(function() {
+    $('#changeBtn').click(function updateReq() {
         var _id = $("#id").val();
         var request = $("#request").val();
 
@@ -124,7 +124,7 @@ $(document).ready(function() {
         })
     })
     
-    $('#yesDelete').click(function() {
+    $('#yesDelete').click(function deleteDrink() {
         var _id = $("#id").val();
         console.log("del clicked");
 
@@ -203,6 +203,7 @@ $(document).ready(function() {
         $("#request").val(request);
     });
 
+
     $("#closeOrderNum").click(function() {
         // var ids = []
         
@@ -211,15 +212,17 @@ $(document).ready(function() {
         //     id = id.substring(4, id.length);
         //     ids.push(id);
         // });
-        
-
         $("#closeOrderNum").off('click');
-
-        $.post('/customer/checkout', function(data, status) {
-            if (data.status == "ok") {
-                // console.log("ok");
-                window.location = "/customer/order-status";
-            }
+        
+        $.when(increase(), decrease(), updateReq(), deleteDrink()).done(function() {
+            $.post('/customer/checkout', function(data, status) {
+                if (data.status == "ok") {
+                    // console.log("ok");
+                    window.location = "/customer/order-status";
+                }
+            })
         })
+
+        
     })
 });
