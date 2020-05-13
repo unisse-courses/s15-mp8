@@ -223,14 +223,15 @@ $(document).ready(function() {
         //     ids.push(id);
         // });
         $("#closeOrderNum").off('click');
-        $.when(updateQuant(), updateReq(), deleteDrink()).done(function() {
+
+        // $.when(updateQuant(), updateReq(), deleteDrink()).done(function() {
             $.post('/customer/checkout', function(data, status) {
                 if (data.status == "ok") {
                     // console.log("ok");
                     window.location = "/customer/order-status";
                 }
             })
-        })
+        // })
 
         
     })
