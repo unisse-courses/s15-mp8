@@ -21,26 +21,21 @@ Software requirements that need to be downloaded:
 
 2. Open command prompt and locate to the folder of `s15-mp8`
 
-3. Type in the command prompt to change the directory to folder PHASE 2
-    ```shell
-    cd PHASE 2
-    ```
-
-4. Once you are in PHASE 2’s folder, type in command prompt to install all the dependencies in the package.json
+3. Once you are in that folder, type in command prompt to install all the dependencies in the package.json
     ```shell
     npm install
     ```
 
 
-5. Once you've already downloaded the dependencies needed for the project, type `npm run dev`. It will display 
+4. Once you've already downloaded the dependencies needed for the project, type `npm run dev`. It will display 
     ```shell
     App listening at port 3000
     MongoDB connected
     ```
 
-6. Navigate to `http://localhost:3000/` in the browser to view the app
+5. Navigate to `http://localhost:3000/` in the browser to view the app
 
-7. To stop the server, simply key in `CTRL + C` for windows or `control(^) + C` for Mac
+6. To stop the server, simply key in `CTRL + C` for windows or `control(^) + C` for Mac
 
 # Running the tests
 ## Login as an Admin
@@ -49,10 +44,18 @@ Email Address: starbucks_assist@gmail.com
 Password: admin123
 ```
 
-## Login as a Customer 
+## Login as a Customer using the following accounts:
 ```
 Email Address: fmc@gmail.com
-Password: 123
+Password: 123456
+```
+```
+Email Address: sophiasee@gmail.com
+Password: 123456
+```
+```
+Email Address: jenniekim@ygent.com
+Password: iloveapples
 ```
 
 # Deployment
@@ -78,10 +81,10 @@ For customers, they will be able to add their favourite drinks in their profile.
 In the settings, customers will be able to change their information such as their name, nickname, email address, phone number, password, and display photo. The customer will be able to choose from his/her files to be uploaded as their display photo. Once the customer is done, he/she can save it and the changes will occur. 
 ![alt text](screens/account-settings.png)
 
-For view cart, the customer will be able to add or subtract the quantity of the drinks he/she decides to purchase. However, the prices will not be changed as the developers have not implemented the updating portion of the application.
+For view cart, the customer will be able to add or subtract the quantity of the drinks he/she decides to purchase.
 ![alt text](screens/view-cart.png)
 
-The customer can also enter the checkout button. This will give them the order number of their purchase and it will be updated in the order status. However, the developers have not completed the update portion of this application so for now it will just show the order number. Entering ‘proceed’ will not make the order available in the order status.
+The customer can also enter the checkout button. This will give them the order number of their purchase and it will be updated in the order status. 
 ![alt text](screens/order-num.png)
 
 ## Built with
